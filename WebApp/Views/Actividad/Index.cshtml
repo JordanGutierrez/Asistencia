@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Entidades.Administracion.Actividad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de Carreras</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p>
+                    <a href="@Url.Action("Create","Actividad")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nueva Actividad</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.ProcesoID)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumeroHoras)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.ProcesoID)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NumeroHoras)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit","Actividad", new { id = item.ActividadID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

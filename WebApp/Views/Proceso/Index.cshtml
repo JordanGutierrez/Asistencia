@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Entidades.Administracion.Proceso>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de Pasantes</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p>
+                    <a href="@Url.Action("Create","Proceso")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Proceso</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pasantia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pasante)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tutor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Institucion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Supervisor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CorreoSupervisor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CargoSupervisor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaInicioPasantias)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaFinPasantias)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Pasantia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Pasante)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tutor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Institucion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Departamento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Supervisor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CorreoSupervisor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CargoSupervisor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaInicioPasantias)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaFinPasantias)
+                                </td>
+                                <td>
+                                    @{
+                                        switch (item.Estado)
+                                        {
+                                            case 'A':
+                                                @Html.Raw("Activo");
+                                                break;
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Edit","Proceso", new { id = item.ProcesoID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

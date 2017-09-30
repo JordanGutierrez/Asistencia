@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+
+    <li class="">
+        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            @*<img src="images/img.jpg" alt="">*@@User.Identity.GetUserName()
+            <span class="fa fa-angle-down"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-usermenu pull-right">
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @style = "padding:15px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="fa fa-sign-out pull-right">
+                        </i> Cerra Sesión
+                    </a>
+                }
+            </li>
+        </ul>
+
+    </li>
+}
+else
+{
+    <li class="">
+        <a href="@Url.Action("Login","Account")" class="user-profile">
+            Iniciar Sesión
+        </a>
+    </li>
+}

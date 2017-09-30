@@ -1,0 +1,48 @@
+﻿@{
+    var alerts = TempData.ContainsKey(Entidades.Utils.Alert.TempDataKey)
+                ? (List<Entidades.Utils.Alert>)TempData[Entidades.Utils.Alert.TempDataKey]
+                : new List<Entidades.Utils.Alert>();
+}
+@{if (alerts.Any())
+    {
+        foreach (var item in alerts)
+        {
+            switch (item.AlertStyle)
+            {
+                case Entidades.Utils.AlertStyles.Warning:
+                    <script type="text/javascript">
+                        new PNotify({
+                            title: '@item.Titulo',
+                            text: '@item.Message',
+                            type: 'info',
+                            styling: 'bootstrap3',
+                            delay: 4000
+                        });
+                    </script>
+                    break;
+                case Entidades.Utils.AlertStyles.Danger:
+                    <script type="text/javascript">
+                        new PNotify({
+                            title: '@item.Titulo',
+                            text: '@item.Message',
+                            type: 'error',
+                            styling: 'bootstrap3',
+                            delay: 4000
+                        });
+                    </script>
+                    break;
+                case Entidades.Utils.AlertStyles.Success:
+                    <script type="text/javascript">
+                        new PNotify({
+                            title: '@item.Titulo',
+                            text: '@item.Message',
+                            type: 'success',
+                            styling: 'bootstrap3',
+                            delay: 4000
+                        });
+                    </script>
+                    break;
+            }
+        }
+    }
+}

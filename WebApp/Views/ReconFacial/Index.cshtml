@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/say-cheese.js"></script>
+</head>
+<body>
+    <form method="post" action="/ReconFacial/Reconocer"
+    <div id="webcam">
+    </div>
+    <input type="submit" id="btnCapturar" value="Capturar"/>
+    <input type="hidden" name="imagen" id="imagen"/>
+    </form>
+    <script type="text/javascript">
+        var sayCheese = new SayCheese('#webcam', { snapshot: true });
+
+        sayCheese.start();
+
+        $("#btnCapturar").click(function (e) {
+            sayCheese.takeSnapshot();
+        });
+
+        sayCheese.on('snapshot', function (snapshot) {
+            $('#imagen').val(snapshot.toDataURL('img/png'));
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <Height>2in</Height>
+    <Style />
+  </Body>
+  <Width>6.51042in</Width>
+  <Page>
+    <PageHeader>
+      <Height>2.71391cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Reporte General de AsistenciasC</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.15557cm</Top>
+          <Left>2.50542cm</Left>
+          <Height>0.6cm</Height>
+          <Width>14.03104cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="LogoUG">
+          <Source>Embedded</Source>
+          <Value>LogoUG</Value>
+          <Sizing>FitProportional</Sizing>
+          <Left>0.97896cm</Left>
+          <Height>1.8175cm</Height>
+          <Width>1.52646cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Universidad de Guayaquil</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>1.88806cm</Top>
+          <Height>0.6cm</Height>
+          <Width>3.79646cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox3">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha de Impresión</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>1.88806cm</Top>
+          <Left>9.605cm</Left>
+          <Height>0.6cm</Height>
+          <Width>3.135cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value EvaluationMode="Constant">Now()</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>1.88806cm</Top>
+          <Left>12.74cm</Left>
+          <Height>0.6cm</Height>
+          <Width>3.79646cm</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="del " &amp; Format(Parameters!FechaDesde.Value, "dd/MM/yyyy") &amp; " al " &amp; Format(Parameters!FechaHasta.Value, "dd/MM/yyyy")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.79085cm</Top>
+          <Left>2.50542cm</Left>
+          <Height>0.6cm</Height>
+          <Width>14.03104cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <ReportParameters>
+    <ReportParameter Name="FechaDesde">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FechaHasta">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="LogoUG">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>ce454ba7-f92b-4c59-b20e-a9840822310d</rd:ReportID>
+</Report>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Entidades.Administracion.Horario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Lista de Horarios</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p>
+                    <a href="@Url.Action("Create","Horario")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Horario</a>
+                </p>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoraEntrada)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoraSalida)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraEntrada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraSalida)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit","Horario", new { id = item.HorarioID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

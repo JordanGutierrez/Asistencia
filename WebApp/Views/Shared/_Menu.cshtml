@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Entidades.Administracion.AppMenu>
+@using Entidades.Administracion;
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    
+    foreach (AppMenu padre in Model.Where(x => x.PadreID == "0"))
+    {
+        <li>
+            <a>@padre.Titulo <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                @foreach (AppMenu hijo in Model.Where(y => y.PadreID == padre.VistaID))
+                {
+                    if (hijo.Orden > 0 && !string.IsNullOrEmpty(hijo.Titulo))
+                    {
+                        <li><a href="@Url.Action(hijo.Vista,hijo.Controlador)">@hijo.Titulo</a></li>
+                    }
+                }
+            </ul>
+        </li>
+    }
+}
