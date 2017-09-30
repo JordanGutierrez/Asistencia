@@ -64,20 +64,19 @@ namespace SqlDataAccess.Administracion
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_insertUsuario";
-            sql.Comando.Parameters.AddWithValue("P_UserName", usuario.UserName);
+            sql.Comando.Parameters.AddWithValue("P_CodigoBiometrico", usuario.CodigoBiometrico);
             sql.Comando.Parameters.AddWithValue("P_BiometricoID", usuario.BiometricoID);
-            sql.Comando.Parameters.AddWithValue("P_Clave", clave.ToString());
+            sql.Comando.Parameters.AddWithValue("P_Clave", clave);
             sql.Comando.Parameters.AddWithValue("P_Cedula", usuario.Cedula);
             sql.Comando.Parameters.AddWithValue("P_Nombres", usuario.Nombres);
             sql.Comando.Parameters.AddWithValue("P_Apellidos", usuario.Apellidos);
             sql.Comando.Parameters.AddWithValue("P_Correo", usuario.Correo);
             sql.Comando.Parameters.AddWithValue("P_Telefono", usuario.Telefono);
             sql.Comando.Parameters.AddWithValue("P_Celular", usuario.Celular);
+            sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_HorarioID", usuario.HorarioID);
             sql.Comando.Parameters.AddWithValue("P_CarreraID", usuario.CarreraID);
-            sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_UsuarioCreacion", user);
-            sql.Comando.Parameters.AddWithValue("P_FechaCreacion", DateTime.Now); 
             try
             {
                 sql.EjecutaQuery(ref mensaje);
@@ -92,18 +91,18 @@ namespace SqlDataAccess.Administracion
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_updateUsuario";
-            sql.Comando.Parameters.AddWithValue("P_UsuarioID", usuario.UsuarioID);
+            sql.Comando.Parameters.AddWithValue("P_CodigoBiometrico", usuario.CodigoBiometrico);
             sql.Comando.Parameters.AddWithValue("P_BiometricoID", usuario.BiometricoID);
-            sql.Comando.Parameters.AddWithValue("P_UserName", usuario.UserName);
+            sql.Comando.Parameters.AddWithValue("P_UsuarioID", usuario.UsuarioID);
             sql.Comando.Parameters.AddWithValue("P_Cedula", usuario.Cedula);
             sql.Comando.Parameters.AddWithValue("P_Nombres", usuario.Nombres);
             sql.Comando.Parameters.AddWithValue("P_Apellidos", usuario.Apellidos);
             sql.Comando.Parameters.AddWithValue("P_Correo", usuario.Correo);
             sql.Comando.Parameters.AddWithValue("P_Telefono", usuario.Telefono);
             sql.Comando.Parameters.AddWithValue("P_Celular", usuario.Celular);
+            sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_HorarioID", usuario.HorarioID);
             sql.Comando.Parameters.AddWithValue("P_CarreraID", usuario.CarreraID);
-            sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_UsuarioModificacion", user);
             try
             {

@@ -153,17 +153,15 @@ namespace WebApp.Utils
 
         public static string GetStringSha256Hash(string text)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in GetHash(text))
-                sb.Append(b.ToString("X2"));
+            if (String.IsNullOrEmpty(text))
+                return String.Empty;
 
-            return sb.ToString();
-        }
-
-        public static byte[] GetHash(string inputString)
-        {
-            HashAlgorithm algorithm = MD5.Create();  //or use SHA256.Create();
-            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            {
+                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return BitConverter.ToString(hash).Replace("-", String.Empty);
+            }
         }
 
         public static string GetClaim(string claim)

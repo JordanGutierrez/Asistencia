@@ -24,7 +24,7 @@ namespace WebApp.Controllers
 
             //if(rol != "1")
 
-            return View(justificaciones.Where(x => x.));
+            return View(justificaciones);
         }
 
         // GET: Justificacion/Details/5

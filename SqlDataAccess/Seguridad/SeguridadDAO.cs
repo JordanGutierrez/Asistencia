@@ -33,17 +33,17 @@ namespace SqlDataAccess.Seguridad
             var retValue = string.Empty;
             var loginHelper = new Usuario();
             loginHelper.Clave = password;
-            loginHelper.UserName = userName;
+            loginHelper.Correo = userName;
 
             var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    loginHelper.MaqSitio = ip.ToString();
-                }
-            }
-            loginHelper.Maquina = this.remoteAddress;
+            //foreach (var ip in host.AddressList)
+            //{
+            //    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            //    {
+            //        loginHelper.MaqSitio = ip.ToString();
+            //    }
+            //}
+            //loginHelper.Maquina = this.remoteAddress;
 
             string roles = string.Empty;
             transacciones = null;
@@ -102,8 +102,7 @@ namespace SqlDataAccess.Seguridad
         {
             Usuario usuario = null;
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE UserName = '" + alias + "'";
+            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Correo = '" + alias + "'";
 
             try
             {
@@ -142,18 +141,19 @@ namespace SqlDataAccess.Seguridad
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_insertUsuario";
-            sql.Comando.Parameters.AddWithValue("@UserName", usuario1.UserName);
-            sql.Comando.Parameters.AddWithValue("@Clave", GetStringSha256Hash(usuario1.Clave));
-            sql.Comando.Parameters.AddWithValue("@Cedula", usuario1.Cedula);
-            sql.Comando.Parameters.AddWithValue("@Nombres", usuario1.Nombres);
-            sql.Comando.Parameters.AddWithValue("@Apellidos", usuario1.Apellidos);
-            sql.Comando.Parameters.AddWithValue("@Correo", usuario1.Correo);
-            sql.Comando.Parameters.AddWithValue("@Telefono", usuario1.Telefono);
-            sql.Comando.Parameters.AddWithValue("@Celular", usuario1.Celular);
-            sql.Comando.Parameters.AddWithValue("@RolID", usuario1.RolID);
-            sql.Comando.Parameters.AddWithValue("@HorarioID", usuario1.HorarioID);
-            sql.Comando.Parameters.AddWithValue("@CarreraID", usuario1.CarreraID);
-            sql.Comando.Parameters.AddWithValue("@Usuario", usuario2);
+            sql.Comando.Parameters.AddWithValue("P_CodigoBiometrico", usuario1.CodigoBiometrico);
+            sql.Comando.Parameters.AddWithValue("P_BiometricoID", usuario1.BiometricoID);
+            sql.Comando.Parameters.AddWithValue("P_Clave", GetStringSha256Hash(usuario1.Cedula));
+            sql.Comando.Parameters.AddWithValue("P_Cedula", usuario1.Cedula);
+            sql.Comando.Parameters.AddWithValue("P_Nombres", usuario1.Nombres);
+            sql.Comando.Parameters.AddWithValue("P_Apellidos", usuario1.Apellidos);
+            sql.Comando.Parameters.AddWithValue("P_Correo", usuario1.Correo);
+            sql.Comando.Parameters.AddWithValue("P_Telefono", usuario1.Telefono);
+            sql.Comando.Parameters.AddWithValue("P_Celular", usuario1.Celular);
+            sql.Comando.Parameters.AddWithValue("P_RolID", usuario1.RolID);
+            sql.Comando.Parameters.AddWithValue("P_HorarioID", usuario1.HorarioID);
+            sql.Comando.Parameters.AddWithValue("P_CarreraID", usuario1.CarreraID);
+            sql.Comando.Parameters.AddWithValue("P_UsuarioCreacion", usuario2);
 
             try
             {

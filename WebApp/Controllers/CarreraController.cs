@@ -106,5 +106,16 @@ namespace WebApp.Controllers
             Warning(mensaje, "Carrera", true);
             return View(carrera);
         }
+
+        public ActionResult getCarrerabyBiometrico(int biometrico)
+        {
+            string mensaje = string.Empty;
+            List<Carrera> carreras = carreraDAO.getCarrerabyBiometrico(biometrico, ref mensaje);
+            if (mensaje == "OK")
+                return Json(new { carreras = carreras , mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

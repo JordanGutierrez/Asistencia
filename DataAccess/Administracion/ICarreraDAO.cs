@@ -11,6 +11,8 @@ namespace DataAccess.Administracion
     {
         List<Carrera> getAllCarrera(ref string mensaje);
 
+        List<Carrera> getCarrerabyBiometrico(int biometrico, ref string mensaje);
+
         Carrera getCarrera(int id, ref string mensaje);
 
         void insertCarrera(Carrera carrera, string usuario, ref string mensaje);

@@ -18,7 +18,6 @@ namespace SqlDataAccess.Administracion
         {
             List<Carrera> carreras = new List<Carrera>();
             sql = new ConsultasSQL();
-           // sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM Tbcarrera";
 
             try
@@ -41,9 +40,7 @@ namespace SqlDataAccess.Administracion
         {
             Carrera carrera = new Carrera();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbCarrera WHERE CarreraID = " + id;
-            //sql.Comando.Parameters.AddWithValue("@CarreraID", id);
 
             try
             {
@@ -59,6 +56,37 @@ namespace SqlDataAccess.Administracion
             }
 
             return carrera;
+        }
+
+        public List<Carrera> getCarrerabyBiometrico(int biometrico, ref string mensaje)
+        {
+            List<Carrera> carreras = new List<Carrera>();
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT CAR.CarreraID"
+		                            + ",CAR.Descripcion"
+                                    + ",CAR.FacultadID"
+                                    + ",CAR.Codigo"
+                                    + " FROM    tbbiometrico AS BIO"
+                                    + " INNER   JOIN tbfacultad     AS FAC"
+                                    + " ON FAC.FacultadID = BIO.FacultadID"
+                                    + " INNER JOIN tbcarrera AS CAR"
+                                    + " ON      FAC.FacultadID = CAR.FacultadID"
+                                    + " WHERE BIO.BiometricoID = " + biometrico;
+
+            try
+            {
+                IDataReader reader = sql.EjecutaReader(ref mensaje);
+                while (reader.Read())
+                {
+                    carreras.Add(Carrera.CreateCarreraFromDataRecord(reader));
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            return carreras;
         }
 
         public void insertCarrera(Carrera carrera, string usuario, ref string mensaje)

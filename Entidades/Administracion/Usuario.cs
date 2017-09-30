@@ -17,9 +17,10 @@ namespace Entidades.Administracion
         [DisplayName("Biométrico")]
         public int BiometricoID { get; set; }
 
-        [Required(ErrorMessage = "El usuario es requerido")]
-        [DisplayName("Usuario")]
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "El código de biométrico es requerido")]
+        [DisplayName("Código de Biométrico")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "El código de biométrico solo acepta caracteres numéricos")]
+        public string CodigoBiometrico { get; set; }
 
         [Required(ErrorMessage = "La clave es requerida")]
         [DisplayName("Clave")]
@@ -76,16 +77,12 @@ namespace Entidades.Administracion
         [DisplayName("Estado")]
         public char Estado { get; set; }
 
-        public string MaqSitio { get; set; }
-
-        public string Maquina { get; set; }
-
         public static Usuario CreateUsuarioFromDataRecord(IDataRecord dr)
         {
             Usuario usuario = new Usuario();
 
             usuario.UsuarioID = int.Parse(dr["UsuarioID"].ToString());
-            usuario.UserName = dr["UserName"].ToString();
+            usuario.CodigoBiometrico = dr["CodigoBiometrico"].ToString();
             usuario.Clave = dr["Clave"].ToString();
             usuario.Cedula = dr["Cedula"].ToString();
             usuario.Nombres = dr["Nombres"].ToString();
@@ -97,6 +94,7 @@ namespace Entidades.Administracion
             usuario.HorarioID = int.Parse(dr["HorarioID"].ToString());
             usuario.CarreraID = int.Parse(dr["CarreraID"].ToString());
             usuario.Estado = char.Parse(dr["Estado"].ToString());
+            usuario.BiometricoID = int.Parse(dr["BiometricoID"].ToString());
 
             return usuario;
         }

@@ -18,7 +18,6 @@ namespace SqlDataAccess.Administracion
         {
             List<Biometrico> biometricos = new List<Biometrico>();
             sql = new ConsultasSQL();
-            // sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbBiometrico";
 
             try
@@ -46,7 +45,6 @@ namespace SqlDataAccess.Administracion
         {
             Biometrico biometrico = new Biometrico();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbBiometrico WHERE BiometricoID = " + id;
 
             try
@@ -74,8 +72,9 @@ namespace SqlDataAccess.Administracion
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_insertBiometrico";
-            sql.Comando.Parameters.AddWithValue("P_CarreraID", biometrico.CarreraID);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", biometrico.FacultadID);
             sql.Comando.Parameters.AddWithValue("P_Descripcion", biometrico.Descripcion);
+            sql.Comando.Parameters.AddWithValue("P_Codigo", biometrico.Codigo);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
 
             try
@@ -97,9 +96,10 @@ namespace SqlDataAccess.Administracion
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_updateBiometrico";
-            sql.Comando.Parameters.AddWithValue("P_CarreraID", biometrico.CarreraID);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", biometrico.FacultadID);
             sql.Comando.Parameters.AddWithValue("P_BiometricoID", biometrico.BiometricoID);
             sql.Comando.Parameters.AddWithValue("P_Descripcion", biometrico.Descripcion);
+            sql.Comando.Parameters.AddWithValue("P_Codigo", biometrico.Codigo);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
 
             try

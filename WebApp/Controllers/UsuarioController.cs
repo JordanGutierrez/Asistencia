@@ -20,20 +20,30 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             String mensaje = string.Empty;
-            return View(usuarioDAO.getAllUsuario(ref mensaje));
+            ViewBag.RolID = Utils.Utils.GetClaim("RolID");
+            if(ViewBag.RolID == "1")
+                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 3));
+            else
+                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 2));
         }
 
         // GET: Usuario/Create
         public ActionResult Create()
         {
             string mensaje = string.Empty;
-
-            ViewBag.Roles = rolDAO.getAllRol(ref mensaje);
+            Usuario usuario = new Usuario();
             ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
             ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
             ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
 
-            return View();
+            string rol = Utils.Utils.GetClaim("RolID");
+
+            if (rol == "1")
+                usuario.RolID = 3;
+            else
+                usuario.RolID = 2;
+
+            return View(usuario);
         }
 
         // POST: Usuario/Create
@@ -41,23 +51,18 @@ namespace WebApp.Controllers
         public ActionResult Create(Usuario usuario)
         {
             string mensaje = string.Empty;
-            ViewBag.Roles = rolDAO.getAllRol(ref mensaje);
             ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
             ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
+            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
 
             try
             {
-                //if (!ModelState.IsValid)
-                //{
-                //    Warning("Información incorrecta", "Usuario", true);
-                //    return View(usuario);
-                //}
                 if (!Utils.Utils.esCedulaValida(usuario.Cedula))
                 {
                     Warning("El número de cédula es inválido", "Usuario", true);
                     return View(usuario);
                 }
-                string clave = Utils.Utils.GetStringSha256Hash(usuario.Clave);
+                string clave = Utils.Utils.GetStringSha256Hash(usuario.Cedula);
                 usuarioDAO.insertUsuario(usuario, GetApplicationUser(), clave, ref mensaje);
                 if(mensaje == "OK")
                 {
@@ -98,11 +103,6 @@ namespace WebApp.Controllers
 
             try
             {
-                //if (!ModelState.IsValid)
-                //{
-                //    Warning("Información incorrecta", "Usuario", true);
-                //    return View(usuario);
-                //}
                 if (!Utils.Utils.esCedulaValida(usuario.Cedula))
                 {
                     Warning("El número de cédula es inválido", "Usuario", true);

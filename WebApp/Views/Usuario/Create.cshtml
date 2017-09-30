@@ -8,7 +8,16 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Nuevo Usuario</h2>
+                @{
+                    if (Model.RolID == 1)
+                    {
+                        <h2>Nuevo Coordinador</h2>
+                    }
+                    else
+                    {
+                        <h2>Nuevo Empleado</h2>
+                    }
+                }
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -18,27 +27,28 @@
 
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                            <div class="col-md-6">
-                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                            <div class="col-md-6">
-                                @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
-                                @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
+                        @Html.HiddenFor(model => model.RolID)
                         <div class="form-group">
                             @Html.LabelFor(model => model.BiometricoID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6">
                                 @Html.DropDownList("BiometricoID", new SelectList(ViewBag.Biometricos, "BiometricoID", "Descripcion"), "Seleccione Biométrico", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.BiometricoID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CarreraID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("CarreraID", new SelectList(ViewBag.Carreras, "CarreraID", "Descripcion"), "Seleccione Carrera", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.CarreraID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CodigoBiometrico, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.CodigoBiometrico, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", @maxlength = "10", @onKeyPress = "return soloNumeros(event)" } })
+                                @Html.ValidationMessageFor(model => model.CodigoBiometrico, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -91,26 +101,10 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RolID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("RolID", new SelectList(ViewBag.Roles, "RolID", "Nombre"), "Seleccione Rol", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RolID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             @Html.LabelFor(model => model.HorarioID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6">
                                 @Html.DropDownList("HorarioID", new SelectList(ViewBag.Horarios, "HorarioID", "Descripcion"), "Seleccione Horario", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.HorarioID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CarreraID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("CarreraID", new SelectList(ViewBag.Carreras, "CarreraID", "Descripcion"), "Seleccione Carrera", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CarreraID, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -133,4 +127,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="../../Scripts/Usuario.js"></script>
 }

@@ -11,7 +11,7 @@ namespace WebApp.Controllers
 {
     public class BiometricoController : BaseController
     {
-        ICarreraDAO carreraDAO = new CarreraDAO();
+        IFacultadDAO facultadDAO = new FacultadDAO();
         IBiometricoDAO biometricoDAO = new BiometricoDAO();
 
         // GET: Biometrico
@@ -26,7 +26,7 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
 
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
 
             return View();
         }
@@ -37,7 +37,7 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
 
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
 
             try
             {
@@ -60,7 +60,7 @@ namespace WebApp.Controllers
         public ActionResult Edit(int id)
         {
             string mensaje = string.Empty;
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
 
             Biometrico biometrico = biometricoDAO.getBiometrico(id, ref mensaje);
             return View(biometrico);
@@ -71,7 +71,7 @@ namespace WebApp.Controllers
         public ActionResult Edit(Biometrico biometrico)
         {
             string mensaje = string.Empty;
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
 
             try
             {
