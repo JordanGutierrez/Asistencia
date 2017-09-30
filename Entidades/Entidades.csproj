@@ -78,6 +78,7 @@
     <Compile Include="Administracion\Actividad.cs" />
     <Compile Include="Administracion\AppMenu.cs" />
     <Compile Include="Administracion\AppPrincipal.cs" />
+    <Compile Include="Administracion\Asistencia.cs" />
     <Compile Include="Administracion\Biometrico.cs" />
     <Compile Include="Administracion\Carrera.cs" />
     <Compile Include="Administracion\Facultad.cs" />

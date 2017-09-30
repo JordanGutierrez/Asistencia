@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Administracion\IActividadDAO.cs" />
     <Compile Include="Administracion\IAppMenuDAO.cs" />
+    <Compile Include="Administracion\IAsistenciaDAO.cs" />
     <Compile Include="Administracion\IBiometricoDAO.cs" />
     <Compile Include="Administracion\ICarreraDAO.cs" />
     <Compile Include="Administracion\IFacultadDAO.cs" />

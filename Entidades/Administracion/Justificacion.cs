@@ -17,23 +17,24 @@ namespace Entidades.Administracion
 
         [Required]
         [DisplayName("Asistencia")]
-        public string AsistenciaID { get; set; }
+        public int AsistenciaID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El comentario es requerido")]
+        [DisplayName("Comentario")]
+        public string Comentario { get; set; }
+
+        [Required(ErrorMessage = "El archivo es requerido")]
         [DisplayName("Archivo")]
         public byte[] Archivo { get; set; }
-
-        [DisplayName("Estado")]
-        public char Estado { get; set; }
 
         public static Justificacion CreateJustificacionFromDataRecord(IDataRecord dr)
         {
             Justificacion justificacion = new Justificacion();
 
             justificacion.JustificacionID = int.Parse(dr["JustificacionID"].ToString());
-            justificacion.AsistenciaID = dr["AsistenciaID"].ToString();
+            justificacion.AsistenciaID = int.Parse(dr["AsistenciaID"].ToString());
+            justificacion.Comentario = dr["Comentario"].ToString();
             justificacion.Archivo = (byte[])dr["Archivo"];
-            justificacion.Estado = char.Parse(dr["Estado"].ToString());
 
             return justificacion;
         }

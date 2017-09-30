@@ -19,7 +19,6 @@ namespace SqlDataAccess.Administracion
         {
             List<Horario> horarios = new List<Horario>();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbHorario";
 
             try
@@ -48,7 +47,6 @@ namespace SqlDataAccess.Administracion
         {
             Horario horario = new Horario();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbHorario WHERE HorarioID = " + id.ToString();
 
             try

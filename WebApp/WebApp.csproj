@@ -650,11 +650,12 @@
     <Content Include="Views\Biometrico\Index.cshtml" />
     <Content Include="Views\Biometrico\Create.cshtml" />
     <Content Include="Views\Biometrico\Edit.cshtml" />
+    <Content Include="Views\Justificacion\Index.cshtml" />
+    <Content Include="Views\Justificacion\Justificar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
-    <Folder Include="Views\Justificacion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

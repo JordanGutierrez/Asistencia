@@ -33,5 +33,7 @@ namespace WebApp.Models
         public System.Data.Entity.DbSet<Entidades.Administracion.Horario> Horarios { get; set; }
 
         public System.Data.Entity.DbSet<Entidades.Administracion.Biometrico> Biometricoes { get; set; }
+
+        public System.Data.Entity.DbSet<Entidades.Administracion.Justificacion> Justificacions { get; set; }
     }
 }

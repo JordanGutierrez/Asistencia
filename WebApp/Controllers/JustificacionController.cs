@@ -3,6 +3,7 @@ using Entidades.Administracion;
 using SqlDataAccess.Administracion;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,19 +13,14 @@ namespace WebApp.Controllers
     public class JustificacionController : BaseController
     {
         IJustificacionDAO justificacionDAO = new JustificacionDAO();
-        
+        IAsistenciaDAO asistenciaDAO = new AsistenciaDAO();
+
         // GET: Justificacion
         public ActionResult Index()
         {
-            string rol = Utils.Utils.GetClaim("RolID");
-            string usuarioID = Utils.Utils.GetClaim("UsuarioID");
             string mensaje = string.Empty;
-
-            var justificaciones = justificacionDAO.getAllJustificacion(ref mensaje);
-
-            //if(rol != "1")
-
-            return View(justificaciones);
+            ViewBag.Faltas = asistenciaDAO.getAllAsistenciasByEstado('F', ref mensaje);
+            return View();
         }
 
         // GET: Justificacion/Details/5
@@ -34,69 +30,62 @@ namespace WebApp.Controllers
         }
 
         // GET: Justificacion/Create
-        public ActionResult Create()
+        public ActionResult Justificar(int asistencia)
         {
-            return View();
+            Justificacion justificacion = new Justificacion();
+            justificacion.AsistenciaID = asistencia;
+            return View(justificacion);
         }
 
         // POST: Justificacion/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Justificar(HttpPostedFileBase Archivo, int AsistenciaID, string Comentario)
         {
+            string mensaje = string.Empty;
+            Justificacion justificacion = new Justificacion();
+
             try
             {
-                // TODO: Add insert logic here
+                if (Archivo != null)
+                {
+                    string extension = Path.GetExtension(Archivo.FileName);
+                    if(extension == ".pdf")
+                    { 
+                        using (Stream inputStream = Archivo.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            justificacion.Archivo = memoryStream.ToArray();
+                        }
+                        justificacion.AsistenciaID = AsistenciaID;
+                        justificacion.Comentario = Comentario;
+                        justificacionDAO.insertJustificacion(justificacion, GetApplicationUser(), ref mensaje);
+                        if(mensaje == "OK")
+                        {
+                            Success("Justificación registrada con éxito", "Justificación", true);
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            Warning(mensaje, "Justificación", true);
+                        }
+                    }
+                    else
+                    {
+                        Warning("La extensión del archivo debe ser PDF", "Justificación", true);
+                    }
+                }
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                Warning(ex.Message, "Justificación", true);
             }
-        }
-
-        // GET: Justificacion/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Justificacion/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Justificacion/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Justificacion/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(justificacion);
         }
     }
 }

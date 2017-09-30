@@ -18,7 +18,6 @@ namespace SqlDataAccess.Administracion
         {
             List<Facultad> facultades = new List<Facultad>();
             sql = new ConsultasSQL();
-           // sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbFacultad";
 
             try

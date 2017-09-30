@@ -43,7 +43,20 @@ namespace SqlDataAccess.Administracion
 
         public void insertJustificacion(Justificacion justificacion, string user, ref string mensaje)
         {
-            throw new NotImplementedException();
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_insertJustificacion";
+            sql.Comando.Parameters.AddWithValue("P_AsistenciaID", justificacion.AsistenciaID);
+            sql.Comando.Parameters.AddWithValue("P_Archivo", justificacion.Archivo);
+            sql.Comando.Parameters.AddWithValue("P_User", user);
+            sql.Comando.Parameters.AddWithValue("P_Comentario", justificacion.Comentario);
+            try
+            {
+                sql.EjecutaQuery(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
         }
 
         public void updateJustificacion(Justificacion justificacion, string user, ref string mensaje)
