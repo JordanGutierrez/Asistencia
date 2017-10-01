@@ -85,6 +85,7 @@
     <Compile Include="Administracion\Horario.cs" />
     <Compile Include="Administracion\Institucion.cs" />
     <Compile Include="Administracion\Justificacion.cs" />
+    <Compile Include="Administracion\Permiso.cs" />
     <Compile Include="Administracion\Persona.cs" />
     <Compile Include="Administracion\Proceso.cs" />
     <Compile Include="Administracion\Rol.cs" />

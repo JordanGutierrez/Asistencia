@@ -211,6 +211,7 @@
     <Compile Include="Controllers\InstitucionController.cs" />
     <Compile Include="Controllers\JustificacionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
     <Compile Include="Controllers\ReconFacialController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -652,6 +653,8 @@
     <Content Include="Views\Biometrico\Edit.cshtml" />
     <Content Include="Views\Justificacion\Index.cshtml" />
     <Content Include="Views\Justificacion\Justificar.cshtml" />
+    <Content Include="Views\Permiso\Index.cshtml" />
+    <Content Include="Views\Permiso\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

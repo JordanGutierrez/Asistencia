@@ -49,6 +49,7 @@
     <Compile Include="Administracion\IHorarioDAO.cs" />
     <Compile Include="Administracion\IInstitucionDAO.cs" />
     <Compile Include="Administracion\IJustificacionDAO.cs" />
+    <Compile Include="Administracion\IPermisoDAO.cs" />
     <Compile Include="Administracion\IPersonaDAO.cs" />
     <Compile Include="Administracion\IProcesoDAO.cs" />
     <Compile Include="Administracion\IRolDAO.cs" />

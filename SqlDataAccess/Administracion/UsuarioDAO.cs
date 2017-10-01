@@ -18,7 +18,6 @@ namespace SqlDataAccess.Administracion
         {
             List<Usuario> usuarios = new List<Usuario>();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM TbUsuario";
 
             try

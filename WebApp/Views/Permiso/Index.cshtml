@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Entidades.Administracion.Permiso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de Permisos</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p>
+                    @{
+                        if (ViewBag.RolID == "2")
+                        {
+                            <a href="@Url.Action("Create", "Permiso")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Permiso</a>
+                        }
+                    }
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NombreUsuario)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Motivo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Motivo)
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.Estado == 'P')
+                                        {
+                                            @Html.Raw("Pendiente")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("Aprobado")
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        if (ViewBag.RolID == "3" && item.Estado == 'P')
+                                        {
+                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

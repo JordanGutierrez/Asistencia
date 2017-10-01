@@ -16,6 +16,7 @@ namespace WebApp.Controllers
         ICarreraDAO carreraDAO = new CarreraDAO();
         IHorarioDAO horarioDAO = new HorarioDAO();
         IBiometricoDAO biometricoDAO = new BiometricoDAO();
+
         // GET: Usuario
         public ActionResult Index()
         {

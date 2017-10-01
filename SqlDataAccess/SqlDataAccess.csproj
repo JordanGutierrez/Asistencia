@@ -51,6 +51,7 @@
     <Compile Include="Administracion\HorarioDAO.cs" />
     <Compile Include="Administracion\InstitucionDAO.cs" />
     <Compile Include="Administracion\JustificacionDAO.cs" />
+    <Compile Include="Administracion\PermisoDAO.cs" />
     <Compile Include="Administracion\PersonaDAO.cs" />
     <Compile Include="Administracion\ProcesoDAO.cs" />
     <Compile Include="Administracion\RolDAO.cs" />
