@@ -54,6 +54,7 @@
     <Compile Include="Administracion\IProcesoDAO.cs" />
     <Compile Include="Administracion\IRolDAO.cs" />
     <Compile Include="Administracion\IUsuarioDAO.cs" />
+    <Compile Include="Administracion\IVacacionesDAO.cs" />
     <Compile Include="Catalogos\IPasantiaDAO.cs" />
     <Compile Include="Catalogos\ITipoIdentificacionDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

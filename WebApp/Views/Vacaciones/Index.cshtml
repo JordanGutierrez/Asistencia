@@ -1,16 +1,14 @@
-﻿@model IEnumerable<Entidades.Administracion.Permiso>
+﻿@model IEnumerable<Entidades.Administracion.Vacaciones>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Listado de Permisos</h2>
+                <h2>Listado de Vacaciones</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -18,7 +16,7 @@
                     @{
                         if (ViewBag.RolID == "2")
                         {
-                            <a href="@Url.Action("Create", "Permiso")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Permiso</a>
+                            <a href="@Url.Action("Create", "Vacaciones")" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevas Vacaciones</a>
                         }
                     }
                 </p>
@@ -29,7 +27,10 @@
                                 @Html.DisplayNameFor(model => model.NombreUsuario)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Fecha)
+                                @Html.DisplayNameFor(model => model.FechaInicio)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaFin)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Motivo)
@@ -48,7 +49,10 @@
                                     @Html.DisplayFor(modelItem => item.NombreUsuario)
                                 </td>
                                 <td>
-                                    @DateTime.Parse(item.Fecha.ToString()).ToShortDateString()
+                                    @DateTime.Parse(item.FechaInicio.ToString()).ToShortDateString()
+                                </td>
+                                <td>
+                                    @DateTime.Parse(item.FechaFin.ToString()).ToShortDateString()
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Motivo)
@@ -69,7 +73,7 @@
                                     @{
                                         if (ViewBag.RolID == "3" && item.Estado == 'P')
                                         {
-                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="@Url.Action("Aprobar","Vacaciones", new { id = item.VacacionesID})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
                                         }
                                     }
                                 </td>

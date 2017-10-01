@@ -91,6 +91,7 @@
     <Compile Include="Administracion\Rol.cs" />
     <Compile Include="Administracion\AppIdentity.cs" />
     <Compile Include="Administracion\Usuario.cs" />
+    <Compile Include="Administracion\Vacaciones.cs" />
     <Compile Include="Catalogos\Pasantia.cs" />
     <Compile Include="Catalogos\TipoIdentificacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

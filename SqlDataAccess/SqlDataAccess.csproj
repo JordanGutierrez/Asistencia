@@ -63,6 +63,7 @@
     <Compile Include="Utils\Base.cs" />
     <Compile Include="Utils\ConsultasSQL.cs" />
     <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Administracion\VacacionesDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
