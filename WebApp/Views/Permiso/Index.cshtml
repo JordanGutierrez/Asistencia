@@ -69,7 +69,7 @@
                                     @{
                                         if (ViewBag.RolID == "3" && item.Estado == 'P')
                                         {
-                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-success">Aprobado</a>
                                         }
                                     }
                                 </td>
