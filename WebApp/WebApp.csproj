@@ -658,6 +658,7 @@
     <Content Include="Views\Permiso\Create.cshtml" />
     <Content Include="Views\Vacaciones\Index.cshtml" />
     <Content Include="Views\Vacaciones\Create.cshtml" />
+    <Content Include="Views\Account\Restart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

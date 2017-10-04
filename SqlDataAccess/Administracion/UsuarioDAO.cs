@@ -86,6 +86,44 @@ namespace SqlDataAccess.Administracion
             }
         }
 
+        public void restartUsuario(int id, ref string mensaje)
+        {
+            Usuario usuario = this.getUsuario(id, ref mensaje);
+            string clave = Seguridad.SeguridadDAO.GetStringSha256Hash(usuario.Cedula);
+            sql = new ConsultasSQL();
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_restartUsuario";
+            sql.Comando.Parameters.AddWithValue("P_UsuarioID", id);
+            sql.Comando.Parameters.AddWithValue("P_Clave", clave);
+
+            try
+            {
+                sql.EjecutaQuery(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+        }
+
+        public void restartUsuario(Usuario usuario, ref string mensaje)
+        {
+            string clave = Seguridad.SeguridadDAO.GetStringSha256Hash(usuario.Clave);
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_updateUsuarioClave";
+            sql.Comando.Parameters.AddWithValue("P_UsuarioID", usuario.UsuarioID);
+            sql.Comando.Parameters.AddWithValue("P_Clave", clave);
+
+            try
+            {
+                sql.EjecutaQuery(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+        }
+
         public void updateUsuario(Usuario usuario, string user, ref string mensaje)
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;

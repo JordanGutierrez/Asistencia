@@ -13,11 +13,13 @@ namespace DataAccess.Administracion
 
         Usuario getUsuario(int id, ref string mensaje);
 
-        //Usuario getPersonabyUser(int user, ref string mensaje);
-
         void insertUsuario(Usuario usuario, string user, string clave, ref string mensaje);
 
         void updateUsuario(Usuario usuario, string user, ref string mensaje);
+
+        void restartUsuario(int id, ref string mensaje);
+
+        void restartUsuario(Usuario usuario, ref string mensaje);
 
     }
 }

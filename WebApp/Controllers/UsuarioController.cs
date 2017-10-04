@@ -123,5 +123,17 @@ namespace WebApp.Controllers
             Warning(mensaje, "Usuario", true);
             return View(usuario);
         }
+
+        public ActionResult Restart(int id)
+        {
+            string mensaje = string.Empty;
+
+            usuarioDAO.restartUsuario(id, ref mensaje);
+            if (mensaje == "OK")
+                Success("Contraseña reseteada con éxito", "Usuario", true);
+            else
+                Warning(mensaje, "Usuario", true);
+            return RedirectToAction("Index");
+        }
     }
 }

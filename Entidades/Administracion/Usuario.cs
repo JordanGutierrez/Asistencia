@@ -43,6 +43,11 @@ namespace Entidades.Administracion
         [RegularExpression(@"^[A-Za-zÑñáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El apellido solo acepta caracteres alfabéticos")]
         public string Apellidos { get; set; }
 
+        [Required(ErrorMessage = "El cargo es requerido")]
+        [DisplayName("Cargo")]
+        [RegularExpression(@"^[A-Za-zÑñáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El cargo solo acepta caracteres alfabéticos")]
+        public string Cargo { get; set; }
+
         [Required(ErrorMessage = "El correo es requerido")]
         [DisplayName("Correo")]
         [RegularExpression(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-‌​]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$", ErrorMessage = "Debe ingresar un correo válido")]
@@ -87,6 +92,7 @@ namespace Entidades.Administracion
             usuario.Cedula = dr["Cedula"].ToString();
             usuario.Nombres = dr["Nombres"].ToString();
             usuario.Apellidos = dr["Apellidos"].ToString();
+            usuario.Cargo = dr["Cargo"].ToString();
             usuario.Correo = dr["Correo"].ToString();
             usuario.Telefono = dr["Telefono"].ToString();
             usuario.Celular = dr["Celular"].ToString();

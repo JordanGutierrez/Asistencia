@@ -36,14 +36,6 @@ namespace SqlDataAccess.Seguridad
             loginHelper.Correo = userName;
 
             var host = Dns.GetHostEntry(Dns.GetHostName());
-            //foreach (var ip in host.AddressList)
-            //{
-            //    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-            //    {
-            //        loginHelper.MaqSitio = ip.ToString();
-            //    }
-            //}
-            //loginHelper.Maquina = this.remoteAddress;
 
             string roles = string.Empty;
             transacciones = null;
@@ -72,7 +64,12 @@ namespace SqlDataAccess.Seguridad
                                 mensaje = "La clave o contraseña es incorrecta";
                         }
                         else
-                            mensaje = "El usuario se encuentra inactivo";
+                        {
+                            if(usuario.Estado == 'C')
+                                mensaje = "Cambiar Contraseña";
+                            else
+                                mensaje = "El usuario se encuentra inactivo";
+                        }
                     }
                     else
                         mensaje = "El usuario no existe";

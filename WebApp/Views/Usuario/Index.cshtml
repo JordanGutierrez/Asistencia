@@ -64,9 +64,16 @@
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Edit", "Usuario", new { id = item.UsuarioID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                    @{
+
+                                        if (ViewBag.RolID == "1" || ViewBag.RolID == "3")
+                                        {
+                                            <a href="@Url.Action("Restart", "Usuario", new { id = item.UsuarioID })" class="btn btn-success">Resetear Contraseña</a>
+                                        }
+                                    }
                                 </td>
                             </tr>
-                        }
+                                        }
                     </tbody>
                 </table>
             </div>

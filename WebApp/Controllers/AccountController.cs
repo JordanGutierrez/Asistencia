@@ -13,7 +13,8 @@ using DataAccess.Seguridad;
 using SqlDataAccess.Seguridad;
 using System.Collections.Generic;
 using Entidades.Administracion;
-
+using DataAccess.Administracion;
+using SqlDataAccess.Administracion;
 
 namespace WebApp.Controllers
 {
@@ -94,6 +95,11 @@ namespace WebApp.Controllers
                 var resultadoLogin = securityDao.authenticateUser(model.Email, model.Password, out transacciones, out usuario);
                 if (resultadoLogin != "OK")
                 {
+                    if(resultadoLogin == "Cambiar Contraseña")
+                    {
+                        return RedirectToAction("Restart", "Account", new { id = usuario.UsuarioID});
+                    }
+
                     ModelState.AddModelError("", resultadoLogin);
                 }
                 else
@@ -119,6 +125,33 @@ namespace WebApp.Controllers
             else
             {
                 return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Restart(int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.UsuarioID = id;
+            return View(usuario);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Restart(Usuario usuario)
+        {
+            IUsuarioDAO usuarioDAO = new UsuarioDAO();
+            string mensaje = string.Empty;
+            usuarioDAO.restartUsuario(usuario, ref mensaje);
+            if(mensaje == "OK")
+            {
+                Success("Contraseña cambiada con éxito", "Usuario", true);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                Warning(mensaje, "Usuario", true);
+                return View("Restar", new { id = usuario.UsuarioID });
             }
         }
 
