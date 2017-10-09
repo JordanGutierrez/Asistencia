@@ -54,6 +54,7 @@
     <Compile Include="Administracion\PermisoDAO.cs" />
     <Compile Include="Administracion\PersonaDAO.cs" />
     <Compile Include="Administracion\ProcesoDAO.cs" />
+    <Compile Include="Administracion\ReporteDAO.cs" />
     <Compile Include="Administracion\RolDAO.cs" />
     <Compile Include="Administracion\UsuarioDAO.cs" />
     <Compile Include="Catalogos\PasantiaDAO.cs" />

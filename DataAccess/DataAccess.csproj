@@ -52,6 +52,7 @@
     <Compile Include="Administracion\IPermisoDAO.cs" />
     <Compile Include="Administracion\IPersonaDAO.cs" />
     <Compile Include="Administracion\IProcesoDAO.cs" />
+    <Compile Include="Administracion\IReporteDAO.cs" />
     <Compile Include="Administracion\IRolDAO.cs" />
     <Compile Include="Administracion\IUsuarioDAO.cs" />
     <Compile Include="Administracion\IVacacionesDAO.cs" />

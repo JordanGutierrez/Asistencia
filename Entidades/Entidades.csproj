@@ -88,6 +88,7 @@
     <Compile Include="Administracion\Permiso.cs" />
     <Compile Include="Administracion\Persona.cs" />
     <Compile Include="Administracion\Proceso.cs" />
+    <Compile Include="Administracion\Reporte.cs" />
     <Compile Include="Administracion\Rol.cs" />
     <Compile Include="Administracion\AppIdentity.cs" />
     <Compile Include="Administracion\Usuario.cs" />

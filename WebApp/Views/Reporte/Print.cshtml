@@ -1,0 +1,74 @@
+﻿@model Entidades.Administracion.Reporte
+
+@{
+    ViewBag.Title = "Print";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Reporte de Asistencias</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @using (Html.BeginForm("Print", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @if (ViewBag.RolID == "3")
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", @maxlength = "10", @onKeyPress = "return soloNumeros(event)" } })
+                                    @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="input-group date">
+                                    <input id="FechaInicio" name="FechaInicio" value="@Model.FechaInicio.Value.ToShortDateString()" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly" />
+                                    <span class="input-group-addon ">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="input-group date">
+                                    <input id="FechaFin" name="FechaFin" value="@Model.FechaFin.Value.ToShortDateString()" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly" />
+                                    <span class="input-group-addon ">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-floppy-disk"></span> Imprimir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

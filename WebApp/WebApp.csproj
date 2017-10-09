@@ -81,6 +81,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -214,8 +215,14 @@
     <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
     <Compile Include="Controllers\ReconFacialController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VacacionesController.cs" />
+    <Compile Include="DataSetReportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReportes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -439,6 +446,17 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-fileinput\sass\fileinput.scss" />
+    <Content Include="DataSetReportes.xsc">
+      <DependentUpon>DataSetReportes.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSetReportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReportes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSetReportes.xss">
+      <DependentUpon>DataSetReportes.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Pasantias.pubxml" />
     <None Include="Properties\PublishProfiles\Tesis.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -659,6 +677,7 @@
     <Content Include="Views\Vacaciones\Index.cshtml" />
     <Content Include="Views\Vacaciones\Create.cshtml" />
     <Content Include="Views\Account\Restart.cshtml" />
+    <Content Include="Views\Reporte\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
