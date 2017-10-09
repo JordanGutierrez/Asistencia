@@ -146,5 +146,29 @@ namespace WebApp.Controllers
                 Warning(mensaje, "Usuario", true);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Activar(int id)
+        {
+            string mensaje = string.Empty;
+
+            usuarioDAO.updateUsuarioEstado(id, 'A', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Usuario activado con éxito", "Usuario", true);
+            else
+                Warning(mensaje, "Usuario", true);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Inactivar(int id)
+        {
+            string mensaje = string.Empty;
+
+            usuarioDAO.updateUsuarioEstado(id, 'I', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Usuario activado con éxito", "Usuario", true);
+            else
+                Warning(mensaje, "Usuario", true);
+            return RedirectToAction("Index");
+        }
     }
 }

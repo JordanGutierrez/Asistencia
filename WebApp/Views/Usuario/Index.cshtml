@@ -46,6 +46,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Apellidos)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -63,6 +66,16 @@
                                     @Html.DisplayFor(modelItem => item.Apellidos)
                                 </td>
                                 <td>
+                                    @if(item.Estado == 'A')
+                                    {
+                                        @Html.Raw("Activo")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("Inactivo")
+                                    }
+                                </td>
+                                <td>
                                     <a href="@Url.Action("Edit", "Usuario", new { id = item.UsuarioID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
                                     @{
 
@@ -70,6 +83,15 @@
                                         {
                                             <a href="@Url.Action("Restart", "Usuario", new { id = item.UsuarioID })" class="btn btn-success">Resetear Contraseña</a>
                                         }
+                                    }
+
+                                    @if (item.Estado == 'A')
+                                    {
+                                        <a href="@Url.Action("Inactivar", "Usuario", new { id = item.UsuarioID })" class="btn btn-danger">Inactivar</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Activar", "Usuario", new { id = item.UsuarioID })" class="btn btn-success">Activar</a>
                                     }
                                 </td>
                             </tr>

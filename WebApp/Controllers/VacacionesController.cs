@@ -53,24 +53,38 @@ namespace WebApp.Controllers
                     string extension = Path.GetExtension(Archivo.FileName);
                     if (extension.ToUpper() == ".PDF")
                     {
-                        using (Stream inputStream = Archivo.InputStream)
+                        if (FechaInicio > DateTime.Now.Date)
                         {
-                            MemoryStream memoryStream = inputStream as MemoryStream;
-                            if (memoryStream == null)
+                            if (FechaFin > DateTime.Now)
                             {
-                                memoryStream = new MemoryStream();
-                                inputStream.CopyTo(memoryStream);
+                                if (FechaInicio.Date < FechaFin.Date)
+                                {
+                                    using (Stream inputStream = Archivo.InputStream)
+                                    {
+                                        MemoryStream memoryStream = inputStream as MemoryStream;
+                                        if (memoryStream == null)
+                                        {
+                                            memoryStream = new MemoryStream();
+                                            inputStream.CopyTo(memoryStream);
+                                        }
+                                        vacaciones.Archivo = memoryStream.ToArray();
+                                        vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                                        vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
+                                        if (mensaje == "OK")
+                                        {
+                                            Success("Vacaciones registradas con éxito", "Vacaciones", true);
+                                            return RedirectToAction("Index");
+                                        }
+                                    }
+                                }
+                                else
+                                    mensaje = "La fecha de fin debe ser mayor a la fecha de inicio de las vacaciones";
                             }
-                            vacaciones.Archivo = memoryStream.ToArray();
-                            vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-                            vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
-                            if (mensaje == "OK")
-                            {
-                                Success("Vacaciones registradas con éxito", "Vacaciones", true);
-                                return RedirectToAction("Index");
-                            }
-
+                            else
+                                mensaje = "La fecha de fin debe ser mayor a la actual";
                         }
+                        else
+                            mensaje = "La fecha de inicio debe ser mayor a la actual";
                     }
                     else
                         mensaje = "La extensión del archivo debe ser PDF";

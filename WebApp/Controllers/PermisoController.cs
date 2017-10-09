@@ -53,23 +53,28 @@ namespace WebApp.Controllers
                     string extension = Path.GetExtension(Archivo.FileName);
                     if (extension.ToUpper() == ".PDF")
                     {
-                        using (Stream inputStream = Archivo.InputStream)
+                        if (Fecha.Date > DateTime.Now.Date)
                         {
-                            MemoryStream memoryStream = inputStream as MemoryStream;
-                            if (memoryStream == null)
+                            using (Stream inputStream = Archivo.InputStream)
                             {
-                                memoryStream = new MemoryStream();
-                                inputStream.CopyTo(memoryStream);
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                permiso.Archivo = memoryStream.ToArray();
                             }
-                            permiso.Archivo = memoryStream.ToArray();
+                            permiso.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                            permisoDAO.insertPermiso(permiso, GetApplicationUser(), ref mensaje);
+                            if (mensaje == "OK")
+                            {
+                                Success("Permiso registrado con éxito", "Permiso", true);
+                                return RedirectToAction("Index");
+                            }
                         }
-                        permiso.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-                        permisoDAO.insertPermiso(permiso, GetApplicationUser(), ref mensaje);
-                        if (mensaje == "OK")
-                        {
-                            Success("Permiso registrado con éxito", "Permiso", true);
-                            return RedirectToAction("Index");
-                        }
+                        else
+                            mensaje = "La fecha del permiso debe ser mayor a la fecha actual";
                     }
                     else
                         mensaje = "La extensión del archivo deber ser PDF";

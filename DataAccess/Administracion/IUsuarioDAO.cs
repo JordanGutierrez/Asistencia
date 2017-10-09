@@ -21,5 +21,7 @@ namespace DataAccess.Administracion
 
         void restartUsuario(Usuario usuario, ref string mensaje);
 
+        void updateUsuarioEstado(int id, char estado, string usuario, ref string mensaje);
+
     }
 }
