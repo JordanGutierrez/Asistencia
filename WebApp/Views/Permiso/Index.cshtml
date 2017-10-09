@@ -71,6 +71,10 @@
                                         {
                                             <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-success">Aprobado</a>
                                         }
+                                        if (ViewBag.RolID == "3")
+                                        {
+                                            <a href="@Url.Action("Descargar","Permiso", new { id = item.PermisoID })" class class="btn btn-danger">Descargar</a>
+                                        }
                                     }
                                 </td>
                             </tr>

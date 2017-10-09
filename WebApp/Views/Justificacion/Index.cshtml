@@ -29,18 +29,31 @@
                     <tbody>
                         @foreach (System.Data.DataRow item in dt.Rows)
                         {
-                            <tr>
-                                <td>
-                                    @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
-                                </td>
-                                <td>
-                                    @Html.Raw(item["Usuario"])
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
-                                </td>
-                            </tr>
-                        }
+                            
+                                if (char.Parse(item["Estado"].ToString()) == 'F' || char.Parse(item["Estado"].ToString()) == 'J')
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
+                                        </td>
+                                        <td>
+                                            @Html.Raw(item["Usuario"])
+                                        </td>
+                                        <td>
+                                            
+                                                @if (char.Parse(item["Estado"].ToString()) == 'F')
+                                                {
+                                                    <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Justificar</a>
+                                                }
+                                                @if (char.Parse(item["Estado"].ToString()) == 'J')
+                                                {
+                                                    <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Descargar</a>
+                                                }
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
                     </tbody>
                 </table>
             </div>

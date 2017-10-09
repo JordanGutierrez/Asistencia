@@ -18,6 +18,7 @@ namespace WebApp.Controllers
         IBiometricoDAO biometricoDAO = new BiometricoDAO();
 
         // GET: Usuario
+        [AppAuthorize("00004")]
         public ActionResult Index()
         {
             String mensaje = string.Empty;
@@ -29,12 +30,18 @@ namespace WebApp.Controllers
         }
 
         // GET: Usuario/Create
+        [AppAuthorize("00015")]
         public ActionResult Create()
         {
             string mensaje = string.Empty;
             Usuario usuario = new Usuario();
             ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
-            ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
+            var horarios = horarioDAO.getAllHorario(ref mensaje);
+            for(int i = 0; i < horarios.Count; i++)
+            {
+                horarios[i].Descripcion = horarios[i].Descripcion + ": " + horarios[i].HoraEntrada + " - " + horarios[i].HoraSalida;
+            }
+            ViewBag.Horarios = horarios;
             ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
 
             string rol = Utils.Utils.GetClaim("RolID");
@@ -49,6 +56,7 @@ namespace WebApp.Controllers
 
         // POST: Usuario/Create
         [HttpPost]
+        [AppAuthorize("00015")]
         public ActionResult Create(Usuario usuario)
         {
             string mensaje = string.Empty;
@@ -80,6 +88,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Usuario/Edit/5
+        [AppAuthorize("00016")]
         public ActionResult Edit(int id)
         {
             string mensaje = string.Empty;
@@ -94,6 +103,7 @@ namespace WebApp.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
+        [AppAuthorize("00016")]
         public ActionResult Edit(Usuario usuario)
         {
             string mensaje = string.Empty;
@@ -124,6 +134,7 @@ namespace WebApp.Controllers
             return View(usuario);
         }
 
+        [AppAuthorize("00028")]
         public ActionResult Restart(int id)
         {
             string mensaje = string.Empty;

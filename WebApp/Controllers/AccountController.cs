@@ -496,7 +496,8 @@ namespace WebApp.Controllers
                 new Claim(ClaimTypes.Name, model.Email),
                 new Claim(AppIdentity.RolesClaimType, string.Join(",", roles)),
                 new Claim("RolID", usuario.RolID.ToString()),
-                new Claim("UsuarioID", usuario.UsuarioID.ToString())
+                new Claim("UsuarioID", usuario.UsuarioID.ToString()),
+                new Claim("CarreraID", usuario.CarreraID.ToString())
 
             };
             return claims;

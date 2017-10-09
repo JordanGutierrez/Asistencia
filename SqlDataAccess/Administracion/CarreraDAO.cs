@@ -91,21 +91,33 @@ namespace SqlDataAccess.Administracion
 
         public void insertCarrera(Carrera carrera, string usuario, ref string mensaje)
         {
-            sql.Comando.CommandType = CommandType.StoredProcedure;
-            sql.Comando.CommandText = "pa_insertCarrera";
-            sql.Comando.Parameters.AddWithValue("P_Codigo", carrera.Codigo);
-            sql.Comando.Parameters.AddWithValue("P_Descripcion", carrera.Descripcion);
-            sql.Comando.Parameters.AddWithValue("P_FacultadID", carrera.FacultadID);
-            sql.Comando.Parameters.AddWithValue("P_User", usuario);
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbCarrera WHERE Codigo = " + carrera.Codigo;
+            DataTable dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count < 1)
+            {
+                sql = new ConsultasSQL();
+                sql.Comando.CommandType = CommandType.StoredProcedure;
+                sql.Comando.CommandText = "pa_insertCarrera";
+                sql.Comando.Parameters.AddWithValue("P_Codigo", carrera.Codigo);
+                sql.Comando.Parameters.AddWithValue("P_Descripcion", carrera.Descripcion);
+                sql.Comando.Parameters.AddWithValue("P_FacultadID", carrera.FacultadID);
+                sql.Comando.Parameters.AddWithValue("P_User", usuario);
 
-            try
-            {
-                sql.EjecutaQuery(ref mensaje);
+                try
+                {
+                    sql.EjecutaQuery(ref mensaje);
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                mensaje = ex.Message;
+                mensaje = "El código de la carrera ya se encuentra registrado";
             }
+
         }
 
         public void updateCarrera(Carrera carrera, string usuario, ref string mensaje)

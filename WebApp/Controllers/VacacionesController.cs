@@ -3,6 +3,7 @@ using Entidades.Administracion;
 using SqlDataAccess.Administracion;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,7 @@ namespace WebApp.Controllers
         IVacacionesDAO vacacionesDAO = new VacacionesDAO();
 
         // GET: Vacaciones
+        [AppAuthorize("00020")]
         public ActionResult Index()
         {
             String mensaje = string.Empty;
@@ -28,6 +30,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Vacaciones/Create
+        [AppAuthorize("00021")]
         public ActionResult Create()
         {
             return View();
@@ -35,19 +38,46 @@ namespace WebApp.Controllers
 
         // POST: Vacaciones/Create
         [HttpPost]
-        public ActionResult Create(Vacaciones vacaciones)
+        [AppAuthorize("00021")]
+        public ActionResult Create(HttpPostedFileBase Archivo, DateTime FechaInicio, DateTime FechaFin, string Motivo)
         {
             string mensaje = string.Empty;
-
+            Vacaciones vacaciones = new Vacaciones();
+            vacaciones.FechaInicio = FechaInicio;
+            vacaciones.FechaFin = FechaFin;
+            vacaciones.Motivo = Motivo;
             try
             {
-                vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-                vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
-                if (mensaje == "OK")
+                if (Archivo != null)
                 {
-                    Success("Vacaciones registradas con éxito", "Vacaciones", true);
-                    return RedirectToAction("Index");
+                    string extension = Path.GetExtension(Archivo.FileName);
+                    if (extension.ToUpper() == ".PDF")
+                    {
+                        using (Stream inputStream = Archivo.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            vacaciones.Archivo = memoryStream.ToArray();
+                            vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                            vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
+                            if (mensaje == "OK")
+                            {
+                                Success("Vacaciones registradas con éxito", "Vacaciones", true);
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+                    }
+                    else
+                        mensaje = "La extensión del archivo debe ser PDF";
                 }
+                else
+                    mensaje = "El archivo es requerido";
+
             }
             catch (Exception ex)
             {
@@ -56,7 +86,9 @@ namespace WebApp.Controllers
             Warning(mensaje, "Vacaciones", true);
             return View(vacaciones);
         }
+
         // GET: Vacaciones/Aprobar
+        [AppAuthorize("00022")]
         public ActionResult Aprobar(int id)
         {
             string mensaje = string.Empty;
@@ -75,6 +107,23 @@ namespace WebApp.Controllers
             }
             Warning(mensaje, "Vacaciones", true);
             return RedirectToAction("Index");
+        }
+
+        // GET: Vacaciones/Descargar
+        [AppAuthorize("00023")]
+        public ActionResult Descargar(int id)
+        {
+            string mensaje = string.Empty;
+            Vacaciones vacaciones = vacacionesDAO.getVacaciones(id, ref mensaje);
+            if (mensaje == "OK")
+            {
+                return File(vacaciones.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Vacaciones_" + vacaciones.VacacionesID + ".pdf");
+            }
+            else
+            {
+                Warning(mensaje, "Justificación", true);
+                return View("Index");
+            }
         }
     }
 }

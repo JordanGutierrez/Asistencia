@@ -12,6 +12,8 @@ namespace WebApp.Controllers
     public class HorarioController : BaseController
     {
         IHorarioDAO  horarioDAO = new HorarioDAO();
+
+        [AppAuthorize("00009")]
         // GET: Horario
         public ActionResult Index()
         {
@@ -19,14 +21,8 @@ namespace WebApp.Controllers
             return View(horarioDAO.getAllHorario(ref mensaje));
         }
 
-        // GET: Horario/Details/5
-        public ActionResult Details(int id)
-        {
-     
-            return View();
-        }
-
         // GET: Horario/Create
+        [AppAuthorize("00010")]
         public ActionResult Create()
         {
             return View();
@@ -34,6 +30,7 @@ namespace WebApp.Controllers
 
         // POST: Horario/Create
         [HttpPost]
+        [AppAuthorize("00010")]
         public ActionResult Create(Horario horario)
         {
             string mensaje = string.Empty;
@@ -56,6 +53,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Horario/Edit/5
+        [AppAuthorize("00011")]
         public ActionResult Edit(int id)
         {
 
@@ -66,6 +64,7 @@ namespace WebApp.Controllers
 
         // POST: Horario/Edit/5
         [HttpPost]
+        [AppAuthorize("00011")]
         public ActionResult Edit(Horario horario)
         {
             string mensaje = string.Empty;
@@ -83,28 +82,6 @@ namespace WebApp.Controllers
                 mensaje = ex.Message;
             }
             return View(horario);
-        }
-
-        // GET: Horario/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Horario/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

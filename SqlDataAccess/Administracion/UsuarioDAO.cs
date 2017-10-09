@@ -40,7 +40,6 @@ namespace SqlDataAccess.Administracion
         {
             Usuario usuario = new Usuario();
             sql = new ConsultasSQL();
-            //sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE UsuarioID = " + id.ToString();
 
             try
@@ -61,6 +60,32 @@ namespace SqlDataAccess.Administracion
 
         public void insertUsuario(Usuario usuario, string user, string clave, ref string mensaje)
         {
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Cedula = '" + usuario.Cedula + "'";
+            DataTable dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "El número de cédula ya se encuentra registrado";
+                return;
+            }
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Correo = '" + usuario.Correo + "'";
+            dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "El correo ya se encuentra registrado";
+                return;
+            }
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE CodigoBiometrico = '" + usuario.CodigoBiometrico + "'";
+            dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "El código del biométrico ya se encuentra registrado";
+                return;
+            }
+
+            sql = new ConsultasSQL();
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_insertUsuario";
             sql.Comando.Parameters.AddWithValue("P_CodigoBiometrico", usuario.CodigoBiometrico);

@@ -31,6 +31,10 @@ namespace Entidades.Administracion
         [DisplayName("Motivo")]
         public string Motivo { get; set; }
 
+        [Required(ErrorMessage = "El archivo es requerido")]
+        [DisplayName("Archivo")]
+        public byte[] Archivo { get; set; }
+
         public char Estado { get; set; }
 
         public static Vacaciones CreateVacacionesFromDataRecord(IDataRecord dr)
@@ -44,6 +48,7 @@ namespace Entidades.Administracion
             vacaciones.NombreUsuario = dr["NombreUsuario"].ToString();
             vacaciones.FechaInicio = DateTime.Parse(dr["FechaInicio"].ToString());
             vacaciones.FechaFin = DateTime.Parse(dr["FechaFin"].ToString());
+            vacaciones.Archivo = (byte[])dr["Archivo"];
 
             return vacaciones;
         }

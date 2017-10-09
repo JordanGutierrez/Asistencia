@@ -47,6 +47,8 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Carrera carrera)
         {
+            string mensaje = string.Empty;
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
             try
             {
                 if (!ModelState.IsValid)
@@ -54,20 +56,19 @@ namespace WebApp.Controllers
                     ModelState.AddModelError("", "Datos Enviados Incorrectos");
                     return View(carrera);
                 }
-                string mensaje = string.Empty;
                 carreraDAO.insertCarrera(carrera, GetApplicationUser(), ref mensaje);
                 if (mensaje == "OK")
                 {
                     Success("Carrera registrada con éxito", "Carrera", true);
                     return RedirectToAction("Index");
                 }
-                else
-                    return View(carrera);
             }
             catch (Exception ex)
             {
                 return View(carrera);
             }
+            Warning(mensaje, "Carrera", true);
+            return View(carrera);
         }
 
         // GET: Carrera/Edit/5

@@ -29,6 +29,10 @@ namespace Entidades.Administracion
 
         public char Estado { get; set; }
 
+        [Required(ErrorMessage = "El archivo es requerido")]
+        [DisplayName("Archivo")]
+        public byte[] Archivo { get; set; }
+
         public static Permiso CreatePermisoFromDataRecord(IDataRecord dr)
         {
             Permiso permiso = new Permiso();
@@ -39,6 +43,7 @@ namespace Entidades.Administracion
             permiso.Motivo = dr["Motivo"].ToString();
             permiso.NombreUsuario = dr["NombreUsuario"].ToString();
             permiso.Fecha = DateTime.Parse(dr["Fecha"].ToString());
+            permiso.Archivo = (byte[])dr["Archivo"];
 
             return permiso;
         }

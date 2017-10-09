@@ -16,20 +16,16 @@ namespace WebApp.Controllers
         IAsistenciaDAO asistenciaDAO = new AsistenciaDAO();
 
         // GET: Justificacion
+        [AppAuthorize("00017")]
         public ActionResult Index()
         {
             string mensaje = string.Empty;
-            ViewBag.Faltas = asistenciaDAO.getAllAsistenciasByEstado('F', ref mensaje);
-            return View();
-        }
-
-        // GET: Justificacion/Details/5
-        public ActionResult Details(int id)
-        {
+            ViewBag.Faltas = asistenciaDAO.getAllAsistencia(ref mensaje);
             return View();
         }
 
         // GET: Justificacion/Create
+        [AppAuthorize("00026")]
         public ActionResult Justificar(int asistencia)
         {
             Justificacion justificacion = new Justificacion();
@@ -39,6 +35,7 @@ namespace WebApp.Controllers
 
         // POST: Justificacion/Create
         [HttpPost]
+        [AppAuthorize("00026")]
         public ActionResult Justificar(HttpPostedFileBase Archivo, int AsistenciaID, string Comentario)
         {
             string mensaje = string.Empty;
@@ -49,7 +46,7 @@ namespace WebApp.Controllers
                 if (Archivo != null)
                 {
                     string extension = Path.GetExtension(Archivo.FileName);
-                    if(extension == ".pdf")
+                    if(extension.ToUpper() == ".PDF")
                     { 
                         using (Stream inputStream = Archivo.InputStream)
                         {
@@ -86,6 +83,23 @@ namespace WebApp.Controllers
                 Warning(ex.Message, "Justificación", true);
             }
             return View(justificacion);
+        }
+
+        // GET: Justificacion/Descargar
+        [AppAuthorize("00027")]
+        public ActionResult Descargar(int asistencia)
+        {
+            string mensaje = string.Empty;
+            Justificacion justificacion = justificacionDAO.getJustificacionByAsistencia(asistencia, ref mensaje);
+            if(mensaje == "OK")
+            {
+                return File(justificacion.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Justificacion_" + justificacion.AsistenciaID + ".pdf");
+            }
+            else
+            {
+                Warning(mensaje, "Justificación", true);
+                return View();
+            }
         }
     }
 }

@@ -104,6 +104,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_UsuarioID", permiso.UsuarioID);
             sql.Comando.Parameters.AddWithValue("P_Fecha", permiso.Fecha);
             sql.Comando.Parameters.AddWithValue("P_Motivo", permiso. Motivo);
+            sql.Comando.Parameters.AddWithValue("P_Archivo", permiso.Archivo);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
             try
             {

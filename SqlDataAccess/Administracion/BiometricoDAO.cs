@@ -70,25 +70,37 @@ namespace SqlDataAccess.Administracion
 
         public void insertBiometrico(Biometrico biometrico, string usuario, ref string mensaje)
         {
-            sql.Comando.CommandType = CommandType.StoredProcedure;
-            sql.Comando.CommandText = "pa_insertBiometrico";
-            sql.Comando.Parameters.AddWithValue("P_FacultadID", biometrico.FacultadID);
-            sql.Comando.Parameters.AddWithValue("P_Descripcion", biometrico.Descripcion);
-            sql.Comando.Parameters.AddWithValue("P_Codigo", biometrico.Codigo);
-            sql.Comando.Parameters.AddWithValue("P_User", usuario);
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbBiometrico WHERE Codigo = " + biometrico.Codigo;
+            DataTable dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count < 1)
+            {
+                sql = new ConsultasSQL();
 
-            try
-            {
-                sql.AbrirConexion();
-                sql.EjecutaQuery(ref mensaje);
+                sql.Comando.CommandType = CommandType.StoredProcedure;
+                sql.Comando.CommandText = "pa_insertBiometrico";
+                sql.Comando.Parameters.AddWithValue("P_FacultadID", biometrico.FacultadID);
+                sql.Comando.Parameters.AddWithValue("P_Descripcion", biometrico.Descripcion);
+                sql.Comando.Parameters.AddWithValue("P_Codigo", biometrico.Codigo);
+                sql.Comando.Parameters.AddWithValue("P_User", usuario);
+
+                try
+                {
+                    sql.AbrirConexion();
+                    sql.EjecutaQuery(ref mensaje);
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.Message;
+                }
+                finally
+                {
+                    sql.CerrarConexion();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                mensaje = ex.Message;
-            }
-            finally
-            {
-                sql.CerrarConexion();
+                mensaje = "El código del biométrico ya se encuentra registrado";
             }
         }
 

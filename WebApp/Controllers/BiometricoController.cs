@@ -15,6 +15,7 @@ namespace WebApp.Controllers
         IBiometricoDAO biometricoDAO = new BiometricoDAO();
 
         // GET: Biometrico
+        [AppAuthorize("00012")]
         public ActionResult Index()
         {
             String mensaje = string.Empty;
@@ -22,6 +23,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Biometrico/Create
+        [AppAuthorize("00013")]
         public ActionResult Create()
         {
             string mensaje = string.Empty;
@@ -33,6 +35,7 @@ namespace WebApp.Controllers
 
         // POST: Biometrico/Create
         [HttpPost]
+        [AppAuthorize("00013")]
         public ActionResult Create(Biometrico biometrico)
         {
             string mensaje = string.Empty;
@@ -57,6 +60,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Biometrico/Edit/5
+        [AppAuthorize("00014")]
         public ActionResult Edit(int id)
         {
             string mensaje = string.Empty;
@@ -68,6 +72,7 @@ namespace WebApp.Controllers
 
         // POST: Biometrico/Edit/5
         [HttpPost]
+        [AppAuthorize("00014")]
         public ActionResult Edit(Biometrico biometrico)
         {
             string mensaje = string.Empty;

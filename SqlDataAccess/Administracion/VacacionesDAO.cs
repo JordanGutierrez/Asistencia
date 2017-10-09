@@ -76,11 +76,12 @@ namespace SqlDataAccess.Administracion
             sql = new ConsultasSQL();
             sql.Comando.CommandText = "SELECT	PER.*"
                                     + " ,concat(USU.Apellidos, ' ', USU.Nombres) AS NombreUsuario"
+                                    + ", PER.Archivo"
                                     + " FROM tbVacaciones     AS PER"
                                     + " INNER JOIN tbusuario  AS USU"
                                     + " ON      PER.UsuarioID = USU.UsuarioID"
                                     + " WHERE USU.Estado = 'A'"
-                                    + " AND PER.PermisoID = " + id;
+                                    + " AND PER.VacacionesID = " + id;
             try
             {
                 IDataReader reader = sql.EjecutaReader(ref mensaje);
@@ -105,6 +106,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaInicio", vacaciones.FechaInicio);
             sql.Comando.Parameters.AddWithValue("P_FechaFin", vacaciones.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Motivo", vacaciones.Motivo);
+            sql.Comando.Parameters.AddWithValue("P_Archivo", vacaciones.Archivo);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
             try
             {

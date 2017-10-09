@@ -11,11 +11,9 @@ namespace DataAccess.Administracion
     {
         List<Justificacion> getAllJustificacion(ref string mensaje);
 
-        Justificacion getJustificacion(int id, ref string mensaje);
+        Justificacion getJustificacionByAsistencia(int asistenciaid, ref string mensaje);
 
         void insertJustificacion(Justificacion justificacion, string user, ref string mensaje);
-
-        void updateJustificacion(Justificacion justificacion, string user, ref string mensaje);
 
     }
 }

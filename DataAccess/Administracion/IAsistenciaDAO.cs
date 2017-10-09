@@ -9,6 +9,6 @@ namespace DataAccess.Administracion
 {
     public interface IAsistenciaDAO
     {
-        DataTable getAllAsistenciasByEstado(char estado, ref string mensaje);
+        DataTable getAllAsistencia(ref string mensaje);
     }
 }

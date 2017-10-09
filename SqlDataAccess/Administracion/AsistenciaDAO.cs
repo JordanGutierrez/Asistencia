@@ -13,16 +13,16 @@ namespace SqlDataAccess.Administracion
     {
         ConsultasSQL sql = new ConsultasSQL();
 
-        public DataTable getAllAsistenciasByEstado(char estado, ref string mensaje)
+        public DataTable getAllAsistencia(ref string mensaje)
         {
             DataTable dt = null;
             sql.Comando.CommandText = "SELECT ASI.AsistenciaID"
-		                            + " ,ASI.Fecha"
-		                            + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
+                                    + " ,ASI.Fecha"
+                                    + " ,ASI.Estado"
+                                    + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
                                     + " FROM tbasistencia        AS ASI"
                                     + " INNER JOIN tbusuario AS USU"
-                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"
-                                    + " WHERE ASI.Estado = '" + estado + "'";
+                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico";
 
             try
             {

@@ -36,9 +36,26 @@ namespace SqlDataAccess.Administracion
             return justificacion;
         }
 
-        public Justificacion getJustificacion(int id, ref string mensaje)
+        public Justificacion getJustificacionByAsistencia(int asistenciaid, ref string mensaje)
         {
-            throw new NotImplementedException();
+            Justificacion justificacion = new Justificacion();
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT * FROM tbJustificacion WHERE AsistenciaID = " + asistenciaid;
+
+            try
+            {
+                IDataReader reader = sql.EjecutaReader(ref mensaje);
+                while (reader.Read())
+                {
+                    justificacion = Justificacion.CreateJustificacionFromDataRecord(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            return justificacion;
         }
 
         public void insertJustificacion(Justificacion justificacion, string user, ref string mensaje)
@@ -57,11 +74,6 @@ namespace SqlDataAccess.Administracion
             {
                 mensaje = ex.Message;
             }
-        }
-
-        public void updateJustificacion(Justificacion justificacion, string user, ref string mensaje)
-        {
-            throw new NotImplementedException();
         }
     }
 }
