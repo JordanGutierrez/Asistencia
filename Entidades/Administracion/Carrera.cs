@@ -29,9 +29,9 @@ namespace Entidades.Administracion
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "La facultad solo acepta caracteres numéricos")]
         public string Codigo { get; set; }
 
-        //[Required(ErrorMessage = "El estado es requerido")]
-        //[DisplayName("Activo")]
-        //public char Estado { get; set; }
+        [Required(ErrorMessage = "El estado es requerido")]
+        [DisplayName("Estado")]
+        public char Estado { get; set; }
 
         public static Carrera CreateCarreraFromDataRecord(IDataRecord dr)
         {
@@ -41,7 +41,7 @@ namespace Entidades.Administracion
             carrera.FacultadID = int.Parse(dr["FacultadID"].ToString());
             carrera.Codigo = dr["Codigo"].ToString();
             carrera.Descripcion  = dr["Descripcion"].ToString();
-            //carrera.Estado = char.Parse(dr["Estado"].ToString());
+            carrera.Estado = char.Parse(dr["Estado"].ToString());
 
             return carrera;
         }

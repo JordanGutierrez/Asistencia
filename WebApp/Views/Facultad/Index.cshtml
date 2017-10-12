@@ -24,9 +24,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Descripcion)
                             </th>
-                            @*<th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Estado)
-                            </th>*@
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -40,20 +40,26 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Descripcion)
                                 </td>
-                                @*<td>
-                                    @{ 
-                                        if(item.Estado == 'A')
-                                        {
-                                            @Html.Raw("Activo")
-                                        }
-                                        else
-                                        {
-                                            @Html.Raw("Inactivo");
-                                        }
+                                <td>
+                                    @if (item.Estado == 'A')
+                                    {
+                                        @Html.Raw("Activo")
                                     }
-                                </td>*@
+                                    else
+                                    {
+                                        @Html.Raw("Inactivo")
+                                    }
+                                </td>
                                 <td>
                                     <a href="@Url.Action("Edit","Facultad", new { id = item.FacultadID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
+                                    @if (item.Estado == 'A')
+                                    {
+                                        <a href="@Url.Action("Inactivar", "Facultad", new { id = item.FacultadID })" class="btn btn-danger">Inactivar</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Activar", "Facultad", new { id = item.FacultadID })" class="btn btn-success">Activar</a>
+                                    }
                                 </td>
                             </tr>
                         }

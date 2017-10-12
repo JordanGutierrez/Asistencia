@@ -165,7 +165,7 @@ namespace WebApp.Controllers
 
             usuarioDAO.updateUsuarioEstado(id, 'I', GetApplicationUser(), ref mensaje);
             if (mensaje == "OK")
-                Success("Usuario activado con éxito", "Usuario", true);
+                Success("Usuario inactivado con éxito", "Usuario", true);
             else
                 Warning(mensaje, "Usuario", true);
             return RedirectToAction("Index");

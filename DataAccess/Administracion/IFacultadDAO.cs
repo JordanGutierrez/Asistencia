@@ -16,5 +16,7 @@ namespace DataAccess.Administracion
         void insertFacultad(Facultad facultad, string usuario, ref string mensaje);
 
         void updateFacultad(Facultad facultad, string usuario, ref string mensaje);
+
+        void updateFacultadEstado(int id, char estado, string usuario, ref string mensaje);
     }
 }

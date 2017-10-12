@@ -128,5 +128,23 @@ namespace SqlDataAccess.Administracion
                 sql.CerrarConexion();
             }
         }
+
+        public void updateBiometricoEstado(int id, char estado, string usuario, ref string mensaje)
+        {
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_updateBiometricoEstado";
+            sql.Comando.Parameters.AddWithValue("P_BiometricoID", id);
+            sql.Comando.Parameters.AddWithValue("P_Estado", estado);
+            sql.Comando.Parameters.AddWithValue("P_User", usuario);
+
+            try
+            {
+                sql.EjecutaQuery(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+        }
     }
 }

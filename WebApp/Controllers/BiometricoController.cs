@@ -94,5 +94,29 @@ namespace WebApp.Controllers
             Warning(mensaje, "Biométrico", true);
             return View(biometrico);
         }
+
+        public ActionResult Activar(int id)
+        {
+            string mensaje = string.Empty;
+
+            biometricoDAO.updateBiometricoEstado(id, 'A', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Biométrico activado con éxito", "Biométrico", true);
+            else
+                Warning(mensaje, "Biométrico", true);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Inactivar(int id)
+        {
+            string mensaje = string.Empty;
+
+            biometricoDAO.updateBiometricoEstado(id, 'I', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Biométrico inactivado con éxito", "Biométrico", true);
+            else
+                Warning(mensaje, "Biométrico", true);
+            return RedirectToAction("Index");
+        }
     }
 }

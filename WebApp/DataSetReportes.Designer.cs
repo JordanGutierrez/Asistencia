@@ -1083,6 +1083,8 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnTotalFaltas;
             
+            private global::System.Data.DataColumn columnTotalExtra;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtTotalFaltasDataTable() {
@@ -1126,6 +1128,14 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalExtraColumn {
+                get {
+                    return this.columnTotalExtra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1161,10 +1171,11 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtTotalFaltasRow AdddtTotalFaltasRow(int TotalFaltas) {
+            public dtTotalFaltasRow AdddtTotalFaltasRow(int TotalFaltas, string TotalExtra) {
                 dtTotalFaltasRow rowdtTotalFaltasRow = ((dtTotalFaltasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        TotalFaltas};
+                        TotalFaltas,
+                        TotalExtra};
                 rowdtTotalFaltasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtTotalFaltasRow);
                 return rowdtTotalFaltasRow;
@@ -1188,6 +1199,7 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnTotalFaltas = base.Columns["TotalFaltas"];
+                this.columnTotalExtra = base.Columns["TotalExtra"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1195,6 +1207,8 @@ namespace WebApp {
             private void InitClass() {
                 this.columnTotalFaltas = new global::System.Data.DataColumn("TotalFaltas", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalFaltas);
+                this.columnTotalExtra = new global::System.Data.DataColumn("TotalExtra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExtra);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1915,6 +1929,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotalExtra {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtTotalFaltas.TotalExtraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalExtra\' de la tabla \'dtTotalFaltas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTotalFaltas.TotalExtraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalFaltasNull() {
                 return this.IsNull(this.tabledtTotalFaltas.TotalFaltasColumn);
             }
@@ -1923,6 +1953,18 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalFaltasNull() {
                 this[this.tabledtTotalFaltas.TotalFaltasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalExtraNull() {
+                return this.IsNull(this.tabledtTotalFaltas.TotalExtraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalExtraNull() {
+                this[this.tabledtTotalFaltas.TotalExtraColumn] = global::System.Convert.DBNull;
             }
         }
         

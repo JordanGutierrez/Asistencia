@@ -118,5 +118,28 @@ namespace WebApp.Controllers
                 return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Activar(int id)
+        {
+            string mensaje = string.Empty;
+
+            carreraDAO.updateCarreraEstado(id, 'A', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Carrera activada con éxito", "Carrera", true);
+            else
+                Warning(mensaje, "Carrera", true);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Inactivar(int id)
+        {
+            string mensaje = string.Empty;
+
+            carreraDAO.updateCarreraEstado(id, 'I', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Carrera inactivada con éxito", "Carrera", true);
+            else
+                Warning(mensaje, "Carrera", true);
+            return RedirectToAction("Index");
+        }
     }
 }

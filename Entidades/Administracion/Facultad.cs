@@ -25,9 +25,9 @@ namespace Entidades.Administracion
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "La facultad solo acepta caracteres numéricos")]
         public string Codigo { get; set; }
 
-        //[Required(ErrorMessage = "El estado es requerido")]
-        //[DisplayName("Activo")]
-        //public char Estado { get; set; }
+        [Required(ErrorMessage = "El estado es requerido")]
+        [DisplayName("Estado")]
+        public char Estado { get; set; }
 
         public static Facultad CreateFacultadFromDataRecord(IDataRecord dr)
         {
@@ -36,7 +36,7 @@ namespace Entidades.Administracion
             facultad.FacultadID = int.Parse(dr["FacultadID"].ToString());
             facultad.Descripcion = dr["Descripcion"].ToString();
             facultad.Codigo = dr["Codigo"].ToString();
-            //facultad.Estado = char.Parse(dr["Estado"].ToString());
+            facultad.Estado = char.Parse(dr["Estado"].ToString());
 
             return facultad;
         }

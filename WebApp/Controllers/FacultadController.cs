@@ -91,7 +91,30 @@ namespace WebApp.Controllers
             }
             Warning(mensaje, "Facultad", true);
             return View(facultad);
+        }
 
+        public ActionResult Activar(int id)
+        {
+            string mensaje = string.Empty;
+
+            facultadDAO.updateFacultadEstado(id, 'A', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Facultad activada con éxito", "Facultad", true);
+            else
+                Warning(mensaje, "Facultad", true);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Inactivar(int id)
+        {
+            string mensaje = string.Empty;
+
+            facultadDAO.updateFacultadEstado(id, 'I', GetApplicationUser(), ref mensaje);
+            if (mensaje == "OK")
+                Success("Facultad inactivada con éxito", "Facultad", true);
+            else
+                Warning(mensaje, "Facultad", true);
+            return RedirectToAction("Index");
         }
     }
 }

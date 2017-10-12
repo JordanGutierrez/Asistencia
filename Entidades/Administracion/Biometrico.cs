@@ -29,6 +29,10 @@ namespace Entidades.Administracion
         [DisplayName("Facultad")]
         public int FacultadID { get; set; }
 
+        [Required(ErrorMessage = "El estado es requerido")]
+        [DisplayName("Estado")]
+        public char Estado { get; set; }
+
         public static Biometrico CreateBiometricoFromDataRecord(IDataRecord dr)
         {
             Biometrico biometrico = new Biometrico();
@@ -37,6 +41,7 @@ namespace Entidades.Administracion
             biometrico.Descripcion = dr["Descripcion"].ToString();
             biometrico.FacultadID = int.Parse(dr["FacultadID"].ToString());
             biometrico.Codigo = dr["Codigo"].ToString();
+            biometrico.Estado = char.Parse(dr["Estado"].ToString());
 
             return biometrico;
         }

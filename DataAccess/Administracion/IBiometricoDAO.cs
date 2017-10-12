@@ -16,5 +16,7 @@ namespace DataAccess.Administracion
         void insertBiometrico(Biometrico biometrico, string usuario, ref string mensaje);
 
         void updateBiometrico(Biometrico biometrico, string usuario, ref string mensaje);
+
+        void updateBiometricoEstado(int id, char estado, string usuario, ref string mensaje);
     }
 }

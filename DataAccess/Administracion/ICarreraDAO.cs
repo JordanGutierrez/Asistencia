@@ -18,5 +18,7 @@ namespace DataAccess.Administracion
         void insertCarrera(Carrera carrera, string usuario, ref string mensaje);
 
         void updateCarrera(Carrera carrera, string usuario, ref string mensaje);
+
+        void updateCarreraEstado(int id, char estado, string usuario, ref string mensaje);
     }
 }
