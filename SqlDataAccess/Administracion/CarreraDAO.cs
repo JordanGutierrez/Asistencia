@@ -66,6 +66,7 @@ namespace SqlDataAccess.Administracion
 		                            + ",CAR.Descripcion"
                                     + ",CAR.FacultadID"
                                     + ",CAR.Codigo"
+                                    + ",CAR.Estado"
                                     + " FROM    tbbiometrico AS BIO"
                                     + " INNER   JOIN tbfacultad     AS FAC"
                                     + " ON FAC.FacultadID = BIO.FacultadID"

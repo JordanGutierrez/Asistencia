@@ -80,7 +80,7 @@ namespace WebApp.Controllers
             }
         }
         // GET: Reporte/Create
-        [AppAuthorize("00029")]
+        [AppAuthorize("00030")]
         public ActionResult ReportGeneral()
         {
             Reporte reporte = new Reporte();
@@ -93,7 +93,7 @@ namespace WebApp.Controllers
 
         // POST: Reporte/Create
         [HttpPost]
-        [AppAuthorize("00029")]
+        [AppAuthorize("00030")]
         public ActionResult ReportGeneral(Reporte reporte)
         {
             try

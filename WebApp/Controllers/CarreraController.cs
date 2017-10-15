@@ -31,7 +31,7 @@ namespace WebApp.Controllers
         public ActionResult Create()
         {
             string mensaje = string.Empty;
-            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje);
+            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje).Where(x=> x.Estado == 'A').ToList();
             if (mensaje == "OK")
             {
                 ViewBag.Facultades = facultades;
@@ -48,7 +48,7 @@ namespace WebApp.Controllers
         public ActionResult Create(Carrera carrera)
         {
             string mensaje = string.Empty;
-            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje);
+            ViewBag.Facultades = facultadDAO.getAllFacultad(ref mensaje).Where(x => x.Estado == 'A').ToList();
             try
             {
                 if (!ModelState.IsValid)

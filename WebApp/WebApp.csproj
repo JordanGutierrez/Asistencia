@@ -634,17 +634,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Pasante\Index.cshtml" />
-    <Content Include="Views\Pasante\Create.cshtml" />
-    <Content Include="Views\Pasante\Edit.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Facultad\Create.cshtml" />
     <Content Include="Views\Facultad\Index.cshtml" />
     <Content Include="Views\Facultad\Edit.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
-    <Content Include="Views\Tutor\Index.cshtml" />
-    <Content Include="Views\Tutor\Create.cshtml" />
-    <Content Include="Views\Tutor\Edit.cshtml" />
     <Content Include="Views\Institucion\Index.cshtml" />
     <Content Include="Views\Institucion\Create.cshtml" />
     <Content Include="Views\Institucion\Edit.cshtml" />
