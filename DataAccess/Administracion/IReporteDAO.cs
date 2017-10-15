@@ -11,5 +11,8 @@ namespace DataAccess.Administracion
     public interface IReporteDAO
     {
         DataSet getReporte(Reporte reporte, ref string mensaje);
+
+        DataTable getReporteGenearl(Reporte reporte, ref string mensaje);
+
     }
 }

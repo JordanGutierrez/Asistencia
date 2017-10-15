@@ -728,6 +728,12 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnEstado;
             
+            private global::System.Data.DataColumn columnUsuarioCodigo;
+            
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnFacultadDescripcion;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtDetalleDataTable() {
@@ -843,6 +849,30 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioCodigoColumn {
+                get {
+                    return this.columnUsuarioCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadDescripcionColumn {
+                get {
+                    return this.columnFacultadDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -878,7 +908,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalidaAntes, char Estado) {
+            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalidaAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion) {
                 dtDetalleRow rowdtDetalleRow = ((dtDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Fecha,
@@ -890,7 +920,10 @@ namespace WebApp {
                         TiempoExt,
                         Atraso,
                         SalidaAntes,
-                        Estado};
+                        Estado,
+                        UsuarioCodigo,
+                        Nombre,
+                        FacultadDescripcion};
                 rowdtDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtDetalleRow);
                 return rowdtDetalleRow;
@@ -923,6 +956,9 @@ namespace WebApp {
                 this.columnAtraso = base.Columns["Atraso"];
                 this.columnSalidaAntes = base.Columns["SalidaAntes"];
                 this.columnEstado = base.Columns["Estado"];
+                this.columnUsuarioCodigo = base.Columns["UsuarioCodigo"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnFacultadDescripcion = base.Columns["FacultadDescripcion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -948,6 +984,12 @@ namespace WebApp {
                 base.Columns.Add(this.columnSalidaAntes);
                 this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(char), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEstado);
+                this.columnUsuarioCodigo = new global::System.Data.DataColumn("UsuarioCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioCodigo);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnFacultadDescripcion = new global::System.Data.DataColumn("FacultadDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadDescripcion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1778,6 +1820,54 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.UsuarioCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioCodigo\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.UsuarioCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadDescripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.FacultadDescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadDescripcion\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.FacultadDescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaNull() {
                 return this.IsNull(this.tabledtDetalle.FechaColumn);
             }
@@ -1894,6 +1984,42 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEstadoNull() {
                 this[this.tabledtDetalle.EstadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioCodigoNull() {
+                return this.IsNull(this.tabledtDetalle.UsuarioCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioCodigoNull() {
+                this[this.tabledtDetalle.UsuarioCodigoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabledtDetalle.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tabledtDetalle.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadDescripcionNull() {
+                return this.IsNull(this.tabledtDetalle.FacultadDescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadDescripcionNull() {
+                this[this.tabledtDetalle.FacultadDescripcionColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -23,6 +23,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_Cedula", reporte.Cedula);
             sql.Comando.Parameters.AddWithValue("P_FechaInicio", reporte.FechaInicio);
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
+            sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
             try
             {
                 ds = sql.EjecutaDataSet(ref mensaje);
@@ -33,5 +34,26 @@ namespace SqlDataAccess.Administracion
             }
             return ds;
         }
+
+        public DataTable getReporteGenearl(Reporte reporte, ref string mensaje)
+        {
+            DataTable dt = null;
+
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_ReporteAsistenciaGeneral";
+            sql.Comando.Parameters.AddWithValue("P_FechaInicio", reporte.FechaInicio);
+            sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
+            sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
+            try
+            {
+                dt = sql.EjecutaDataTable(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            return dt;
+        }
+
     }
 }

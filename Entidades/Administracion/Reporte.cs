@@ -21,5 +21,9 @@ namespace Entidades.Administracion
         [Required(ErrorMessage = "La fecha hasta es requerida")]
         [DisplayName("Fecha hasta")]
         public Nullable<DateTime> FechaFin { get; set; }
+
+        [DisplayName("  Estado")]
+        public char Estado{ get; set; }
+
     }
 }

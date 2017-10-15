@@ -1183,7 +1183,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Reporte General de Asistencias</Value>
+                  <Value>Reporte Individual de Asistencias</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>

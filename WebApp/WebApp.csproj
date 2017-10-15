@@ -609,7 +609,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -678,6 +677,9 @@
     <Content Include="Views\Vacaciones\Create.cshtml" />
     <Content Include="Views\Account\Restart.cshtml" />
     <Content Include="Views\Reporte\Print.cshtml" />
+    <Content Include="Views\Reporte\Reporte_Permiso.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Reporte\ReportGeneral.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -704,6 +706,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reportes\Asistencia.rdlc" />
+    <EmbeddedResource Include="Reportes\AsistenciaGeneral.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
