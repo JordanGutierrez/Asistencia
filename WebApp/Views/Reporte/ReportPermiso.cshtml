@@ -1,7 +1,7 @@
 ﻿@model Entidades.Administracion.Reporte
 
 @{
-    ViewBag.Title = "ReportGeneral";
+    ViewBag.Title = "ReportPermiso";
     Layout = "~/Views/Shared/_Master.cshtml";
 }
 
@@ -9,16 +9,24 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Reporte General de Asistencias</h2>
+                <h2>Reporte General de Permisos</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                @using (Html.BeginForm("ReportGeneral", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                @using (Html.BeginForm("ReportPermiso", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", @maxlength = "10", @onKeyPress = "return soloNumeros(event)" } })
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -50,9 +58,9 @@
                             <div class="col-md-6">
                                 <select id="Estado" name="Estado" class="form-control col-md-7 col-xs-12">
                                     <option value="O">Seleccione Estado</option>
-                                    <option value="J">Justificado</option>
-                                    <option value="P">Permiso</option>
-                                    <option value="V">Vacaciones</option>
+                                    <option value="A">Aprobado</option>
+                                    <option value="P">Pendiente</option>
+                                    <option value="R">Rechazado</option>
                                 </select>
                                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                             </div>

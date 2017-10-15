@@ -17,7 +17,7 @@ namespace WebApp.Controllers
         IReporteDAO reporteDAO = new ReporteDAO();
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        // GET: Reporte/Create
+        // GET: Reporte/Print
         [AppAuthorize("00029")]
         public ActionResult Print()
         {
@@ -29,7 +29,7 @@ namespace WebApp.Controllers
             return View(reporte);
         }
 
-        // POST: Reporte/Create
+        // POST: Reporte/Print
         [HttpPost]
         [AppAuthorize("00029")]
         public ActionResult Print(Reporte reporte)
@@ -66,10 +66,6 @@ namespace WebApp.Controllers
                 reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-                using (FileStream fs = System.IO.File.Create(@"D:\Reporte.pdf"))
-                {
-                    fs.Write(mybytes, 0, mybytes.Length);
-                }
 
                 return File(mybytes, "application/pdf");
             }
@@ -79,19 +75,18 @@ namespace WebApp.Controllers
                 return View(reporte);
             }
         }
-        // GET: Reporte/Create
+
+        // GET: Reporte/ReportGeneral
         [AppAuthorize("00030")]
         public ActionResult ReportGeneral()
         {
             Reporte reporte = new Reporte();
             reporte.FechaInicio = DateTime.Now;
             reporte.FechaFin = DateTime.Now;
-            ViewBag.RolID = Utils.Utils.GetClaim("RolID");
-            int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
             return View(reporte);
         }
 
-        // POST: Reporte/Create
+        // POST: Reporte/ReportGeneral
         [HttpPost]
         [AppAuthorize("00030")]
         public ActionResult ReportGeneral(Reporte reporte)
@@ -118,10 +113,6 @@ namespace WebApp.Controllers
                 reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-                using (FileStream fs = System.IO.File.Create(@"D:\Reporte.pdf"))
-                {
-                    fs.Write(mybytes, 0, mybytes.Length);
-                }
 
                 return File(mybytes, "application/pdf");
             }
@@ -131,5 +122,108 @@ namespace WebApp.Controllers
                 return View(reporte);
             }
         }
+
+        // GET: Reporte/ReportPermiso
+        [AppAuthorize("00032")]
+        public ActionResult ReportPermiso()
+        {
+            Reporte reporte = new Reporte();
+            reporte.FechaInicio = DateTime.Now;
+            reporte.FechaFin = DateTime.Now;
+            return View(reporte);
+        }
+
+        // POST: Reporte/ReportPermiso
+        [HttpPost]
+        [AppAuthorize("00032")]
+        public ActionResult ReportPermiso(Reporte reporte)
+        {
+            try
+            {
+                if (reporte.FechaFin < reporte.FechaInicio)
+                {
+                    Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                    return View(reporte);
+                }
+
+                if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                    reporte.Cedula = "O"; 
+
+                string mensaje = string.Empty;
+
+                ReportViewer reportviewer = new ReportViewer();
+                reportviewer.ProcessingMode = ProcessingMode.Local;
+                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\PermisoGeneral.rdlc");
+
+                DataTable dt = reporteDAO.getReportePermiso(reporte, ref mensaje);
+                ReportDataSource datasourceCabecera = new ReportDataSource("dtPermiso", dt);
+                reportviewer.LocalReport.DataSources.Clear();
+                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                return File(mybytes, "application/pdf");
+            }
+            catch (Exception ex)
+            {
+                Warning(ex.Message, "Reporte", true);
+                return View(reporte);
+            }
+        }
+
+        // GET: Reporte/ReportVacaciones
+        [AppAuthorize("00033")]
+        public ActionResult ReportVacaciones()
+        {
+            Reporte reporte = new Reporte();
+            reporte.FechaInicio = DateTime.Now;
+            reporte.FechaFin = DateTime.Now;
+            return View(reporte);
+        }
+
+        // POST: Reporte/ReportVacaciones
+        [HttpPost]
+        [AppAuthorize("00033")]
+        public ActionResult ReportVacaciones(Reporte reporte)
+        {
+            try
+            {
+                if (reporte.FechaFin < reporte.FechaInicio)
+                {
+                    Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                    return View(reporte);
+                }
+
+                if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                    reporte.Cedula = "O";
+
+                string mensaje = string.Empty;
+
+                ReportViewer reportviewer = new ReportViewer();
+                reportviewer.ProcessingMode = ProcessingMode.Local;
+                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\VacacionesGeneral.rdlc");
+
+                DataTable dt = reporteDAO.getReporteVacaciones(reporte, ref mensaje);
+                ReportDataSource datasourceCabecera = new ReportDataSource("dtVacaciones", dt);
+                reportviewer.LocalReport.DataSources.Clear();
+                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                return File(mybytes, "application/pdf");
+            }
+            catch (Exception ex)
+            {
+                Warning(ex.Message, "Reporte", true);
+                return View(reporte);
+            }
+        }
+
     }
 }

@@ -10,7 +10,6 @@ namespace Entidades.Administracion
 {
     public class Reporte
     {
-        [Required(ErrorMessage = "La cédula es requerida")]
         [DisplayName("Cédula")]
         public string Cedula { get; set; }
 

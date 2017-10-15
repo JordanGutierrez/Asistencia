@@ -1139,6 +1139,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dtDetalle</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!Fecha.Value</Value>
+          </SortExpression>
+        </SortExpressions>
         <Top>0.17639cm</Top>
         <Left>0.0616cm</Left>
         <Height>2.01694cm</Height>

@@ -14,5 +14,9 @@ namespace DataAccess.Administracion
 
         DataTable getReporteGenearl(Reporte reporte, ref string mensaje);
 
+        DataTable getReportePermiso(Reporte reporte, ref string mensaje);
+
+        DataTable getReporteVacaciones(Reporte reporte, ref string mensaje);
+
     }
 }

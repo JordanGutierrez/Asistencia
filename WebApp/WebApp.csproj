@@ -671,9 +671,10 @@
     <Content Include="Views\Vacaciones\Create.cshtml" />
     <Content Include="Views\Account\Restart.cshtml" />
     <Content Include="Views\Reporte\Print.cshtml" />
-    <Content Include="Views\Reporte\Reporte_Permiso.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Reporte\ReportGeneral.cshtml" />
+    <Content Include="Views\Reporte\ReportPermiso.cshtml" />
+    <Content Include="Views\Reporte\ReportVacaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -701,6 +702,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Reportes\Asistencia.rdlc" />
     <EmbeddedResource Include="Reportes\AsistenciaGeneral.rdlc" />
+    <EmbeddedResource Include="Reportes\PermisoGeneral.rdlc" />
+    <EmbeddedResource Include="Reportes\VacacionesGeneral.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
