@@ -19,7 +19,7 @@ namespace DataAccess.Administracion
 
         void updatePermiso(Permiso permiso, string usuario, ref string mensaje);
 
-        void updatePermisoEstado(int id, string usuario, ref string mensaje);
+        void updatePermisoEstado(int id, string usuario, char estado, ref string mensaje);
 
     }
 }

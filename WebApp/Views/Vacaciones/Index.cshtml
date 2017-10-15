@@ -63,9 +63,13 @@
                                         {
                                             @Html.Raw("Pendiente")
                                         }
-                                        else
+                                        else if(item.Estado == 'A')
                                         {
                                             @Html.Raw("Aprobado")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("Rechazada")
                                         }
                                     }
                                 </td>
@@ -74,10 +78,11 @@
                                         if (ViewBag.RolID == "3" && item.Estado == 'P')
                                         {
                                             <a href="@Url.Action("Aprobar","Vacaciones", new { id = item.VacacionesID})" class="btn btn-success">Aprobar</a>
+                                            <a href="@Url.Action("Rechazar","Vacaciones", new { id = item.VacacionesID})" class="btn btn-danger">Rechazar</a>
                                         }
                                         if (ViewBag.RolID == "3")
                                         {
-                                            <a href="@Url.Action("Descargar","Vacaciones", new { id = item.VacacionesID })" class="btn btn-danger">Descargar</a>
+                                            <a href="@Url.Action("Descargar","Vacaciones", new { id = item.VacacionesID })" class="btn btn-primary">Descargar</a>
                                         }
                                     }
                                 </td>

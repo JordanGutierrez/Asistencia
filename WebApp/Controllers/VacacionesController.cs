@@ -108,10 +108,32 @@ namespace WebApp.Controllers
             string mensaje = string.Empty;
             try
             {
-                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), ref mensaje);
+                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'A', ref mensaje);
                 if (mensaje == "OK")
                 {
                     Success("Vacaciones aprobadas con éxito", "Vacaciones", true);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            Warning(mensaje, "Vacaciones", true);
+            return RedirectToAction("Index");
+        }
+
+        // GET: Vacaciones/Rechazar
+        [AppAuthorize("00034")]
+        public ActionResult Rechazar(int id)
+        {
+            string mensaje = string.Empty;
+            try
+            {
+                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'R', ref mensaje);
+                if (mensaje == "OK")
+                {
+                    Success("Vacaciones rechazadas con éxito", "Vacaciones", true);
                     return RedirectToAction("Index");
                 }
             }

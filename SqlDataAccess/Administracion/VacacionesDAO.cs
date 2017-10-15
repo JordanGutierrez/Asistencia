@@ -123,12 +123,14 @@ namespace SqlDataAccess.Administracion
             throw new NotImplementedException();
         }
 
-        public void updateVacacionesEstado(int id, string usuario, ref string mensaje)
+        public void updateVacacionesEstado(int id, string usuario, char estado, ref string mensaje)
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_updateVacacionesEstado";
             sql.Comando.Parameters.AddWithValue("P_VacacionesID", id);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
+            sql.Comando.Parameters.AddWithValue("P_Estado", estado);
+
             try
             {
                 sql.EjecutaQuery(ref mensaje);

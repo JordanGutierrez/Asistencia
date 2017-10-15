@@ -97,7 +97,7 @@ namespace WebApp.Controllers
             string mensaje = string.Empty;
             try
             {
-                permisoDAO.updatePermisoEstado(id, GetApplicationUser(), ref mensaje);
+                permisoDAO.updatePermisoEstado(id, GetApplicationUser(), 'A', ref mensaje);
                 if (mensaje == "OK")
                 {
                     Success("Permiso aprobado con éxito", "Permiso", true);
@@ -111,6 +111,29 @@ namespace WebApp.Controllers
             Warning(mensaje, "Permiso", true);
             return RedirectToAction("Index");
         }
+
+        // GET: Permiso/Rechazar
+        [AppAuthorize("00035")]
+        public ActionResult Rechazar(int id)
+        {
+            string mensaje = string.Empty;
+            try
+            {
+                permisoDAO.updatePermisoEstado(id, GetApplicationUser(), 'R', ref mensaje);
+                if (mensaje == "OK")
+                {
+                    Success("Permiso rechazado con éxito", "Permiso", true);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            Warning(mensaje, "Permiso", true);
+            return RedirectToAction("Index");
+        }
+
 
         // GET: Permiso/Descargar
         [AppAuthorize("00025")]

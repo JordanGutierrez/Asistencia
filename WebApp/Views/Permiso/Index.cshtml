@@ -59,9 +59,13 @@
                                         {
                                             @Html.Raw("Pendiente")
                                         }
-                                        else
+                                        else if (item.Estado == 'A')
                                         {
                                             @Html.Raw("Aprobado")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("Rechazado")
                                         }
                                     }
                                 </td>
@@ -70,10 +74,11 @@
                                         if (ViewBag.RolID == "3" && item.Estado == 'P')
                                         {
                                             <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-success">Aprobado</a>
+                                            <a href="@Url.Action("Rechazar","Permiso", new { id = item.PermisoID})" class="btn btn-danger">Rechazar</a>
                                         }
                                         if (ViewBag.RolID == "3")
                                         {
-                                            <a href="@Url.Action("Descargar","Permiso", new { id = item.PermisoID })" class class="btn btn-danger">Descargar</a>
+                                            <a href="@Url.Action("Descargar","Permiso", new { id = item.PermisoID })" class="btn btn-primary">Descargar</a>
                                         }
                                     }
                                 </td>
