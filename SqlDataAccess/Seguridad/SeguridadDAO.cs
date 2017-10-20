@@ -46,9 +46,9 @@ namespace SqlDataAccess.Seguridad
                 {
                     if (usuario != null)
                     {
-                        if (usuario.Estado == 'A')
+                        if (usuario.Clave == GetStringSha256Hash(password))
                         {
-                            if (usuario.Clave == GetStringSha256Hash(password))
+                            if (usuario.Estado == 'A')
                             {
                                 List<AppMenu> menus = appmenuDAO.getAllbyRol(usuario.RolID, ref mensaje);
                                 if(mensaje == "OK")
@@ -61,15 +61,15 @@ namespace SqlDataAccess.Seguridad
                                 }
                             }
                             else
-                                mensaje = "La clave o contraseña es incorrecta";
+                            {
+                                if (usuario.Estado == 'C')
+                                    mensaje = "Cambiar Contraseña";
+                                else
+                                    mensaje = "El usuario se encuentra inactivo";
+                            }
                         }
                         else
-                        {
-                            if(usuario.Estado == 'C')
-                                mensaje = "Cambiar Contraseña";
-                            else
-                                mensaje = "El usuario se encuentra inactivo";
-                        }
+                            mensaje = "La clave o contraseña es incorrecta";
                     }
                     else
                         mensaje = "El usuario no existe";
@@ -99,7 +99,12 @@ namespace SqlDataAccess.Seguridad
         {
             Usuario usuario = null;
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Correo = '" + alias + "'";
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID WHERE U.Correo = '" + alias + "'";
 
             try
             {

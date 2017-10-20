@@ -73,7 +73,7 @@ namespace WebApp.Controllers
                 horarioDAO.updateHorario(horario, GetApplicationUser(), ref mensaje);
                 if (mensaje == "OK")
                 {
-                    Success("Usuario registrado con éxito", "Usuario", true);
+                    Success("Horario registrado con éxito", "Usuario", true);
                     return RedirectToAction("Index");
                 }
             }
@@ -81,6 +81,7 @@ namespace WebApp.Controllers
             {
                 mensaje = ex.Message;
             }
+            Warning(mensaje, "Usuario", true);
             return View(horario);
         }
     }

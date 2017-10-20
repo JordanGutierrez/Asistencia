@@ -18,7 +18,12 @@ namespace SqlDataAccess.Administracion
         {
             List<Usuario> usuarios = new List<Usuario>();
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM TbUsuario";
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID";
 
             try
             {
@@ -40,7 +45,12 @@ namespace SqlDataAccess.Administracion
         {
             Usuario usuario = new Usuario();
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE UsuarioID = " + id.ToString();
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID WHERE U.UsuarioID = " + id.ToString();
 
             try
             {
@@ -61,7 +71,13 @@ namespace SqlDataAccess.Administracion
         public void insertUsuario(Usuario usuario, string user, string clave, ref string mensaje)
         {
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Cedula = '" + usuario.Cedula + "'";
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID WHERE U.Cedula = '" + usuario.Cedula + "'";
+
             DataTable dt = sql.EjecutaDataTable(ref mensaje);
             if (dt.Rows.Count > 0)
             {
@@ -69,7 +85,13 @@ namespace SqlDataAccess.Administracion
                 return;
             }
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE Correo = '" + usuario.Correo + "'";
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID WHERE U.Correo = '" + usuario.Correo + "'";
+
             dt = sql.EjecutaDataTable(ref mensaje);
             if (dt.Rows.Count > 0)
             {
@@ -77,7 +99,13 @@ namespace SqlDataAccess.Administracion
                 return;
             }
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT * FROM tbUsuario WHERE CodigoBiometrico = '" + usuario.CodigoBiometrico + "'";
+            sql.Comando.CommandText = "SELECT	U.*, F.FacultadID"
+                                        + " FROM tbUsuario           U"
+                                        + " INNER   JOIN tbcarrera      C"
+                                        + " ON      C.CarreraID = U.CarreraID"
+                                        + " INNER join tbfacultad F"
+                                        + " ON F.FacultadID = C.FacultadID WHERE U.CodigoBopmetrico = '" + usuario.CodigoBiometrico + "'";
+
             dt = sql.EjecutaDataTable(ref mensaje);
             if (dt.Rows.Count > 0)
             {
@@ -100,6 +128,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_HorarioID", usuario.HorarioID);
             sql.Comando.Parameters.AddWithValue("P_CarreraID", usuario.CarreraID);
+            sql.Comando.Parameters.AddWithValue("P_Cargo", usuario.Cargo);
             sql.Comando.Parameters.AddWithValue("P_UsuarioCreacion", user);
             try
             {
@@ -165,6 +194,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_RolID", usuario.RolID);
             sql.Comando.Parameters.AddWithValue("P_HorarioID", usuario.HorarioID);
             sql.Comando.Parameters.AddWithValue("P_CarreraID", usuario.CarreraID);
+            sql.Comando.Parameters.AddWithValue("P_Cargo", usuario.Cargo);
             sql.Comando.Parameters.AddWithValue("P_UsuarioModificacion", user);
             try
             {

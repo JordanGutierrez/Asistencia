@@ -68,6 +68,19 @@ namespace SqlDataAccess.Administracion
 
         public void insertHorario(Horario horario, string user, ref string mensaje)
         {
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT	*"
+                                        + " FROM tbhorario"
+                                        + " WHERE HoraEntrada = '" + horario.HoraEntrada + "'"
+                                        + " AND HoraSalida = '" + horario.HoraSalida + "'";
+
+            DataTable dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "El horario ya se encuentra registrado";
+                return;
+            }
+            sql = new ConsultasSQL();
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_insertHorario";
             sql.Comando.Parameters.AddWithValue("P_Descripcion", horario.Descripcion);
@@ -86,6 +99,21 @@ namespace SqlDataAccess.Administracion
 
         public void updateHorario(Horario horario, string user, ref string mensaje)
         {
+            sql = new ConsultasSQL();
+            sql.Comando.CommandText = "SELECT	*"
+                                        + " FROM tbhorario"
+                                        + " WHERE HoraEntrada = '" + horario.HoraEntrada + "'"
+                                        + " AND HoraSalida = '" + horario.HoraSalida + "'"
+                                        + " AND HorarioID <> " + horario.HorarioID ;
+
+            DataTable dt = sql.EjecutaDataTable(ref mensaje);
+            if (dt.Rows.Count > 0)
+            {
+                mensaje = "El horario ya se encuentra registrado";
+                return;
+            }
+            sql = new ConsultasSQL();
+
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_updateHorario";
             sql.Comando.Parameters.AddWithValue("P_HorarioID", horario.HorarioID);

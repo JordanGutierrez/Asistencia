@@ -7,7 +7,7 @@
 <h2>Restart</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(Html.BeginForm("Restart", "Account", FormMethod.Post, new { @class = "form-horizontal form-label-left" })))
 {
     @Html.AntiForgeryToken()
     

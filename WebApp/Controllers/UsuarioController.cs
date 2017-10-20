@@ -23,10 +23,11 @@ namespace WebApp.Controllers
         {
             String mensaje = string.Empty;
             ViewBag.RolID = Utils.Utils.GetClaim("RolID");
-            if(ViewBag.RolID == "1")
-                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 3));
+            int facultad = int.Parse(Utils.Utils.GetClaim("RolID"));
+            if (ViewBag.RolID == "1")
+                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 3 && x.FacultadID == facultad));
             else
-                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 2));
+                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 2 && x.FacultadID == facultad));
         }
 
         // GET: Usuario/Create
@@ -35,14 +36,14 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
             Usuario usuario = new Usuario();
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje).Where(x => x.Estado == 'A').ToList();
             var horarios = horarioDAO.getAllHorario(ref mensaje);
             for(int i = 0; i < horarios.Count; i++)
             {
                 horarios[i].Descripcion = horarios[i].Descripcion + ": " + horarios[i].HoraEntrada + " - " + horarios[i].HoraSalida;
             }
             ViewBag.Horarios = horarios;
-            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
+            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje).Where(x => x.Estado == 'A').ToList();
 
             string rol = Utils.Utils.GetClaim("RolID");
 
@@ -60,9 +61,9 @@ namespace WebApp.Controllers
         public ActionResult Create(Usuario usuario)
         {
             string mensaje = string.Empty;
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje).Where(x => x.Estado == 'A').ToList();
             ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
-            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
+            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje).Where(x => x.Estado == 'A').ToList();
 
             try
             {
@@ -93,9 +94,9 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
             ViewBag.Roles = rolDAO.getAllRol(ref mensaje);
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje).Where(x => x.Estado == 'A').ToList();
             ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
-            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
+            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje).Where(x => x.Estado == 'A').ToList();
 
             Usuario usuario = usuarioDAO.getUsuario(id, ref mensaje);
             return View(usuario);
@@ -108,9 +109,9 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
             ViewBag.Roles = rolDAO.getAllRol(ref mensaje);
-            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje);
+            ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje).Where(x => x.Estado == 'A').ToList();
             ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
-            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje);
+            ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje).Where(x => x.Estado == 'A').ToList();
 
             try
             {

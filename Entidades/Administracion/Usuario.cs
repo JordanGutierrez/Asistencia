@@ -13,6 +13,8 @@ namespace Entidades.Administracion
     {
         public int UsuarioID { get; set; }
 
+        public int FacultadID { get; set; }
+
         [Required(ErrorMessage = "El biométrico es requerido")]
         [DisplayName("Biométrico")]
         public int BiometricoID { get; set; }
@@ -99,6 +101,7 @@ namespace Entidades.Administracion
             usuario.RolID = int.Parse(dr["RolID"].ToString());
             usuario.HorarioID = int.Parse(dr["HorarioID"].ToString());
             usuario.CarreraID = int.Parse(dr["CarreraID"].ToString());
+            usuario.FacultadID = int.Parse(dr["FacultadID"].ToString());
             usuario.Estado = char.Parse(dr["Estado"].ToString());
             usuario.BiometricoID = int.Parse(dr["BiometricoID"].ToString());
 

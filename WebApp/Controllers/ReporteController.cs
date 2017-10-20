@@ -66,8 +66,14 @@ namespace WebApp.Controllers
                 reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-
-                return File(mybytes, "application/pdf");
+                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
             catch(Exception ex)
             {
@@ -114,7 +120,14 @@ namespace WebApp.Controllers
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
 
-                return File(mybytes, "application/pdf");
+                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
             catch (Exception ex)
             {
@@ -165,7 +178,14 @@ namespace WebApp.Controllers
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
 
-                return File(mybytes, "application/pdf");
+                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
             catch (Exception ex)
             {
@@ -216,7 +236,14 @@ namespace WebApp.Controllers
 
                 Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
 
-                return File(mybytes, "application/pdf");
+                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
             catch (Exception ex)
             {

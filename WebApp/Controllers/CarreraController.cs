@@ -77,7 +77,7 @@ namespace WebApp.Controllers
         {
             string mensaje = string.Empty;
             Carrera carrera = carreraDAO.getCarrera(id, ref mensaje);
-            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje);
+            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje).Where(x => x.Estado == 'A').ToList();
             ViewBag.Facultades = facultades;
             return View(carrera);
         }
@@ -89,7 +89,7 @@ namespace WebApp.Controllers
         public ActionResult Edit(Carrera carrera)
         {
             string mensaje = string.Empty;
-            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje);
+            List<Facultad> facultades = facultadDAO.getAllFacultad(ref mensaje).Where(x => x.Estado == 'A').ToList();
             ViewBag.Facultades = facultades;
             try
             {
@@ -111,7 +111,7 @@ namespace WebApp.Controllers
         public ActionResult getCarrerabyBiometrico(int biometrico)
         {
             string mensaje = string.Empty;
-            List<Carrera> carreras = carreraDAO.getCarrerabyBiometrico(biometrico, ref mensaje);
+            List<Carrera> carreras = carreraDAO.getCarrerabyBiometrico(biometrico, ref mensaje).Where(x => x.Estado == 'A').ToList();
             if (mensaje == "OK")
                 return Json(new { carreras = carreras , mensaje = mensaje }, JsonRequestBehavior.AllowGet);
             else

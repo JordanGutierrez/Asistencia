@@ -151,8 +151,18 @@ namespace WebApp.Controllers
             else
             {
                 Warning(mensaje, "Usuario", true);
-                return View("Restar", new { id = usuario.UsuarioID });
+                return View("Restart", new { id = usuario.UsuarioID });
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult VerificaLogin()
+        {
+            if (Request.IsAuthenticated)
+                return Json(new { mensaje = "OK" });
+            else
+                return Json(new { mensaje = "NO" });
         }
 
         //
@@ -497,7 +507,8 @@ namespace WebApp.Controllers
                 new Claim(AppIdentity.RolesClaimType, string.Join(",", roles)),
                 new Claim("RolID", usuario.RolID.ToString()),
                 new Claim("UsuarioID", usuario.UsuarioID.ToString()),
-                new Claim("CarreraID", usuario.CarreraID.ToString())
+                new Claim("CarreraID", usuario.CarreraID.ToString()),
+                new Claim("FacultadID", usuario.FacultadID.ToString())
 
             };
             return claims;
