@@ -92,6 +92,8 @@ namespace WebApp.Controllers
             return View(reporte);
         }
 
+        
+
         // POST: Reporte/ReportGeneral
         [HttpPost]
         [AppAuthorize("00030")]

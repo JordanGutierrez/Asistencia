@@ -804,6 +804,10 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnFacultadDescripcion;
             
+            private global::System.Data.DataColumn columnCarreraDescripcion;
+            
+            private global::System.Data.DataColumn columnCedula;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtDetalleDataTable() {
@@ -943,6 +947,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CarreraDescripcionColumn {
+                get {
+                    return this.columnCarreraDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CedulaColumn {
+                get {
+                    return this.columnCedula;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -978,7 +998,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalidaAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion) {
+            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalidaAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion, string CarreraDescripcion, string Cedula) {
                 dtDetalleRow rowdtDetalleRow = ((dtDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Fecha,
@@ -993,7 +1013,9 @@ namespace WebApp {
                         Estado,
                         UsuarioCodigo,
                         Nombre,
-                        FacultadDescripcion};
+                        FacultadDescripcion,
+                        CarreraDescripcion,
+                        Cedula};
                 rowdtDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtDetalleRow);
                 return rowdtDetalleRow;
@@ -1029,6 +1051,8 @@ namespace WebApp {
                 this.columnUsuarioCodigo = base.Columns["UsuarioCodigo"];
                 this.columnNombre = base.Columns["Nombre"];
                 this.columnFacultadDescripcion = base.Columns["FacultadDescripcion"];
+                this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
+                this.columnCedula = base.Columns["Cedula"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1060,6 +1084,10 @@ namespace WebApp {
                 base.Columns.Add(this.columnNombre);
                 this.columnFacultadDescripcion = new global::System.Data.DataColumn("FacultadDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFacultadDescripcion);
+                this.columnCarreraDescripcion = new global::System.Data.DataColumn("CarreraDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCarreraDescripcion);
+                this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCedula);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1466,6 +1494,10 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnMotivo;
             
+            private global::System.Data.DataColumn columnCarreraDescripcion;
+            
+            private global::System.Data.DataColumn columnCedula;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtPermisoDataTable() {
@@ -1549,6 +1581,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CarreraDescripcionColumn {
+                get {
+                    return this.columnCarreraDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CedulaColumn {
+                get {
+                    return this.columnCedula;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1584,7 +1632,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtPermisoRow AdddtPermisoRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime Fecha, string Motivo) {
+            public dtPermisoRow AdddtPermisoRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime Fecha, string Motivo, string CarreraDescripcion, string Cedula) {
                 dtPermisoRow rowdtPermisoRow = ((dtPermisoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         UsuarioCodigo,
@@ -1592,7 +1640,9 @@ namespace WebApp {
                         FacultadDescripcion,
                         Estado,
                         Fecha,
-                        Motivo};
+                        Motivo,
+                        CarreraDescripcion,
+                        Cedula};
                 rowdtPermisoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPermisoRow);
                 return rowdtPermisoRow;
@@ -1621,6 +1671,8 @@ namespace WebApp {
                 this.columnEstado = base.Columns["Estado"];
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnMotivo = base.Columns["Motivo"];
+                this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
+                this.columnCedula = base.Columns["Cedula"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1638,6 +1690,10 @@ namespace WebApp {
                 base.Columns.Add(this.columnFecha);
                 this.columnMotivo = new global::System.Data.DataColumn("Motivo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMotivo);
+                this.columnCarreraDescripcion = new global::System.Data.DataColumn("CarreraDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCarreraDescripcion);
+                this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCedula);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1785,6 +1841,10 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnFechaFin;
             
+            private global::System.Data.DataColumn columnCarreraDescripcion;
+            
+            private global::System.Data.DataColumn columnCedula;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtVacacionesDataTable() {
@@ -1876,6 +1936,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CarreraDescripcionColumn {
+                get {
+                    return this.columnCarreraDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CedulaColumn {
+                get {
+                    return this.columnCedula;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1911,7 +1987,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtVacacionesRow AdddtVacacionesRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime FechaInicio, string Motivo, System.DateTime FechaFin) {
+            public dtVacacionesRow AdddtVacacionesRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime FechaInicio, string Motivo, System.DateTime FechaFin, string CarreraDescripcion, string Cedula) {
                 dtVacacionesRow rowdtVacacionesRow = ((dtVacacionesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         UsuarioCodigo,
@@ -1920,7 +1996,9 @@ namespace WebApp {
                         Estado,
                         FechaInicio,
                         Motivo,
-                        FechaFin};
+                        FechaFin,
+                        CarreraDescripcion,
+                        Cedula};
                 rowdtVacacionesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtVacacionesRow);
                 return rowdtVacacionesRow;
@@ -1950,6 +2028,8 @@ namespace WebApp {
                 this.columnFechaInicio = base.Columns["FechaInicio"];
                 this.columnMotivo = base.Columns["Motivo"];
                 this.columnFechaFin = base.Columns["FechaFin"];
+                this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
+                this.columnCedula = base.Columns["Cedula"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1969,6 +2049,10 @@ namespace WebApp {
                 base.Columns.Add(this.columnMotivo);
                 this.columnFechaFin = new global::System.Data.DataColumn("FechaFin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaFin);
+                this.columnCarreraDescripcion = new global::System.Data.DataColumn("CarreraDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCarreraDescripcion);
+                this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCedula);
                 this.columnFechaInicio.Caption = "Fecha";
             }
             
@@ -2587,6 +2671,38 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CarreraDescripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.CarreraDescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CarreraDescripcion\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.CarreraDescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cedula {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.CedulaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cedula\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.CedulaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaNull() {
                 return this.IsNull(this.tabledtDetalle.FechaColumn);
             }
@@ -2739,6 +2855,30 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFacultadDescripcionNull() {
                 this[this.tabledtDetalle.FacultadDescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCarreraDescripcionNull() {
+                return this.IsNull(this.tabledtDetalle.CarreraDescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCarreraDescripcionNull() {
+                this[this.tabledtDetalle.CarreraDescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCedulaNull() {
+                return this.IsNull(this.tabledtDetalle.CedulaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCedulaNull() {
+                this[this.tabledtDetalle.CedulaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2925,6 +3065,38 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CarreraDescripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPermiso.CarreraDescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CarreraDescripcion\' de la tabla \'dtPermiso\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPermiso.CarreraDescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cedula {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPermiso.CedulaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cedula\' de la tabla \'dtPermiso\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPermiso.CedulaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUsuarioCodigoNull() {
                 return this.IsNull(this.tabledtPermiso.UsuarioCodigoColumn);
             }
@@ -2993,6 +3165,30 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMotivoNull() {
                 this[this.tabledtPermiso.MotivoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCarreraDescripcionNull() {
+                return this.IsNull(this.tabledtPermiso.CarreraDescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCarreraDescripcionNull() {
+                this[this.tabledtPermiso.CarreraDescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCedulaNull() {
+                return this.IsNull(this.tabledtPermiso.CedulaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCedulaNull() {
+                this[this.tabledtPermiso.CedulaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3125,6 +3321,39 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CarreraDescripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtVacaciones.CarreraDescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CarreraDescripcion\' de la tabla \'dtVacaciones\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabledtVacaciones.CarreraDescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cedula {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtVacaciones.CedulaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cedula\' de la tabla \'dtVacaciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtVacaciones.CedulaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUsuarioCodigoNull() {
                 return this.IsNull(this.tabledtVacaciones.UsuarioCodigoColumn);
             }
@@ -3205,6 +3434,30 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFechaFinNull() {
                 this[this.tabledtVacaciones.FechaFinColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCarreraDescripcionNull() {
+                return this.IsNull(this.tabledtVacaciones.CarreraDescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCarreraDescripcionNull() {
+                this[this.tabledtVacaciones.CarreraDescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCedulaNull() {
+                return this.IsNull(this.tabledtVacaciones.CedulaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCedulaNull() {
+                this[this.tabledtVacaciones.CedulaColumn] = global::System.Convert.DBNull;
             }
         }
         

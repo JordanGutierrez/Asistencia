@@ -95,7 +95,12 @@ namespace WebApp.Controllers
             string mensaje = string.Empty;
             ViewBag.Roles = rolDAO.getAllRol(ref mensaje);
             ViewBag.Carreras = carreraDAO.getAllCarrera(ref mensaje).Where(x => x.Estado == 'A').ToList();
-            ViewBag.Horarios = horarioDAO.getAllHorario(ref mensaje);
+            var horarios = horarioDAO.getAllHorario(ref mensaje);
+            for (int i = 0; i < horarios.Count; i++)
+            {
+                horarios[i].Descripcion = horarios[i].Descripcion + ": " + horarios[i].HoraEntrada + " - " + horarios[i].HoraSalida;
+            }
+            ViewBag.Horarios = horarios;
             ViewBag.biometricos = biometricoDAO.getAllBiometrico(ref mensaje).Where(x => x.Estado == 'A').ToList();
 
             Usuario usuario = usuarioDAO.getUsuario(id, ref mensaje);
