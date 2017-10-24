@@ -33,6 +33,10 @@ namespace Entidades.Administracion
         [DisplayName("Archivo")]
         public byte[] Archivo { get; set; }
 
+        
+        [DisplayName("Comentario")]
+        public string Comentario { get; set; }
+
         public static Permiso CreatePermisoFromDataRecord(IDataRecord dr)
         {
             Permiso permiso = new Permiso();
@@ -44,6 +48,7 @@ namespace Entidades.Administracion
             permiso.NombreUsuario = dr["NombreUsuario"].ToString();
             permiso.Fecha = DateTime.Parse(dr["Fecha"].ToString());
             permiso.Archivo = (byte[])dr["Archivo"];
+            permiso.Comentario = dr["Comentario"].ToString();
 
             return permiso;
         }

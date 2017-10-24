@@ -25,7 +25,7 @@ namespace WebApp.Controllers
             ViewBag.RolID = Utils.Utils.GetClaim("RolID");
             int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
             if (ViewBag.RolID == "1")
-                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 3 && x.FacultadID == facultad));
+                return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 3));
             else
                 return View(usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.RolID == 2 && x.FacultadID == facultad));
         }
