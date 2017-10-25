@@ -677,6 +677,7 @@
     <Content Include="Views\Permiso\Rechazar.cshtml" />
     <Content Include="Views\Vacaciones\Rechazar.cshtml" />
     <Content Include="Views\Justificacion\Index.cshtml" />
+    <Content Include="Views\Justificacion\JustificarAtraso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

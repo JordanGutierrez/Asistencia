@@ -15,5 +15,6 @@ namespace DataAccess.Administracion
 
         void insertJustificacion(Justificacion justificacion, string user, ref string mensaje);
 
+        void insertJustificacionAtraso(Justificacion justificacion, string user, ref string mensaje);
     }
 }
