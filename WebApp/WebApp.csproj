@@ -705,6 +705,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Reportes\Asistencia.rdlc" />
     <EmbeddedResource Include="Reportes\AsistenciaGeneral.rdlc" />
+    <EmbeddedResource Include="Reportes\EstadisticasAsistenciaGeneral.rdlc" />
     <EmbeddedResource Include="Reportes\PermisoGeneral.rdlc" />
     <EmbeddedResource Include="Reportes\VacacionesGeneral.rdlc" />
   </ItemGroup>

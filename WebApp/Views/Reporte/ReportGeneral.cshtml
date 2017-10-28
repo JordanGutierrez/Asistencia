@@ -50,10 +50,11 @@
                             <div class="col-md-6">
                                 <select id="Estado" name="Estado" class="form-control col-md-7 col-xs-12">
                                     <option value="O">Seleccione Estado</option>
-                                    <option value="J">Justificado</option>
                                     <option value="F">Falta</option>
-                                    <option value="C">Correcto</option>
                                     <option value="A">Atraso</option>
+                                    <option value="C">Correcto</option>
+                                    <option value="J">Falta Justificada</option>
+                                    <option value="K">Atraso Justificado</option>
                                 </select>
                                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                             </div>

@@ -364,7 +364,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Falta</Value>
+                              <Value>Estado</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -704,7 +704,7 @@
                               <Value>=Fields!Estado.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Color>=Iif(Fields!Estado.Value = "F", "Red", Iif(Fields!Estado.Value = "N", "Blue", "Green"))</Color>
+                                <Color>=Iif(Fields!Estado.Value = "F", "Red", Iif(Fields!Estado.Value = "A", "Orange", Iif(Fields!Estado.Value = "C", "Black",  Iif(Fields!Estado.Value = "K", "Blue", "Green"))))</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1175,7 +1175,7 @@
   <Width>7.18961in</Width>
   <Page>
     <PageHeader>
-      <Height>5.5604cm</Height>
+      <Height>6.21551cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1752,6 +1752,46 @@
             <Border>
               <Style>None</Style>
             </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox23">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>"A = Atraso; F = Falta; C = Correcto; J = Falta Justificada, K = Atraso Justificado"</Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                    <Color>#000000</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>5.42634cm</Top>
+          <Left>0.05618cm</Left>
+          <Height>0.46771cm</Height>
+          <Width>18.03205cm</Width>
+          <ZIndex>18</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
