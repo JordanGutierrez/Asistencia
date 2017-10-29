@@ -1,18 +1,18 @@
-﻿@model Entidades.Administracion.Reporte
+﻿@model Entidades.Administracion.ReporteCoordinador
 
 @{
-    ViewBag.Title = "Print";
+    ViewBag.Title = "PrintCoordinador";
 }
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Reporte Individual de Asistencias</h2>
+                <h2>Reporte Individual de Asistencias del Personal</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                @using (Html.BeginForm("Print", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                @using (Html.BeginForm("PrintCoordinador", "ReporteCoordinador", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -59,11 +59,12 @@
                             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6">
                                 <select id="Estado" name="Estado" class="form-control col-md-7 col-xs-12">
-                                    <option value="O">Seleccione Estado</option>
-                                    <option value="J">Justificado</option>
+                                    <option value="O">Seleccione Estado</option>                                   
                                     <option value="F">Falta</option>
-                                    <option value="C">Correcto</option>
                                     <option value="A">Atraso</option>
+                                    <option value="C">Correcto</option>                                   
+                                    <option value="J">Falta Justificada</option>
+                                    <option value="K">Atraso Justificado</option>
                                 </select>
                                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                             </div>

@@ -12,6 +12,8 @@ namespace DataAccess.Administracion
     {
         DataSet getReporte(Reporte reporte, ref string mensaje);
 
+        DataSet getReporteCoordinador(ReporteCoordinador reportecoordinador, ref string mensaje);
+
         DataTable getReporteGenearl(Reporte reporte, ref string mensaje);
 
         DataTable getReportePermiso(Reporte reporte, ref string mensaje);

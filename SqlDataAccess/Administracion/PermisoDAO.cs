@@ -103,7 +103,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.CommandText = "pa_insertPermiso";
             sql.Comando.Parameters.AddWithValue("P_UsuarioID", permiso.UsuarioID);
             sql.Comando.Parameters.AddWithValue("P_Fecha", permiso.Fecha);
-            sql.Comando.Parameters.AddWithValue("P_Motivo", permiso. Motivo);
+            sql.Comando.Parameters.AddWithValue("P_Motivo", permiso.Motivo);
             sql.Comando.Parameters.AddWithValue("P_Archivo", permiso.Archivo);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
             try
@@ -121,13 +121,14 @@ namespace SqlDataAccess.Administracion
             throw new NotImplementedException();
         }
 
-        public void updatePermisoEstado(int id, string usuario, char estado, ref string mensaje)
+        public void updatePermisoEstado(int id, string usuario, char estado, string comentario, ref string mensaje)
         {
             sql.Comando.CommandType = CommandType.StoredProcedure;
             sql.Comando.CommandText = "pa_updatePermisoEstado";
             sql.Comando.Parameters.AddWithValue("P_PermisoID", id);
             sql.Comando.Parameters.AddWithValue("P_User", usuario);
             sql.Comando.Parameters.AddWithValue("P_Estado", estado);
+            sql.Comando.Parameters.AddWithValue("P_Comentario", comentario);
 
             try
             {

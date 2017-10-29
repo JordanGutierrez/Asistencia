@@ -108,7 +108,7 @@ namespace WebApp.Controllers
             string mensaje = string.Empty;
             try
             {
-                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'A', ref mensaje);
+                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'A', "Permiso Aprobado", ref mensaje);
                 if (mensaje == "OK")
                 {
                     Success("Vacaciones aprobadas con éxito", "Vacaciones", true);
@@ -127,21 +127,34 @@ namespace WebApp.Controllers
         [AppAuthorize("00034")]
         public ActionResult Rechazar(int id)
         {
+            Vacaciones vacaciones = new Vacaciones();
+            vacaciones.VacacionesID = id;
+            return View(vacaciones);
+        }
+        
+        // POST: Vacaciones/Rechazar
+        [HttpPost]
+        [AppAuthorize("00034")]
+        public ActionResult Rechazar(int id, string Comentario)
+        {
             string mensaje = string.Empty;
             try
             {
-                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'R', ref mensaje);
+                vacacionesDAO.updateVacacionesEstado(id, GetApplicationUser(), 'R', Comentario, ref mensaje);
                 if (mensaje == "OK")
                 {
-                    Success("Vacaciones rechazadas con éxito", "Vacaciones", true);
+                    Success("Permiso rechazado con éxito", "Permiso", true);
                     return RedirectToAction("Index");
                 }
+                else
+                    mensaje = "El comentario es requerido";
             }
             catch (Exception ex)
             {
                 mensaje = ex.Message;
             }
             Warning(mensaje, "Vacaciones", true);
+
             return RedirectToAction("Index");
         }
 

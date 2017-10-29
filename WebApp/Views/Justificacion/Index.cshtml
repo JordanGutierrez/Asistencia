@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Master.cshtml";
     System.Data.DataTable dt = ViewBag.Faltas;
+    System.Data.DataTable dt1 = ViewBag.Atraso;
+
 }
 
 
@@ -10,7 +12,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Listado de Faltas</h2>
+                <h2>Listado de Faltas y Atrasos</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -29,31 +31,39 @@
                     <tbody>
                         @foreach (System.Data.DataRow item in dt.Rows)
                         {
-                            
-                                if (char.Parse(item["Estado"].ToString()) == 'F' || char.Parse(item["Estado"].ToString()) == 'J')
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
-                                        </td>
-                                        <td>
-                                            @Html.Raw(item["Usuario"])
-                                        </td>
-                                        <td>
-                                            
-                                                @if (char.Parse(item["Estado"].ToString()) == 'F')
-                                                {
-                                                    <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Justificar</a>
-                                                }
-                                                @if (char.Parse(item["Estado"].ToString()) == 'J')
-                                                {
-                                                    <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Descargar</a>
-                                                }
-                                        </td>
-                                    </tr>
 
-                                }
+                            if (char.Parse(item["Estado"].ToString()) == 'F' || char.Parse(item["Estado"].ToString()) == 'A' || char.Parse(item["Estado"].ToString()) == 'J' || char.Parse(item["Estado"].ToString()) == 'K')
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item["Usuario"])
+                                    </td>
+                                    <td>
+
+                                        @if (char.Parse(item["Estado"].ToString()) == 'F')
+                                        {
+                                            <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Justificar Falta</a>
+                                        }
+                                        @if (char.Parse(item["Estado"].ToString()) == 'A')  
+                                        {
+                                            <a href="@Url.Action("JustificarAtraso","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-primary">Justificar Atraso</a>
+                                        }
+                                        @if (char.Parse(item["Estado"].ToString()) == 'J')
+                                        {
+                                            <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Falta Justificada Descargar</a>
+                                        }
+                                        @if (char.Parse(item["Estado"].ToString()) == 'K')
+                                        {
+                                            <a style="background-color:greenyellow;" class="text-success btn btn-default" disabled="true">Atraso Justificado</a>
+                                        }
+                                    </td>
+                                </tr>
                             }
+
+                        }
                     </tbody>
                 </table>
             </div>

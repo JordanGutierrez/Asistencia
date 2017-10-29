@@ -37,6 +37,9 @@ namespace Entidades.Administracion
 
         public char Estado { get; set; }
 
+        [DisplayName("Comentario")]
+        public string Comentario { get; set; }
+
         public static Vacaciones CreateVacacionesFromDataRecord(IDataRecord dr)
         {
             Vacaciones vacaciones = new Vacaciones();
@@ -49,6 +52,7 @@ namespace Entidades.Administracion
             vacaciones.FechaInicio = DateTime.Parse(dr["FechaInicio"].ToString());
             vacaciones.FechaFin = DateTime.Parse(dr["FechaFin"].ToString());
             vacaciones.Archivo = (byte[])dr["Archivo"];
+            vacaciones.Comentario = dr["Comentario"].ToString();
 
             return vacaciones;
         }

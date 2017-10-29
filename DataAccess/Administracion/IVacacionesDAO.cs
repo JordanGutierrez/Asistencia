@@ -19,7 +19,7 @@ namespace DataAccess.Administracion
 
         void updateVacaciones(Vacaciones vacaciones, string usuario, ref string mensaje);
 
-        void updateVacacionesEstado(int id, string usuario, char estado, ref string mensaje);
+        void updateVacacionesEstado(int id, string usuario, char estado, string comentario, ref string mensaje);
 
     }
 }

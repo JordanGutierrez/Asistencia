@@ -215,6 +215,7 @@
     <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
     <Compile Include="Controllers\ReconFacialController.cs" />
+    <Compile Include="Controllers\ReporteCoordinadorController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VacacionesController.cs" />
@@ -663,18 +664,22 @@
     <Content Include="Views\Biometrico\Index.cshtml" />
     <Content Include="Views\Biometrico\Create.cshtml" />
     <Content Include="Views\Biometrico\Edit.cshtml" />
-    <Content Include="Views\Justificacion\Index.cshtml" />
     <Content Include="Views\Justificacion\Justificar.cshtml" />
     <Content Include="Views\Permiso\Index.cshtml" />
     <Content Include="Views\Permiso\Create.cshtml" />
     <Content Include="Views\Vacaciones\Index.cshtml" />
     <Content Include="Views\Vacaciones\Create.cshtml" />
     <Content Include="Views\Account\Restart.cshtml" />
-    <Content Include="Views\Reporte\Print.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Reporte\ReportGeneral.cshtml" />
     <Content Include="Views\Reporte\ReportPermiso.cshtml" />
     <Content Include="Views\Reporte\ReportVacaciones.cshtml" />
+    <Content Include="Views\Permiso\Rechazar.cshtml" />
+    <Content Include="Views\Vacaciones\Rechazar.cshtml" />
+    <Content Include="Views\Justificacion\Index.cshtml" />
+    <Content Include="Views\Justificacion\JustificarAtraso.cshtml" />
+    <Content Include="Views\Reporte\PrintEmpleado.cshtml" />
+    <Content Include="Views\ReporteCoordinador\PrintCoordinador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -702,6 +707,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Reportes\Asistencia.rdlc" />
     <EmbeddedResource Include="Reportes\AsistenciaGeneral.rdlc" />
+    <EmbeddedResource Include="Reportes\EstadisticasAsistenciaGeneral.rdlc" />
     <EmbeddedResource Include="Reportes\PermisoGeneral.rdlc" />
     <EmbeddedResource Include="Reportes\VacacionesGeneral.rdlc" />
   </ItemGroup>

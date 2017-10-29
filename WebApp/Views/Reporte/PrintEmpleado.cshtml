@@ -1,24 +1,34 @@
 ﻿@model Entidades.Administracion.Reporte
 
 @{
-    ViewBag.Title = "ReportGeneral";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewBag.Title = "PrintEmpleado";
 }
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Reporte General de Asistencias</h2>
+                <h2>Reporte Individual de Asistencia del Empleado</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                @using (Html.BeginForm("ReportGeneral", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                @using (Html.BeginForm("PrintEmpleado", "Reporte", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @if (ViewBag.RolID == "3")
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", @maxlength = "10", @onKeyPress = "return soloNumeros(event)" } })
+                                    @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
                         <div class="form-group">
                             @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -49,10 +59,10 @@
                             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6">
                                 <select id="Estado" name="Estado" class="form-control col-md-7 col-xs-12">
-                                    <option value="O">Seleccione Estado</option>
+                                    <option value="O">Seleccione Estado</option>                                   
                                     <option value="F">Falta</option>
                                     <option value="A">Atraso</option>
-                                    <option value="C">Correcto</option>
+                                    <option value="C">Correcto</option>                                   
                                     <option value="J">Falta Justificada</option>
                                     <option value="K">Atraso Justificado</option>
                                 </select>
