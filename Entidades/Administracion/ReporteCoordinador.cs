@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Administracion
 {
-    public class Reporte
-    {        
+    public class ReporteCoordinador
+    {
+        [Required(ErrorMessage = "La cédula es requerida")]
         [DisplayName("Cédula")]
         public string Cedula { get; set; }
 
@@ -21,7 +22,7 @@ namespace Entidades.Administracion
         [DisplayName("Fecha hasta")]
         public Nullable<DateTime> FechaFin { get; set; }
 
-        [DisplayName("  Estado")]
+        [DisplayName("Estado")]
         public char Estado{ get; set; }
 
     }

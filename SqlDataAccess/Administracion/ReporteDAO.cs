@@ -36,6 +36,28 @@ namespace SqlDataAccess.Administracion
             return ds;
         }
 
+        public DataSet getReporteCoordinador(ReporteCoordinador reportecoordinador, ref string mensaje)
+        {
+            DataSet ds = null;
+
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_ReporteAsistencia";
+            sql.Comando.Parameters.AddWithValue("P_Cedula", reportecoordinador.Cedula);
+            sql.Comando.Parameters.AddWithValue("P_FechaInicio", reportecoordinador.FechaInicio);
+            sql.Comando.Parameters.AddWithValue("P_FechaFin", reportecoordinador.FechaFin);
+            sql.Comando.Parameters.AddWithValue("P_Estado", reportecoordinador.Estado);
+
+            try
+            {
+                ds = sql.EjecutaDataSet(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            return ds;
+        }
+
         public DataTable getReporteGenearl(Reporte reporte, ref string mensaje)
         {
             DataTable dt = null;

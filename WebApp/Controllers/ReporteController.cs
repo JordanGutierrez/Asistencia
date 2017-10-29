@@ -17,9 +17,74 @@ namespace WebApp.Controllers
         IReporteDAO reporteDAO = new ReporteDAO();
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        // GET: Reporte/Print
+        // GET: ReporteEmpleado/Print
         [AppAuthorize("00029")]
-        public ActionResult Print()
+        public ActionResult PrintCoordinador()
+        {
+            ReporteCoordinador reportecoordinador = new ReporteCoordinador();
+            reportecoordinador.FechaInicio = DateTime.Now;
+            reportecoordinador.FechaFin = DateTime.Now;
+            ViewBag.RolID = Utils.Utils.GetClaim("RolID");
+            int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+            return View(reportecoordinador);
+        }
+
+        // POST: ReporteEmpleado/Print
+        [HttpPost]
+        [AppAuthorize("00029")]
+        public ActionResult PrintCoordinador(ReporteCoordinador reportecoordinador)
+        {
+            try
+            {
+                if(reportecoordinador.FechaFin < reportecoordinador.FechaInicio)
+                {
+                    Warning("La fecha hasta debe ser mayor a la fecha desde", "ReporteEmpleado", true);
+                    return View(reportecoordinador);
+                }
+                var rol = Utils.Utils.GetClaim("RolID");
+                int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                string mensaje = string.Empty;
+
+                if (rol == "2")
+                {
+                    reportecoordinador.Cedula = usuarioDAO.getUsuario(usuarioID, ref mensaje).Cedula;
+                }
+                ReportViewer reportviewer = new ReportViewer();
+                reportviewer.ProcessingMode = ProcessingMode.Local;
+                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\Asistencia.rdlc");
+
+                DataSet ds = reporteDAO.getReporteCoordinador(reportecoordinador, ref mensaje);
+                ReportDataSource datasourceCabecera = new ReportDataSource("dtCabecera", ds.Tables[0]);
+                reportviewer.LocalReport.DataSources.Clear();
+                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+                ReportDataSource datasourceDetalle = new ReportDataSource("dtDetalle", ds.Tables[1]);
+                reportviewer.LocalReport.DataSources.Add(datasourceDetalle);
+                ReportDataSource datasourceTotalFaltas = new ReportDataSource("dtTotalFaltas", ds.Tables[2]);
+                reportviewer.LocalReport.DataSources.Add(datasourceTotalFaltas);
+
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reportecoordinador.FechaInicio.Value.ToShortDateString()));
+                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reportecoordinador.FechaFin.Value.ToShortDateString()));
+
+                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                Response.OutputStream.Flush();
+                Response.End();
+                return new FileStreamResult(Response.OutputStream, "application/pdf");
+            }
+            catch(Exception ex)
+            {
+                Warning(ex.Message, "ReporteCoordinador", true);
+                return View(reportecoordinador);
+            }
+        }
+
+        // GET: ReporteEmpleado/PrintEmpleado
+        [AppAuthorize("00037")]
+        public ActionResult PrintEmpleado()
         {
             Reporte reporte = new Reporte();
             reporte.FechaInicio = DateTime.Now;
@@ -29,14 +94,14 @@ namespace WebApp.Controllers
             return View(reporte);
         }
 
-        // POST: Reporte/Print
+        // POST: ReporteEmpleado/Print
         [HttpPost]
-        [AppAuthorize("00029")]
-        public ActionResult Print(Reporte reporte)
+        [AppAuthorize("00037")]
+        public ActionResult PrintEmpleado(Reporte reporte)
         {
             try
             {
-                if(reporte.FechaFin < reporte.FechaInicio)
+                if (reporte.FechaFin < reporte.FechaInicio)
                 {
                     Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
                     return View(reporte);
@@ -75,9 +140,9 @@ namespace WebApp.Controllers
                 Response.End();
                 return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Warning(ex.Message, "Reporte", true);
+                Warning(ex.Message, "ReporteEmpleado", true);
                 return View(reporte);
             }
         }
