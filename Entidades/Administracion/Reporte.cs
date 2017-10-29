@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entidades.Administracion
 {
     public class Reporte
-    {        
+    {
         [DisplayName("Cédula")]
         public string Cedula { get; set; }
 
@@ -21,8 +21,12 @@ namespace Entidades.Administracion
         [DisplayName("Fecha hasta")]
         public Nullable<DateTime> FechaFin { get; set; }
 
-        [DisplayName("  Estado")]
-        public char Estado{ get; set; }
+        [DisplayName("Estado")]
+        public char Estado { get; set; }
+
+        [Required]
+        [DisplayName("Facultad")]
+        public int FacultadID { get; set; }
 
     }
 }

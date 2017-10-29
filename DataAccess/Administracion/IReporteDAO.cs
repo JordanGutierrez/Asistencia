@@ -20,5 +20,7 @@ namespace DataAccess.Administracion
 
         DataTable getReporteVacaciones(Reporte reporte, ref string mensaje);
 
+        DataTable getReporteEstadistico(Reporte reporte, ref string mensaje);
+
     }
 }

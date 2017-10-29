@@ -24,6 +24,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaInicio", reporte.FechaInicio);
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reporte.FacultadID);
 
             try
             {
@@ -58,6 +59,27 @@ namespace SqlDataAccess.Administracion
             return ds;
         }
 
+        public DataTable getReporteEstadistico(Reporte reporte, ref string mensaje)
+        {
+            DataTable dt = null;
+
+            sql.Comando.CommandType = CommandType.StoredProcedure;
+            sql.Comando.CommandText = "pa_ReporteEstadistico";
+            sql.Comando.Parameters.AddWithValue("P_FechaInicio", reporte.FechaInicio);
+            sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reporte.FacultadID);
+
+            try
+            {
+                dt = sql.EjecutaDataTable(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            return dt;
+        }
+
         public DataTable getReporteGenearl(Reporte reporte, ref string mensaje)
         {
             DataTable dt = null;
@@ -89,6 +111,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
             sql.Comando.Parameters.AddWithValue("P_Cedula", reporte.Cedula);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reporte.FacultadID);
 
             try
             {
@@ -111,6 +134,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
             sql.Comando.Parameters.AddWithValue("P_Cedula", reporte.Cedula);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reporte.FacultadID);
 
             try
             {

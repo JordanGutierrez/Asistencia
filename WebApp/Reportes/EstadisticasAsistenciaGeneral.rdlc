@@ -2,31 +2,67 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Chart Name="Chart1">
+      <Chart Name="Chart2">
         <ChartCategoryHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Group Name="ChartGroup" />
-              <Label />
+              <Group Name="Chart2_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Estado.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Estado.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!Estado.Value</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
         <ChartSeriesHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Label />
+              <Label>Estado</Label>
             </ChartMember>
           </ChartMembers>
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="EmptySeriesName">
+            <ChartSeries Name="Estado">
               <ChartDataPoints>
                 <ChartDataPoint>
-                  <ChartDataPointValues />
+                  <ChartDataPointValues>
+                    <Y>=Count(Fields!Estado.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                    <UseValueAsLabel>true</UseValueAsLabel>
+                    <Visible>true</Visible>
+                  </ChartDataLabel>
+                  <Style />
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
                 </ChartDataPoint>
               </ChartDataPoints>
               <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
             </ChartSeries>
           </ChartSeriesCollection>
         </ChartData>
@@ -182,7 +218,6 @@
             </ChartValueAxes>
             <ChartThreeDProperties>
               <Enabled>true</Enabled>
-              <Clustered>true</Clustered>
             </ChartThreeDProperties>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
@@ -234,10 +269,11 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <Top>0.40913cm</Top>
-        <Left>0.3937cm</Left>
-        <Height>5.79375cm</Height>
-        <Width>14.64375cm</Width>
+        <DataSetName>dtEstadistico</DataSetName>
+        <Top>0.0387cm</Top>
+        <Left>0.05618cm</Left>
+        <Height>11.42938cm</Height>
+        <Width>15.26646cm</Width>
         <Style>
           <Border>
             <Color>LightGrey</Color>
@@ -248,13 +284,13 @@
         </Style>
       </Chart>
     </ReportItems>
-    <Height>2.44208in</Height>
+    <Height>4.51499in</Height>
     <Style />
   </Body>
   <Width>6.03254in</Width>
   <Page>
     <PageHeader>
-      <Height>3.47708cm</Height>
+      <Height>2.65687cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -468,49 +504,21 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dtPermiso">
+    <DataSet Name="dtEstadistico">
       <Query>
         <DataSourceName>DataSetReportes</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="UsuarioCodigo">
-          <DataField>UsuarioCodigo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Nombre">
-          <DataField>Nombre</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FacultadDescripcion">
-          <DataField>FacultadDescripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Estado">
           <DataField>Estado</DataField>
-          <rd:TypeName>System.Char</rd:TypeName>
-        </Field>
-        <Field Name="Fecha">
-          <DataField>Fecha</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="Motivo">
-          <DataField>Motivo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CarreraDescripcion">
-          <DataField>CarreraDescripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Cedula">
-          <DataField>Cedula</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReportes</rd:DataSetName>
-        <rd:SchemaPath>D:\TESIS_FINAL\WebApp\DataSetReportes.xsd</rd:SchemaPath>
-        <rd:TableName>dtPermiso</rd:TableName>
+        <rd:SchemaPath>C:\Users\Jordan Gutierrez\Documents\Visual Studio 2015\Projects\Asistencia\WebApp\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:TableName>dtEstadistico</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />

@@ -46,38 +46,42 @@ namespace WebApp.Controllers
             {
                 if (Archivo != null)
                 {
-                    string extension = Path.GetExtension(Archivo.FileName);
-                    if (extension.ToUpper() == ".PDF")
+                    if(Archivo.ContentLength <= 4194304)
                     {
-                        using (Stream inputStream = Archivo.InputStream)
+                        string extension = Path.GetExtension(Archivo.FileName);
+                        if (extension.ToUpper() == ".PDF")
                         {
-                            MemoryStream memoryStream = inputStream as MemoryStream;
-                            if (memoryStream == null)
+                            using (Stream inputStream = Archivo.InputStream)
                             {
-                                memoryStream = new MemoryStream();
-                                inputStream.CopyTo(memoryStream);
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                justificacion.Archivo = memoryStream.ToArray();
                             }
-                            justificacion.Archivo = memoryStream.ToArray();
-                        }
-                        justificacion.AsistenciaID = AsistenciaID;
-                        justificacion.Comentario = Comentario;
-                        justificacionDAO.insertJustificacion(justificacion, GetApplicationUser(), ref mensaje);
-                        if (mensaje == "OK")
-                        {
-                            Success("Justificación registrada con éxito", "Justificación", true);
-                            return RedirectToAction("Index");
+                            justificacion.AsistenciaID = AsistenciaID;
+                            justificacion.Comentario = Comentario;
+                            justificacionDAO.insertJustificacion(justificacion, GetApplicationUser(), ref mensaje);
+                            if (mensaje == "OK")
+                            {
+                                Success("Justificación registrada con éxito", "Justificación", true);
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                Warning(mensaje, "Justificación", true);
+                            }
                         }
                         else
-                        {
-                            Warning(mensaje, "Justificación", true);
-                        }
+                            Warning("La extensión del archivo debe ser PDF", "Justificación", true);
                     }
                     else
-                    {
-                        Warning("La extensión del archivo debe ser PDF", "Justificación", true);
-                    }
+                        Warning("El archivo no debe ser superior a 4 MB", "Justificación", true);
                 }
-
+                else
+                    Warning("El archivo es requerido", "Justificación", true);
             }
             catch (Exception ex)
             {
