@@ -16,6 +16,7 @@ namespace WebApp.Controllers
     {
         IReporteDAO reporteDAO = new ReporteDAO();
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        IFacultadDAO facultadDAO = new FacultadDAO();
 
         // GET: ReporteEmpleado/Print
         [AppAuthorize("00029")]
@@ -53,6 +54,7 @@ namespace WebApp.Controllers
                 reportviewer.ProcessingMode = ProcessingMode.Local;
                 reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\Asistencia.rdlc");
 
+                reportecoordinador.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
                 DataSet ds = reporteDAO.getReporteCoordinador(reportecoordinador, ref mensaje);
                 ReportDataSource datasourceCabecera = new ReportDataSource("dtCabecera", ds.Tables[0]);
                 reportviewer.LocalReport.DataSources.Clear();

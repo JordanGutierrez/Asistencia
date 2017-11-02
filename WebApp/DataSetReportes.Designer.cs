@@ -829,7 +829,7 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnAtraso;
             
-            private global::System.Data.DataColumn columnSalidaAntes;
+            private global::System.Data.DataColumn columnSalAntes;
             
             private global::System.Data.DataColumn columnEstado;
             
@@ -942,9 +942,9 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SalidaAntesColumn {
+            public global::System.Data.DataColumn SalAntesColumn {
                 get {
-                    return this.columnSalidaAntes;
+                    return this.columnSalAntes;
                 }
             }
             
@@ -1033,7 +1033,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalidaAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion, string CarreraDescripcion, string Cedula) {
+            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion, string CarreraDescripcion, string Cedula) {
                 dtDetalleRow rowdtDetalleRow = ((dtDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Fecha,
@@ -1044,7 +1044,7 @@ namespace WebApp {
                         SalidaLunch,
                         TiempoExt,
                         Atraso,
-                        SalidaAntes,
+                        SalAntes,
                         Estado,
                         UsuarioCodigo,
                         Nombre,
@@ -1081,7 +1081,7 @@ namespace WebApp {
                 this.columnSalidaLunch = base.Columns["SalidaLunch"];
                 this.columnTiempoExt = base.Columns["TiempoExt"];
                 this.columnAtraso = base.Columns["Atraso"];
-                this.columnSalidaAntes = base.Columns["SalidaAntes"];
+                this.columnSalAntes = base.Columns["SalAntes"];
                 this.columnEstado = base.Columns["Estado"];
                 this.columnUsuarioCodigo = base.Columns["UsuarioCodigo"];
                 this.columnNombre = base.Columns["Nombre"];
@@ -1109,8 +1109,8 @@ namespace WebApp {
                 base.Columns.Add(this.columnTiempoExt);
                 this.columnAtraso = new global::System.Data.DataColumn("Atraso", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAtraso);
-                this.columnSalidaAntes = new global::System.Data.DataColumn("SalidaAntes", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSalidaAntes);
+                this.columnSalAntes = new global::System.Data.DataColumn("SalAntes", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalAntes);
                 this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(char), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEstado);
                 this.columnUsuarioCodigo = new global::System.Data.DataColumn("UsuarioCodigo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1260,6 +1260,10 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnTotalExtra;
             
+            private global::System.Data.DataColumn columnTotalAtraso;
+            
+            private global::System.Data.DataColumn columnTotalSalirAntes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtTotalFaltasDataTable() {
@@ -1311,6 +1315,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalAtrasoColumn {
+                get {
+                    return this.columnTotalAtraso;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalSalirAntesColumn {
+                get {
+                    return this.columnTotalSalirAntes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1346,11 +1366,13 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtTotalFaltasRow AdddtTotalFaltasRow(int TotalFaltas, string TotalExtra) {
+            public dtTotalFaltasRow AdddtTotalFaltasRow(int TotalFaltas, string TotalExtra, string TotalAtraso, string TotalSalirAntes) {
                 dtTotalFaltasRow rowdtTotalFaltasRow = ((dtTotalFaltasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TotalFaltas,
-                        TotalExtra};
+                        TotalExtra,
+                        TotalAtraso,
+                        TotalSalirAntes};
                 rowdtTotalFaltasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtTotalFaltasRow);
                 return rowdtTotalFaltasRow;
@@ -1375,6 +1397,8 @@ namespace WebApp {
             internal void InitVars() {
                 this.columnTotalFaltas = base.Columns["TotalFaltas"];
                 this.columnTotalExtra = base.Columns["TotalExtra"];
+                this.columnTotalAtraso = base.Columns["TotalAtraso"];
+                this.columnTotalSalirAntes = base.Columns["TotalSalirAntes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1384,6 +1408,10 @@ namespace WebApp {
                 base.Columns.Add(this.columnTotalFaltas);
                 this.columnTotalExtra = new global::System.Data.DataColumn("TotalExtra", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalExtra);
+                this.columnTotalAtraso = new global::System.Data.DataColumn("TotalAtraso", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAtraso);
+                this.columnTotalSalirAntes = new global::System.Data.DataColumn("TotalSalirAntes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalSalirAntes);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2224,6 +2252,10 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnEstado;
             
+            private global::System.Data.DataColumn columnFacultadCodigo;
+            
+            private global::System.Data.DataColumn columnFacultadDescripcion;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtEstadisticoDataTable() {
@@ -2267,6 +2299,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadCodigoColumn {
+                get {
+                    return this.columnFacultadCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadDescripcionColumn {
+                get {
+                    return this.columnFacultadDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2302,10 +2350,12 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtEstadisticoRow AdddtEstadisticoRow(string Estado) {
+            public dtEstadisticoRow AdddtEstadisticoRow(string Estado, string FacultadCodigo, string FacultadDescripcion) {
                 dtEstadisticoRow rowdtEstadisticoRow = ((dtEstadisticoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Estado};
+                        Estado,
+                        FacultadCodigo,
+                        FacultadDescripcion};
                 rowdtEstadisticoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtEstadisticoRow);
                 return rowdtEstadisticoRow;
@@ -2329,6 +2379,8 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnEstado = base.Columns["Estado"];
+                this.columnFacultadCodigo = base.Columns["FacultadCodigo"];
+                this.columnFacultadDescripcion = base.Columns["FacultadDescripcion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2336,6 +2388,10 @@ namespace WebApp {
             private void InitClass() {
                 this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEstado);
+                this.columnFacultadCodigo = new global::System.Data.DataColumn("FacultadCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadCodigo);
+                this.columnFacultadDescripcion = new global::System.Data.DataColumn("FacultadDescripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadDescripcion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2873,17 +2929,17 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.TimeSpan SalidaAntes {
+            public System.TimeSpan SalAntes {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tabledtDetalle.SalidaAntesColumn]));
+                        return ((global::System.TimeSpan)(this[this.tabledtDetalle.SalAntesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SalidaAntes\' de la tabla \'dtDetalle\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SalAntes\' de la tabla \'dtDetalle\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledtDetalle.SalidaAntesColumn] = value;
+                    this[this.tabledtDetalle.SalAntesColumn] = value;
                 }
             }
             
@@ -3081,14 +3137,14 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSalidaAntesNull() {
-                return this.IsNull(this.tabledtDetalle.SalidaAntesColumn);
+            public bool IsSalAntesNull() {
+                return this.IsNull(this.tabledtDetalle.SalAntesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSalidaAntesNull() {
-                this[this.tabledtDetalle.SalidaAntesColumn] = global::System.Convert.DBNull;
+            public void SetSalAntesNull() {
+                this[this.tabledtDetalle.SalAntesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3212,6 +3268,38 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotalAtraso {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtTotalFaltas.TotalAtrasoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalAtraso\' de la tabla \'dtTotalFaltas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTotalFaltas.TotalAtrasoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotalSalirAntes {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtTotalFaltas.TotalSalirAntesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalSalirAntes\' de la tabla \'dtTotalFaltas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTotalFaltas.TotalSalirAntesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalFaltasNull() {
                 return this.IsNull(this.tabledtTotalFaltas.TotalFaltasColumn);
             }
@@ -3232,6 +3320,30 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalExtraNull() {
                 this[this.tabledtTotalFaltas.TotalExtraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalAtrasoNull() {
+                return this.IsNull(this.tabledtTotalFaltas.TotalAtrasoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalAtrasoNull() {
+                this[this.tabledtTotalFaltas.TotalAtrasoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalSalirAntesNull() {
+                return this.IsNull(this.tabledtTotalFaltas.TotalSalirAntesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalSalirAntesNull() {
+                this[this.tabledtTotalFaltas.TotalSalirAntesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3775,6 +3887,39 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtEstadistico.FacultadCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadCodigo\' de la tabla \'dtEstadistico\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtEstadistico.FacultadCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadDescripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtEstadistico.FacultadDescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadDescripcion\' de la tabla \'dtEstadistico\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtEstadistico.FacultadDescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsEstadoNull() {
                 return this.IsNull(this.tabledtEstadistico.EstadoColumn);
             }
@@ -3783,6 +3928,30 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEstadoNull() {
                 this[this.tabledtEstadistico.EstadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadCodigoNull() {
+                return this.IsNull(this.tabledtEstadistico.FacultadCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadCodigoNull() {
+                this[this.tabledtEstadistico.FacultadCodigoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadDescripcionNull() {
+                return this.IsNull(this.tabledtEstadistico.FacultadDescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadDescripcionNull() {
+                this[this.tabledtEstadistico.FacultadDescripcionColumn] = global::System.Convert.DBNull;
             }
         }
         

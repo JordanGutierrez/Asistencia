@@ -36,7 +36,7 @@ namespace WebApp.Controllers
             return View();
         }
 
-        // POST: Usuario/Create
+        // POST: Permiso/Create
         [HttpPost]
         [AppAuthorize("00019")]
         public ActionResult Create(HttpPostedFileBase Archivo, DateTime Fecha, string Motivo)
@@ -50,34 +50,39 @@ namespace WebApp.Controllers
 
                 if (Archivo != null)
                 {
-                    string extension = Path.GetExtension(Archivo.FileName);
-                    if (extension.ToUpper() == ".PDF")
+                    if (Archivo.ContentLength <= 4194304)
                     {
-                        if (Fecha.Date > DateTime.Now.Date)
+                        string extension = Path.GetExtension(Archivo.FileName);
+                        if (extension.ToUpper() == ".PDF")
                         {
-                            using (Stream inputStream = Archivo.InputStream)
+                            if (Fecha.Date > DateTime.Now.Date)
                             {
-                                MemoryStream memoryStream = inputStream as MemoryStream;
-                                if (memoryStream == null)
+                                using (Stream inputStream = Archivo.InputStream)
                                 {
-                                    memoryStream = new MemoryStream();
-                                    inputStream.CopyTo(memoryStream);
+                                    MemoryStream memoryStream = inputStream as MemoryStream;
+                                    if (memoryStream == null)
+                                    {
+                                        memoryStream = new MemoryStream();
+                                        inputStream.CopyTo(memoryStream);
+                                    }
+                                    permiso.Archivo = memoryStream.ToArray();
                                 }
-                                permiso.Archivo = memoryStream.ToArray();
+                                permiso.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                                permisoDAO.insertPermiso(permiso, GetApplicationUser(), ref mensaje);
+                                if (mensaje == "OK")
+                                {
+                                    Success("Permiso registrado con éxito", "Permiso", true);
+                                    return RedirectToAction("Index");
+                                }
                             }
-                            permiso.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-                            permisoDAO.insertPermiso(permiso, GetApplicationUser(), ref mensaje);
-                            if (mensaje == "OK")
-                            {
-                                Success("Permiso registrado con éxito", "Permiso", true);
-                                return RedirectToAction("Index");
-                            }
+                            else
+                                mensaje = "La fecha del permiso debe ser mayor a la fecha actual";
                         }
                         else
-                            mensaje = "La fecha del permiso debe ser mayor a la fecha actual";
+                            mensaje = "La extensión del archivo deber ser PDF";
                     }
                     else
-                        mensaje = "La extensión del archivo deber ser PDF";
+                        mensaje = "El archivo no debe ser superior a 4 MB";
                 }
                 else
                     mensaje = "El archivo es requerido";

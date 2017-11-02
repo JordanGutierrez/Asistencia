@@ -74,13 +74,13 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Título del eje</Caption>
+                  <Caption />
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
                 </ChartAxisTitle>
                 <ChartMajorGridLines>
-                  <Enabled>False</Enabled>
+                  <Enabled>True</Enabled>
                   <Style>
                     <Border>
                       <Color>Gainsboro</Color>
@@ -88,6 +88,7 @@
                   </Style>
                 </ChartMajorGridLines>
                 <ChartMinorGridLines>
+                  <Enabled>False</Enabled>
                   <Style>
                     <Border>
                       <Color>Gainsboro</Color>
@@ -149,12 +150,13 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Título del eje</Caption>
+                  <Caption>Cantidad</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
                 </ChartAxisTitle>
                 <ChartMajorGridLines>
+                  <Enabled>True</Enabled>
                   <Style>
                     <Border>
                       <Color>Gainsboro</Color>
@@ -244,7 +246,7 @@
         </ChartLegends>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Título del gráfico</Caption>
+            <Caption>=Fields!FacultadDescripcion.Value</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -272,7 +274,7 @@
         <DataSetName>dtEstadistico</DataSetName>
         <Top>0.0387cm</Top>
         <Left>0.05618cm</Left>
-        <Height>11.42938cm</Height>
+        <Height>11.45899cm</Height>
         <Width>15.26646cm</Width>
         <Style>
           <Border>
@@ -283,14 +285,63 @@
           <BackgroundGradientType>None</BackgroundGradientType>
         </Style>
       </Chart>
+      <Textbox Name="Textbox17">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>En este reporte se puede visualizar las diferentes cantidades en los Estados de:</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>"Atraso", "Justificacion de Atraso", "Correcto", "Falta", "Falta Justificada" de esta Facultad.</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>11.67978cm</Top>
+        <Left>0.05618cm</Left>
+        <Height>1.04979cm</Height>
+        <Width>15.26646cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.51499in</Height>
+    <Height>5.1204in</Height>
     <Style />
   </Body>
   <Width>6.03254in</Width>
   <Page>
     <PageHeader>
-      <Height>2.65687cm</Height>
+      <Height>3.53cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -477,6 +528,72 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox14">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!FacultadCodigo.Value, "dtEstadistico")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>2.80114cm</Top>
+          <Left>0.05618cm</Left>
+          <Height>0.46771cm</Height>
+          <Width>1.68521cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!FacultadDescripcion.Value, "dtEstadistico")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>2.80114cm</Top>
+          <Left>1.85107cm</Left>
+          <Height>0.46771cm</Height>
+          <Width>9.14948cm</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -514,10 +631,18 @@
           <DataField>Estado</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FacultadCodigo">
+          <DataField>FacultadCodigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FacultadDescripcion">
+          <DataField>FacultadDescripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReportes</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Jordan Gutierrez\Documents\Visual Studio 2015\Projects\Asistencia\WebApp\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\TESIS_FINAL - OK - ACTUALIZACION\WebApp\DataSetReportes.xsd</rd:SchemaPath>
         <rd:TableName>dtEstadistico</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

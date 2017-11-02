@@ -50,44 +50,49 @@ namespace WebApp.Controllers
             {
                 if (Archivo != null)
                 {
-                    string extension = Path.GetExtension(Archivo.FileName);
-                    if (extension.ToUpper() == ".PDF")
+                    if (Archivo.ContentLength <= 4194304)
                     {
-                        if (FechaInicio > DateTime.Now.Date)
+                        string extension = Path.GetExtension(Archivo.FileName);
+                        if (extension.ToUpper() == ".PDF")
                         {
-                            if (FechaFin > DateTime.Now)
+                            if (FechaInicio > DateTime.Now.Date)
                             {
-                                if (FechaInicio.Date < FechaFin.Date)
+                                if (FechaFin > DateTime.Now)
                                 {
-                                    using (Stream inputStream = Archivo.InputStream)
+                                    if (FechaInicio.Date < FechaFin.Date)
                                     {
-                                        MemoryStream memoryStream = inputStream as MemoryStream;
-                                        if (memoryStream == null)
+                                        using (Stream inputStream = Archivo.InputStream)
                                         {
-                                            memoryStream = new MemoryStream();
-                                            inputStream.CopyTo(memoryStream);
-                                        }
-                                        vacaciones.Archivo = memoryStream.ToArray();
-                                        vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-                                        vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
-                                        if (mensaje == "OK")
-                                        {
-                                            Success("Vacaciones registradas con éxito", "Vacaciones", true);
-                                            return RedirectToAction("Index");
+                                            MemoryStream memoryStream = inputStream as MemoryStream;
+                                            if (memoryStream == null)
+                                            {
+                                                memoryStream = new MemoryStream();
+                                                inputStream.CopyTo(memoryStream);
+                                            }
+                                            vacaciones.Archivo = memoryStream.ToArray();
+                                            vacaciones.UsuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
+                                            vacacionesDAO.insertVacaciones(vacaciones, GetApplicationUser(), ref mensaje);
+                                            if (mensaje == "OK")
+                                            {
+                                                Success("Vacaciones registradas con éxito", "Vacaciones", true);
+                                                return RedirectToAction("Index");
+                                            }
                                         }
                                     }
+                                    else
+                                        mensaje = "La fecha de fin debe ser mayor a la fecha de inicio de las vacaciones";
                                 }
                                 else
-                                    mensaje = "La fecha de fin debe ser mayor a la fecha de inicio de las vacaciones";
+                                    mensaje = "La fecha de fin debe ser mayor a la actual";
                             }
                             else
-                                mensaje = "La fecha de fin debe ser mayor a la actual";
+                                mensaje = "La fecha de inicio debe ser mayor a la actual";
                         }
                         else
-                            mensaje = "La fecha de inicio debe ser mayor a la actual";
+                            mensaje = "La extensión del archivo debe ser PDF";
                     }
                     else
-                        mensaje = "La extensión del archivo debe ser PDF";
+                        mensaje = "El archivo no debe ser superior a 4 MB";
                 }
                 else
                     mensaje = "El archivo es requerido";

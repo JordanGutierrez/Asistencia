@@ -47,6 +47,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaInicio", reportecoordinador.FechaInicio);
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reportecoordinador.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Estado", reportecoordinador.Estado);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reportecoordinador.FacultadID);
 
             try
             {

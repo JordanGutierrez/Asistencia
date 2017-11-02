@@ -18,72 +18,7 @@ namespace WebApp.Controllers
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
         IFacultadDAO facultadDAO = new FacultadDAO();
 
-        // GET: ReporteEmpleado/Print
-        [AppAuthorize("00029")]
-        public ActionResult PrintCoordinador()
-        {
-            ReporteCoordinador reportecoordinador = new ReporteCoordinador();
-            reportecoordinador.FechaInicio = DateTime.Now;
-            reportecoordinador.FechaFin = DateTime.Now;
-            ViewBag.RolID = Utils.Utils.GetClaim("RolID");
-            int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-            return View(reportecoordinador);
-        }
-
-        // POST: ReporteEmpleado/Print
-        [HttpPost]
-        [AppAuthorize("00029")]
-        public ActionResult PrintCoordinador(ReporteCoordinador reportecoordinador)
-        {
-            string mensaje = string.Empty;
-            try
-            {
-                if (reportecoordinador.FechaFin < reportecoordinador.FechaInicio)
-                {
-                    Warning("La fecha hasta debe ser mayor a la fecha desde", "ReporteEmpleado", true);
-                    return View(reportecoordinador);
-                }
-
-                var rol = Utils.Utils.GetClaim("RolID");
-                int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
-
-                if (rol == "2")
-                {
-                    reportecoordinador.Cedula = usuarioDAO.getUsuario(usuarioID, ref mensaje).Cedula;
-                }
-                ReportViewer reportviewer = new ReportViewer();
-                reportviewer.ProcessingMode = ProcessingMode.Local;
-                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\Asistencia.rdlc");
-
-                DataSet ds = reporteDAO.getReporteCoordinador(reportecoordinador, ref mensaje);
-                ReportDataSource datasourceCabecera = new ReportDataSource("dtCabecera", ds.Tables[0]);
-                reportviewer.LocalReport.DataSources.Clear();
-                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
-                ReportDataSource datasourceDetalle = new ReportDataSource("dtDetalle", ds.Tables[1]);
-                reportviewer.LocalReport.DataSources.Add(datasourceDetalle);
-                ReportDataSource datasourceTotalFaltas = new ReportDataSource("dtTotalFaltas", ds.Tables[2]);
-                reportviewer.LocalReport.DataSources.Add(datasourceTotalFaltas);
-
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reportecoordinador.FechaInicio.Value.ToShortDateString()));
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reportecoordinador.FechaFin.Value.ToShortDateString()));
-
-                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
-                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
-                Response.Buffer = true;
-                Response.Clear();
-                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
-                Response.OutputStream.Flush();
-                Response.End();
-                return new FileStreamResult(Response.OutputStream, "application/pdf");
-            }
-            catch(Exception ex)
-            {
-                Warning(ex.Message, "ReporteCoordinador", true);
-                return View(reportecoordinador);
-            }
-        }
-
+        
         // GET: ReporteEmpleado/PrintEmpleado
         [AppAuthorize("00037")]
         public ActionResult PrintEmpleado()
@@ -167,6 +102,7 @@ namespace WebApp.Controllers
         [AppAuthorize("00030")]
         public ActionResult ReportGeneral(Reporte reporte)
         {
+            string mensaje = string.Empty;
             try
             {
                 if (reporte.FechaFin < reporte.FechaInicio)
@@ -174,12 +110,13 @@ namespace WebApp.Controllers
                     Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
                     return View(reporte);
                 }
-                string mensaje = string.Empty;
+                //string mensaje = string.Empty;
 
                 ReportViewer reportviewer = new ReportViewer();
                 reportviewer.ProcessingMode = ProcessingMode.Local;
                 reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\AsistenciaGeneral.rdlc");
 
+                //reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
                 DataTable dt = reporteDAO.getReporteGenearl(reporte, ref mensaje);
                 ReportDataSource datasourceCabecera = new ReportDataSource("dtDetalle", dt);
                 reportviewer.LocalReport.DataSources.Clear();

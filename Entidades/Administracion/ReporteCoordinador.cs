@@ -25,5 +25,9 @@ namespace Entidades.Administracion
         [DisplayName("Estado")]
         public char Estado{ get; set; }
 
+        [Required]
+        [DisplayName("Facultad")]
+        public int FacultadID { get; set; }
+
     }
 }

@@ -661,14 +661,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="SalidaAntes">
+                    <Textbox Name="SalAntes">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!SalidaAntes.Value</Value>
+                              <Value>=Fields!SalAntes.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -679,7 +679,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>SalidaAntes</rd:DefaultName>
+                      <rd:DefaultName>SalAntes</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -690,6 +690,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -729,11 +730,11 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.5cm</Height>
+              <Height>0.87042cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox50">
+                    <Textbox Name="Textbox26">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -752,7 +753,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox50</rd:DefaultName>
+                      <rd:DefaultName>Textbox26</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>White</Color>
@@ -776,13 +777,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell />
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TiempoExt1">
+                    <Textbox Name="Textbox27">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -796,7 +795,54 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox27</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>White</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>White</Color>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>White</Color>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>White</Color>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TiempoExt1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Total Atraso</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -835,7 +881,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=First(Fields!TotalAtraso.Value, "dtTotalFaltas")</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -852,18 +898,6 @@
                           <Color>White</Color>
                           <Style>None</Style>
                         </Border>
-                        <TopBorder>
-                          <Color>White</Color>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>White</Color>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>White</Color>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>White</Color>
-                        </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -881,7 +915,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total Faltas</Value>
+                              <Value>Total  Salir Antes</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -917,10 +951,42 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox28">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!TotalSalirAntes.Value, "dtTotalFaltas")</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox28</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox61">
@@ -930,14 +996,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=First(Fields!TotalFaltas.Value, "dtTotalFaltas")</Value>
+                              <Value />
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -983,7 +1050,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1022,9 +1089,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Total de Estado</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1068,7 +1136,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=First(Fields!TotalFaltas.Value, "dtTotalFaltas")</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1144,7 +1212,7 @@
         </SortExpressions>
         <Top>0.17639cm</Top>
         <Left>0.0616cm</Left>
-        <Height>2.01694cm</Height>
+        <Height>2.38736cm</Height>
         <Width>18.2cm</Width>
         <Style>
           <Border>
@@ -1169,7 +1237,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.86352in</Height>
+    <Height>1.00935in</Height>
     <Style />
   </Body>
   <Width>7.18961in</Width>
@@ -1915,18 +1983,38 @@
           <DataField>Atraso</DataField>
           <rd:TypeName>System.TimeSpan</rd:TypeName>
         </Field>
-        <Field Name="SalidaAntes">
-          <DataField>SalidaAntes</DataField>
+        <Field Name="SalAntes">
+          <DataField>SalAntes</DataField>
           <rd:TypeName>System.TimeSpan</rd:TypeName>
         </Field>
         <Field Name="Estado">
           <DataField>Estado</DataField>
           <rd:TypeName>System.Char</rd:TypeName>
         </Field>
+        <Field Name="UsuarioCodigo">
+          <DataField>UsuarioCodigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FacultadDescripcion">
+          <DataField>FacultadDescripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CarreraDescripcion">
+          <DataField>CarreraDescripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Cedula">
+          <DataField>Cedula</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReportes</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Jordan Gutierrez\Documents\Visual Studio 2015\Projects\Asistencia\WebApp\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\TESIS_FINAL - OK - ACTUALIZACION\WebApp\DataSetReportes.xsd</rd:SchemaPath>
         <rd:TableName>dtDetalle</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -1947,10 +2035,18 @@
           <DataField>TotalExtra</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TotalAtraso">
+          <DataField>TotalAtraso</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalSalirAntes">
+          <DataField>TotalSalirAntes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReportes</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Jordan Gutierrez\Documents\Visual Studio 2015\Projects\Asistencia\WebApp\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\TESIS_FINAL - OK - ACTUALIZACION\WebApp\DataSetReportes.xsd</rd:SchemaPath>
         <rd:TableName>dtTotalFaltas</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
