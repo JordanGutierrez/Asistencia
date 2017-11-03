@@ -25,6 +25,10 @@ namespace Entidades.Administracion
         [RegularExpression(@"^[A-Za-zÑñáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El nombre solo acepta caracteres alfabéticos")]
         public string Descripcion { get; set; }
 
+        [Required(ErrorMessage = "El modelo es requerido")]
+        [DisplayName("Modelo")]
+        public string Modelo { get; set; }
+
         [Required(ErrorMessage = "La facultad es requerida")]
         [DisplayName("Facultad")]
         public int FacultadID { get; set; }
@@ -39,6 +43,7 @@ namespace Entidades.Administracion
 
             biometrico.BiometricoID = int.Parse(dr["BiometricoID"].ToString());
             biometrico.Descripcion = dr["Descripcion"].ToString();
+            biometrico.Modelo = dr["Modelo"].ToString();
             biometrico.FacultadID = int.Parse(dr["FacultadID"].ToString());
             biometrico.Codigo = dr["Codigo"].ToString();
             biometrico.Estado = char.Parse(dr["Estado"].ToString());

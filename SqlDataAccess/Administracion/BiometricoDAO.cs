@@ -81,6 +81,7 @@ namespace SqlDataAccess.Administracion
                 sql.Comando.CommandText = "pa_insertBiometrico";
                 sql.Comando.Parameters.AddWithValue("P_FacultadID", biometrico.FacultadID);
                 sql.Comando.Parameters.AddWithValue("P_Descripcion", biometrico.Descripcion);
+                sql.Comando.Parameters.AddWithValue("P_Modelo", biometrico.Modelo);
                 sql.Comando.Parameters.AddWithValue("P_Codigo", biometrico.Codigo);
                 sql.Comando.Parameters.AddWithValue("P_User", usuario);
 
