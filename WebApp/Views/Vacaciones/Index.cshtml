@@ -38,6 +38,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Estado)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Comentario)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -72,6 +75,9 @@
                                             @Html.Raw("Rechazada")
                                         }
                                     }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Comentario)
                                 </td>
                                 <td>
                                     @{

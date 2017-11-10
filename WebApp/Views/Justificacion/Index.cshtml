@@ -25,48 +25,54 @@
                             <th>
                                 Usuario
                             </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (System.Data.DataRow item in dt.Rows)
-                        {
-
-                            if (char.Parse(item["Estado"].ToString()) == 'F' || char.Parse(item["Estado"].ToString()) == 'A' || char.Parse(item["Estado"].ToString()) == 'J' || char.Parse(item["Estado"].ToString()) == 'K')
+                            @*th>
+                                    Comentario
+                                </th>*@
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (System.Data.DataRow item in dt.Rows)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
-                                    </td>
-                                    <td>
-                                        @Html.Raw(item["Usuario"])
-                                    </td>
-                                    <td>
 
-                                        @if (char.Parse(item["Estado"].ToString()) == 'F')
-                                        {
-                                            <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Justificar Falta</a>
-                                        }
-                                        @if (char.Parse(item["Estado"].ToString()) == 'A')  
-                                        {
-                                            <a href="@Url.Action("JustificarAtraso","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-primary">Justificar Atraso</a>
-                                        }
-                                        @if (char.Parse(item["Estado"].ToString()) == 'J')
-                                        {
-                                            <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Falta Justificada Descargar</a>
-                                        }
-                                        @if (char.Parse(item["Estado"].ToString()) == 'K')
-                                        {
-                                            <a style="background-color:greenyellow;" class="text-success btn btn-default" disabled="true">Atraso Justificado</a>
-                                        }
-                                    </td>
-                                </tr>
+                                if (char.Parse(item["Estado"].ToString()) == 'F' || char.Parse(item["Estado"].ToString()) == 'A' || char.Parse(item["Estado"].ToString()) == 'J' || char.Parse(item["Estado"].ToString()) == 'K')
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
+                                        </td>
+                                        <td>
+                                            @Html.Raw(item["Usuario"])
+                                        </td>
+                                        @*<td>
+                                            @Html.Raw(item["Comentario"])
+                                        </td>*@
+                                        <td>
+
+                                            @if (char.Parse(item["Estado"].ToString()) == 'F')
+                                            {
+                                                <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Justificar Falta</a>
+                                            }
+                                            @if (char.Parse(item["Estado"].ToString()) == 'A')
+                                            {
+                                                <a href="@Url.Action("JustificarAtraso","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-primary">Justificar Atraso</a>
+                                            }
+                                            @if (char.Parse(item["Estado"].ToString()) == 'J')
+                                            {
+                                                <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Falta Justificada Descargar</a>
+                                            }
+                                            @if (char.Parse(item["Estado"].ToString()) == 'K')
+                                            {
+                                                <a style="background-color:greenyellow;" class="text-success btn btn-default" disabled="true">Atraso Justificado</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
                             }
-
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>

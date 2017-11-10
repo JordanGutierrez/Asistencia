@@ -24,6 +24,7 @@ namespace SqlDataAccess.Administracion
                                     + " INNER JOIN tbusuario AS USU"
                                     + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico";
 
+
             try
             {
                 dt = sql.EjecutaDataTable(ref mensaje);
