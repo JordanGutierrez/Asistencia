@@ -90,6 +90,7 @@ namespace SqlDataAccess.Administracion
             sql.Comando.Parameters.AddWithValue("P_FechaInicio", reporte.FechaInicio);
             sql.Comando.Parameters.AddWithValue("P_FechaFin", reporte.FechaFin);
             sql.Comando.Parameters.AddWithValue("P_Estado", reporte.Estado);
+            sql.Comando.Parameters.AddWithValue("P_FacultadID", reporte.FacultadID);
 
             try
             {

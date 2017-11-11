@@ -15,13 +15,21 @@ namespace WebApp.Controllers
         IJustificacionDAO justificacionDAO = new JustificacionDAO();
         IAsistenciaDAO asistenciaDAO = new AsistenciaDAO();
 
-        // GET: Justificacion
+        // GET: Faltas y Atrasos
         [AppAuthorize("00017")]
         public ActionResult Index()
         {
             string mensaje = string.Empty;
             ViewBag.Faltas = asistenciaDAO.getAllAsistencia(ref mensaje);
-            ViewBag.Atraso = asistenciaDAO.getAllAsistencia(ref mensaje);
+            return View();
+        }
+
+        // GET: Faltas y Atrasos Justificados
+        [AppAuthorize("00039")]
+        public ActionResult IndexEstados()
+        {
+            string mensaje = string.Empty;
+            ViewBag.Faltas = asistenciaDAO.getAllAsistenciaEstados(ref mensaje);
             return View();
         }
 

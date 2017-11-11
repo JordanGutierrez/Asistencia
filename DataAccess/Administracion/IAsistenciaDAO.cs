@@ -10,5 +10,7 @@ namespace DataAccess.Administracion
     public interface IAsistenciaDAO
     {
         DataTable getAllAsistencia(ref string mensaje);
+
+        DataTable getAllAsistenciaEstados(ref string mensaje);
     }
 }

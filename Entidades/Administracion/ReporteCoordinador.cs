@@ -28,6 +28,5 @@ namespace Entidades.Administracion
         [Required]
         [DisplayName("Facultad")]
         public int FacultadID { get; set; }
-
     }
 }

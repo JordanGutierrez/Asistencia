@@ -20,9 +20,12 @@ namespace SqlDataAccess.Administracion
                                     + " ,ASI.Fecha"
                                     + " ,ASI.Estado"
                                     + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
+                                    //+ " ,JUS.Comentario     AS Comentario"
                                     + " FROM tbasistencia        AS ASI"
-                                    + " INNER JOIN tbusuario AS USU"
-                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico";
+                                    + " INNER JOIN tbusuario AS USU"                                   
+                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"                                   
+                                    /*+ " INNER JOIN tbjustificacion AS JUS"
+                                    + " ON ASI.AsistenciaID = JUS.AsistenciaID"*/;
 
 
             try
@@ -39,6 +42,37 @@ namespace SqlDataAccess.Administracion
             }
 
             return dt;
+        }
+
+        public DataTable getAllAsistenciaEstados(ref string mensaje)
+        {
+            DataTable dtEstados = null;
+            sql.Comando.CommandText = "SELECT ASI.AsistenciaID"
+                                    + " ,ASI.Fecha"
+                                    + " ,ASI.Estado"
+                                    + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
+                                    + " ,JUS.Comentario     AS Comentario"
+                                    + " FROM tbasistencia        AS ASI"
+                                    + " INNER JOIN tbusuario AS USU"
+                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"
+                                    + " INNER JOIN tbjustificacion AS JUS"
+                                    + " ON ASI.AsistenciaID = JUS.AsistenciaID";
+
+
+            try
+            {
+                dtEstados = sql.EjecutaDataTable(ref mensaje);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            finally
+            {
+                sql.CerrarConexion();
+            }
+
+            return dtEstados;
         }
     }
 }

@@ -681,6 +681,7 @@
     <Content Include="Views\Reporte\PrintEmpleado.cshtml" />
     <Content Include="Views\ReporteCoordinador\PrintCoordinador.cshtml" />
     <Content Include="Views\Reporte\ReporteEstadistico.cshtml" />
+    <Content Include="Views\Justificacion\IndexEstados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

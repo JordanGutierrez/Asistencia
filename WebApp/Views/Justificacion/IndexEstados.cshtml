@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "IndexEstados";
+    Layout = "~/Views/Shared/_Master.cshtml";
+    System.Data.DataTable dtEstados = ViewBag.Faltas;
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de Faltas y Atrasos Justificados</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Comentario
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow item in dtEstados.Rows)
+                        {
+
+                            if (char.Parse(item["Estado"].ToString()) == 'J' || char.Parse(item["Estado"].ToString()) == 'K')
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.Raw(DateTime.Parse(item["Fecha"].ToString()).ToShortDateString())
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item["Usuario"])
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item["Comentario"])
+                                    </td>
+                                    <td>
+                                        @if (char.Parse(item["Estado"].ToString()) == 'J')
+                                        {
+                                            <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Falta Justificada Descargar</a>
+                                        }
+                                        @if (char.Parse(item["Estado"].ToString()) == 'K')
+                                        {
+                                            <a style="background-color:greenyellow;" class="text-success btn btn-default" disabled="true">Atraso Justificado</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

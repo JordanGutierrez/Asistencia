@@ -110,13 +110,12 @@ namespace WebApp.Controllers
                     Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
                     return View(reporte);
                 }
-                //string mensaje = string.Empty;
 
                 ReportViewer reportviewer = new ReportViewer();
                 reportviewer.ProcessingMode = ProcessingMode.Local;
                 reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\AsistenciaGeneral.rdlc");
 
-                //reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
                 DataTable dt = reporteDAO.getReporteGenearl(reporte, ref mensaje);
                 ReportDataSource datasourceCabecera = new ReportDataSource("dtDetalle", dt);
                 reportviewer.LocalReport.DataSources.Clear();
@@ -158,46 +157,117 @@ namespace WebApp.Controllers
         [AppAuthorize("00032")]
         public ActionResult ReportPermiso(Reporte reporte)
         {
+            var cedula = reporte.Cedula;
             string mensaje = string.Empty;
-            try
+            bool existe = false;
+
+            if (!String.IsNullOrEmpty(cedula))
             {
-                if (reporte.FechaFin < reporte.FechaInicio)
+                int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                existe = usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.FacultadID == facultad && x.Cedula == cedula).Any();
+            
+                ViewBag.RolID = Utils.Utils.GetClaim("RolID"); //ojo
+                try
                 {
-                    Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                    if (existe)
+                    {
+                        if (reporte.FechaFin < reporte.FechaInicio)
+                            {
+                                Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                                return View(reporte);
+                            }
+
+                            if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                                reporte.Cedula = "O"; 
+
+                            ReportViewer reportviewer = new ReportViewer();
+                            reportviewer.ProcessingMode = ProcessingMode.Local;
+                            reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\PermisoGeneral.rdlc");
+
+                            reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                            DataTable dt = reporteDAO.getReportePermiso(reporte, ref mensaje);
+                            ReportDataSource datasourceCabecera = new ReportDataSource("dtPermiso", dt);
+                            reportviewer.LocalReport.DataSources.Clear();
+                            reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                            reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                            reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                            Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                            MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                            Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                            Response.Buffer = true;
+                            Response.Clear();
+                            Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                            Response.OutputStream.Flush();
+                            Response.End();
+                            return new FileStreamResult(Response.OutputStream, "application/pdf");
+                    }
+                    else
+                    {
+                        Warning("No se puede Generar reporte, el usuario que intenta filtrar no pertenece a la facultad del coordinador", "Reporte", true);
+                        return View(reporte);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Warning(ex.Message, "Reporte", true);
                     return View(reporte);
                 }
-
-                if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
-                    reporte.Cedula = "O"; 
-
-                ReportViewer reportviewer = new ReportViewer();
-                reportviewer.ProcessingMode = ProcessingMode.Local;
-                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\PermisoGeneral.rdlc");
-
-                reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
-                DataTable dt = reporteDAO.getReportePermiso(reporte, ref mensaje);
-                ReportDataSource datasourceCabecera = new ReportDataSource("dtPermiso", dt);
-                reportviewer.LocalReport.DataSources.Clear();
-                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
-
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
-
-                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-
-                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
-                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
-                Response.Buffer = true;
-                Response.Clear();
-                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
-                Response.OutputStream.Flush();
-                Response.End();
-                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
-            catch (Exception ex)
+            else
             {
-                Warning(ex.Message, "Reporte", true);
-                return View(reporte);
+
+                ViewBag.RolID = Utils.Utils.GetClaim("RolID"); //ojo
+                try
+                {
+                    if (!existe)
+                    {
+                        if (reporte.FechaFin < reporte.FechaInicio)
+                        {
+                            Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                            return View(reporte);
+                        }
+
+                        if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                            reporte.Cedula = "O";
+
+                        ReportViewer reportviewer = new ReportViewer();
+                        reportviewer.ProcessingMode = ProcessingMode.Local;
+                        reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\PermisoGeneral.rdlc");
+
+                        reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                        DataTable dt = reporteDAO.getReportePermiso(reporte, ref mensaje);
+                        ReportDataSource datasourceCabecera = new ReportDataSource("dtPermiso", dt);
+                        reportviewer.LocalReport.DataSources.Clear();
+                        reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                        Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                        MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                        Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                        Response.Buffer = true;
+                        Response.Clear();
+                        Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                        Response.OutputStream.Flush();
+                        Response.End();
+                        return new FileStreamResult(Response.OutputStream, "application/pdf");
+                    }
+                    else
+                    {
+                        Warning("No se puede Generar reporte, el usuario que intenta filtrar no pertenece a la facultad del coordinador", "Reporte", true);
+                        return View(reporte);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Warning(ex.Message, "Reporte", true);
+                    return View(reporte);
+                }
             }
         }
 
@@ -216,46 +286,116 @@ namespace WebApp.Controllers
         [AppAuthorize("00033")]
         public ActionResult ReportVacaciones(Reporte reporte)
         {
+            var cedula = reporte.Cedula;
             string mensaje = string.Empty;
-            try
+            bool existe = false;
+
+            if (!String.IsNullOrEmpty(cedula))
             {
-                if (reporte.FechaFin < reporte.FechaInicio)
+                int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                existe = usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.FacultadID == facultad && x.Cedula == cedula).Any();
+            
+                ViewBag.RolID = Utils.Utils.GetClaim("RolID"); //ojo
+                try
                 {
-                    Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                    if (existe)
+                    {
+                        if (reporte.FechaFin < reporte.FechaInicio)
+                        {
+                            Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                            return View(reporte);
+                        }
+
+                        if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                           reporte.Cedula = "O";
+
+                        ReportViewer reportviewer = new ReportViewer();
+                        reportviewer.ProcessingMode = ProcessingMode.Local;
+                        reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\VacacionesGeneral.rdlc");
+
+                        reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                        DataTable dt = reporteDAO.getReporteVacaciones(reporte, ref mensaje);
+                        ReportDataSource datasourceCabecera = new ReportDataSource("dtVacaciones", dt);
+                        reportviewer.LocalReport.DataSources.Clear();
+                        reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                        Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                        MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                        Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                        Response.Buffer = true;
+                        Response.Clear();
+                        Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                        Response.OutputStream.Flush();
+                        Response.End();
+                        return new FileStreamResult(Response.OutputStream, "application/pdf");
+                    }
+                    else
+                    {
+                        Warning("No se puede Generar reporte, el usuario que intenta filtrar no pertenece a la facultad del coordinador", "Reporte", true);
+                        return View(reporte);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Warning(ex.Message, "Reporte", true);
                     return View(reporte);
                 }
-
-                if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
-                    reporte.Cedula = "O";
-
-                ReportViewer reportviewer = new ReportViewer();
-                reportviewer.ProcessingMode = ProcessingMode.Local;
-                reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\VacacionesGeneral.rdlc");
-
-                reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
-                DataTable dt = reporteDAO.getReporteVacaciones(reporte, ref mensaje);
-                ReportDataSource datasourceCabecera = new ReportDataSource("dtVacaciones", dt);
-                reportviewer.LocalReport.DataSources.Clear();
-                reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
-
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
-                reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
-
-                Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
-
-                MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
-                Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
-                Response.Buffer = true;
-                Response.Clear();
-                Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
-                Response.OutputStream.Flush();
-                Response.End();
-                return new FileStreamResult(Response.OutputStream, "application/pdf");
             }
-            catch (Exception ex)
+            else
             {
-                Warning(ex.Message, "Reporte", true);
-                return View(reporte);
+                ViewBag.RolID = Utils.Utils.GetClaim("RolID"); //ojo
+                try
+                {
+                    if (!existe)
+                    {
+                        if (reporte.FechaFin < reporte.FechaInicio)
+                        {
+                            Warning("La fecha hasta debe ser mayor a la fecha desde", "Reporte", true);
+                            return View(reporte);
+                        }
+
+                        if (string.IsNullOrEmpty(reporte.Cedula) || string.IsNullOrWhiteSpace(reporte.Cedula))
+                            reporte.Cedula = "O";
+
+                        ReportViewer reportviewer = new ReportViewer();
+                        reportviewer.ProcessingMode = ProcessingMode.Local;
+                        reportviewer.LocalReport.ReportPath = Server.MapPath("~\\Reportes\\VacacionesGeneral.rdlc");
+
+                        reporte.FacultadID = int.Parse(Utils.Utils.GetClaim("FacultadID"));
+                        DataTable dt = reporteDAO.getReporteVacaciones(reporte, ref mensaje);
+                        ReportDataSource datasourceCabecera = new ReportDataSource("dtVacaciones", dt);
+                        reportviewer.LocalReport.DataSources.Clear();
+                        reportviewer.LocalReport.DataSources.Add(datasourceCabecera);
+
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaDesde", reporte.FechaInicio.Value.ToShortDateString()));
+                        reportviewer.LocalReport.SetParameters(new ReportParameter("FechaHasta", reporte.FechaFin.Value.ToShortDateString()));
+
+                        Byte[] mybytes = reportviewer.LocalReport.Render("PDF");
+
+                        MemoryStream ms = new MemoryStream(mybytes, 0, 0, true, true);
+                        Response.AddHeader("content-disposition", "attachment;filename= Reporte.pdf");
+                        Response.Buffer = true;
+                        Response.Clear();
+                        Response.OutputStream.Write(ms.GetBuffer(), 0, ms.GetBuffer().Length);
+                        Response.OutputStream.Flush();
+                        Response.End();
+                        return new FileStreamResult(Response.OutputStream, "application/pdf");
+                    }
+                    else
+                    {
+                        Warning("No se puede Generar reporte, el usuario que intenta filtrar no pertenece a la facultad del coordinador", "Reporte", true);
+                        return View(reporte);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Warning(ex.Message, "Reporte", true);
+                    return View(reporte);
+                }
             }
         }
 
