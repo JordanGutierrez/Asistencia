@@ -21,10 +21,11 @@ namespace WebApp.Controllers
         {
             String mensaje = string.Empty;
             ViewBag.RolID = Utils.Utils.GetClaim("RolID");
+            int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
             int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
             List<Permiso> permisos = permisoDAO.getAllPermiso(ref mensaje);
             if(ViewBag.RolID == "3")
-                return View(permisos);
+                return View(permisos.Where(y => y.FacultadID == facultad));
             else
                 return View(permisos.Where(x => x.UsuarioID == usuarioID));
         }

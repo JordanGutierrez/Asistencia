@@ -13,6 +13,8 @@ namespace Entidades.Administracion
     {
         public int VacacionesID { get; set; }
 
+        public int FacultadID { get; set; }
+
         [DisplayName("Usuario")]
         public int UsuarioID { get; set; }
 
@@ -46,6 +48,7 @@ namespace Entidades.Administracion
 
             vacaciones.UsuarioID = int.Parse(dr["UsuarioID"].ToString());
             vacaciones.VacacionesID = int.Parse(dr["VacacionesID"].ToString());
+            vacaciones.FacultadID = int.Parse(dr["FacultadID"].ToString());
             vacaciones.Estado = char.Parse(dr["Estado"].ToString());
             vacaciones.Motivo = dr["Motivo"].ToString();
             vacaciones.NombreUsuario = dr["NombreUsuario"].ToString();

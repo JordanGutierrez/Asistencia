@@ -10,6 +10,11 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Listado de Biométricos</h2>
+                <style>
+                    .tmbbtn {
+                        width: 80px;
+                    }
+                </style>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -49,11 +54,11 @@
                                     <a href="@Url.Action("Edit","Biometrico", new { id = item.BiometricoID })" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
                                 @if (item.Estado == 'A')
                                 {
-                                    <a href="@Url.Action("Inactivar", "Biometrico", new { id = item.BiometricoID })" class="btn btn-danger">Inactivar</a>
+                                    <a href="@Url.Action("Inactivar", "Biometrico", new { id = item.BiometricoID })" class="tmbbtn btn btn-danger">Inactivar</a>
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("Activar", "Biometrico", new { id = item.BiometricoID })" class="btn btn-success">Activar</a>
+                                    <a href="@Url.Action("Activar", "Biometrico", new { id = item.BiometricoID })" class="tmbbtn btn btn-success">Activar</a>
                                 }
                                 </td>
                             </tr>

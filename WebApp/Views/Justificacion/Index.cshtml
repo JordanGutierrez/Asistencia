@@ -12,6 +12,11 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Listado de Faltas y Atrasos</h2>
+                <style>
+                    .tmbbtn {
+                        width: 125px;
+                    }
+                </style>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -44,11 +49,11 @@
 
                                             @if (char.Parse(item["Estado"].ToString()) == 'F')
                                             {
-                                                <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-danger">Justificar Falta</a>
+                                                <a href="@Url.Action("Justificar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="tmbbtn btn btn-danger">Justificar Falta</a>
                                             }
                                             @if (char.Parse(item["Estado"].ToString()) == 'A')
                                             {
-                                                <a href="@Url.Action("JustificarAtraso","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-primary">Justificar Atraso</a>
+                                                <a  href="@Url.Action("JustificarAtraso","Justificacion", new { asistencia = item["AsistenciaID"] })" class="tmbbtn btn btn-warning">Justificar Atraso</a>
                                             }
 
                                         </td>

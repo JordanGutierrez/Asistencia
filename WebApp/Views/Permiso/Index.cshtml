@@ -9,6 +9,13 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Listado de Permisos</h2>
+
+                <style>
+                    .tmbbtn {
+                        width: 110px;
+                    }
+                </style>
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -77,12 +84,12 @@
                                     @{
                                         if (ViewBag.RolID == "3" && item.Estado == 'P')
                                         {
-                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="btn btn-success">Aprobar</a>
-                                            <a href="@Url.Action("Rechazar","Permiso", new { id = item.PermisoID})" class="btn btn-danger">Rechazar</a>
+                                            <a href="@Url.Action("Aprobar","Permiso", new { id = item.PermisoID})" class="tmbbtn btn btn-success"><span class="glyphicon glyphicon-ok-circle"></span> Aprobar</a>
+                                            <a href="@Url.Action("Rechazar","Permiso", new { id = item.PermisoID})" class="tmbbtn btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Rechazar</a>
                                         }
                                         if (ViewBag.RolID == "3")
                                         {
-                                            <a href="@Url.Action("Descargar","Permiso", new { id = item.PermisoID })" class="btn btn-primary">Descargar</a>
+                                            <a href="@Url.Action("Descargar","Permiso", new { id = item.PermisoID })" class="tmbbtn btn btn-primary"><span class="glyphicon glyphicon-download-alt"></span> Descargar</a>
                                         }
                                     }
                                 </td>

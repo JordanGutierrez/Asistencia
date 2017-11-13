@@ -10,6 +10,13 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Listado de Faltas y Atrasos Justificados</h2>
+
+                <style>
+                    .tmbbtn {
+                        width: 150px;
+                    }
+                </style>
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -47,11 +54,11 @@
                                     <td>
                                         @if (char.Parse(item["Estado"].ToString()) == 'J')
                                         {
-                                            <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="btn btn-success">Falta Justificada Descargar</a>
+                                            <a href="@Url.Action("Descargar","Justificacion", new { asistencia = item["AsistenciaID"] })" class="tmbbtn btn btn-success"><span class="glyphicon glyphicon-download-alt"></span> Falta Justificada</a>
                                         }
                                         @if (char.Parse(item["Estado"].ToString()) == 'K')
                                         {
-                                            <a style="background-color:greenyellow;" class="text-success btn btn-default" disabled="true">Atraso Justificado</a>
+                                            <a class="tmbbtn btn btn-success"  disabled="true"> <span class="glyphicon glyphicon-ok-circle"></span> Atraso Justificado</a>
                                         }
                                     </td>
                                 </tr>

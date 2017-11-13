@@ -13,6 +13,8 @@ namespace Entidades.Administracion
     {
         public int PermisoID { get; set; }
 
+        public int FacultadID { get; set; }
+
         [DisplayName("Usuario")]
         public int UsuarioID { get; set; }
 
@@ -43,6 +45,7 @@ namespace Entidades.Administracion
 
             permiso.UsuarioID = int.Parse(dr["UsuarioID"].ToString());
             permiso.PermisoID = int.Parse(dr["PermisoID"].ToString());
+            permiso.FacultadID = int.Parse(dr["FacultadID"].ToString());
             permiso.Estado = char.Parse(dr["Estado"].ToString());
             permiso.Motivo = dr["Motivo"].ToString();
             permiso.NombreUsuario = dr["NombreUsuario"].ToString();

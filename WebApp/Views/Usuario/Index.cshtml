@@ -19,6 +19,11 @@
                         <h2>Listado de Empleados</h2>
                     }
                 }
+                <style>
+                    .tmbbtn {
+                        width: 80px;
+                    }
+                </style>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -87,11 +92,11 @@
 
                                     @if (item.Estado == 'A')
                                     {
-                                        <a href="@Url.Action("Inactivar", "Usuario", new { id = item.UsuarioID })" class="btn btn-danger">Inactivar</a>
+                                        <a href="@Url.Action("Inactivar", "Usuario", new { id = item.UsuarioID })" class="tmbbtn btn btn-danger">Inactivar</a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Activar", "Usuario", new { id = item.UsuarioID })" class="btn btn-success">Activar</a>
+                                        <a href="@Url.Action("Activar", "Usuario", new { id = item.UsuarioID })" class="tmbbtn btn btn-success">Activar</a>
                                     }
                                 </td>
                             </tr>

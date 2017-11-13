@@ -44,11 +44,7 @@ namespace WebApp.Controllers
                 int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
                 existe = usuarioDAO.getAllUsuario(ref mensaje).Where(x => x.FacultadID == facultad && x.Cedula == cedula).Any();
             }
-            /*else
-            {
-                Warning("Ingrese numero de cédula" ,"ReporteCoordinador", true);
-                return View(reportecoordinador);
-            }*/
+            
             ViewBag.RolID = Utils.Utils.GetClaim("RolID"); //ojo
             try
             {

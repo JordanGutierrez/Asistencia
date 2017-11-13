@@ -21,10 +21,11 @@ namespace WebApp.Controllers
         {
             String mensaje = string.Empty;
             ViewBag.RolID = Utils.Utils.GetClaim("RolID");
+            int facultad = int.Parse(Utils.Utils.GetClaim("FacultadID"));
             int usuarioID = int.Parse(Utils.Utils.GetClaim("UsuarioID"));
             List<Vacaciones> vacaciones = vacacionesDAO.getAllVacaciones(ref mensaje);
             if (ViewBag.RolID == "3")
-                return View(vacaciones);
+                return View(vacaciones.Where(y => y.FacultadID == facultad));
             else
                 return View(vacaciones.Where(x => x.UsuarioID == usuarioID));
         }
