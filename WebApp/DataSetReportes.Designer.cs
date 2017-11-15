@@ -843,6 +843,8 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnCedula;
             
+            private global::System.Data.DataColumn columnFacultadCodigo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtDetalleDataTable() {
@@ -998,6 +1000,14 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadCodigoColumn {
+                get {
+                    return this.columnFacultadCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1033,7 +1043,23 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtDetalleRow AdddtDetalleRow(System.DateTime Fecha, string Horario, System.TimeSpan Entrada, System.TimeSpan Salida, System.TimeSpan EntradaLunch, System.TimeSpan SalidaLunch, System.TimeSpan TiempoExt, System.TimeSpan Atraso, System.TimeSpan SalAntes, char Estado, string UsuarioCodigo, string Nombre, string FacultadDescripcion, string CarreraDescripcion, string Cedula) {
+            public dtDetalleRow AdddtDetalleRow(
+                        System.DateTime Fecha, 
+                        string Horario, 
+                        System.TimeSpan Entrada, 
+                        System.TimeSpan Salida, 
+                        System.TimeSpan EntradaLunch, 
+                        System.TimeSpan SalidaLunch, 
+                        System.TimeSpan TiempoExt, 
+                        System.TimeSpan Atraso, 
+                        System.TimeSpan SalAntes, 
+                        char Estado, 
+                        string UsuarioCodigo, 
+                        string Nombre, 
+                        string FacultadDescripcion, 
+                        string CarreraDescripcion, 
+                        string Cedula, 
+                        string FacultadCodigo) {
                 dtDetalleRow rowdtDetalleRow = ((dtDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Fecha,
@@ -1050,7 +1076,8 @@ namespace WebApp {
                         Nombre,
                         FacultadDescripcion,
                         CarreraDescripcion,
-                        Cedula};
+                        Cedula,
+                        FacultadCodigo};
                 rowdtDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtDetalleRow);
                 return rowdtDetalleRow;
@@ -1088,6 +1115,7 @@ namespace WebApp {
                 this.columnFacultadDescripcion = base.Columns["FacultadDescripcion"];
                 this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
                 this.columnCedula = base.Columns["Cedula"];
+                this.columnFacultadCodigo = base.Columns["FacultadCodigo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1123,6 +1151,8 @@ namespace WebApp {
                 base.Columns.Add(this.columnCarreraDescripcion);
                 this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCedula);
+                this.columnFacultadCodigo = new global::System.Data.DataColumn("FacultadCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadCodigo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1561,6 +1591,8 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnCedula;
             
+            private global::System.Data.DataColumn columnFacultadCodigo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtPermisoDataTable() {
@@ -1660,6 +1692,14 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadCodigoColumn {
+                get {
+                    return this.columnFacultadCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1695,7 +1735,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtPermisoRow AdddtPermisoRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime Fecha, string Motivo, string CarreraDescripcion, string Cedula) {
+            public dtPermisoRow AdddtPermisoRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime Fecha, string Motivo, string CarreraDescripcion, string Cedula, string FacultadCodigo) {
                 dtPermisoRow rowdtPermisoRow = ((dtPermisoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         UsuarioCodigo,
@@ -1705,7 +1745,8 @@ namespace WebApp {
                         Fecha,
                         Motivo,
                         CarreraDescripcion,
-                        Cedula};
+                        Cedula,
+                        FacultadCodigo};
                 rowdtPermisoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPermisoRow);
                 return rowdtPermisoRow;
@@ -1736,6 +1777,7 @@ namespace WebApp {
                 this.columnMotivo = base.Columns["Motivo"];
                 this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
                 this.columnCedula = base.Columns["Cedula"];
+                this.columnFacultadCodigo = base.Columns["FacultadCodigo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1757,6 +1799,8 @@ namespace WebApp {
                 base.Columns.Add(this.columnCarreraDescripcion);
                 this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCedula);
+                this.columnFacultadCodigo = new global::System.Data.DataColumn("FacultadCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadCodigo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1908,6 +1952,8 @@ namespace WebApp {
             
             private global::System.Data.DataColumn columnCedula;
             
+            private global::System.Data.DataColumn columnFacultadCodigo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtVacacionesDataTable() {
@@ -2015,6 +2061,14 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FacultadCodigoColumn {
+                get {
+                    return this.columnFacultadCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2050,7 +2104,7 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtVacacionesRow AdddtVacacionesRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime FechaInicio, string Motivo, System.DateTime FechaFin, string CarreraDescripcion, string Cedula) {
+            public dtVacacionesRow AdddtVacacionesRow(string UsuarioCodigo, string Nombre, string FacultadDescripcion, char Estado, System.DateTime FechaInicio, string Motivo, System.DateTime FechaFin, string CarreraDescripcion, string Cedula, string FacultadCodigo) {
                 dtVacacionesRow rowdtVacacionesRow = ((dtVacacionesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         UsuarioCodigo,
@@ -2061,7 +2115,8 @@ namespace WebApp {
                         Motivo,
                         FechaFin,
                         CarreraDescripcion,
-                        Cedula};
+                        Cedula,
+                        FacultadCodigo};
                 rowdtVacacionesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtVacacionesRow);
                 return rowdtVacacionesRow;
@@ -2093,6 +2148,7 @@ namespace WebApp {
                 this.columnFechaFin = base.Columns["FechaFin"];
                 this.columnCarreraDescripcion = base.Columns["CarreraDescripcion"];
                 this.columnCedula = base.Columns["Cedula"];
+                this.columnFacultadCodigo = base.Columns["FacultadCodigo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2116,6 +2172,8 @@ namespace WebApp {
                 base.Columns.Add(this.columnCarreraDescripcion);
                 this.columnCedula = new global::System.Data.DataColumn("Cedula", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCedula);
+                this.columnFacultadCodigo = new global::System.Data.DataColumn("FacultadCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacultadCodigo);
                 this.columnFechaInicio.Caption = "Fecha";
             }
             
@@ -3041,6 +3099,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtDetalle.FacultadCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadCodigo\' de la tabla \'dtDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtDetalle.FacultadCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaNull() {
                 return this.IsNull(this.tabledtDetalle.FechaColumn);
             }
@@ -3217,6 +3291,18 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCedulaNull() {
                 this[this.tabledtDetalle.CedulaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadCodigoNull() {
+                return this.IsNull(this.tabledtDetalle.FacultadCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadCodigoNull() {
+                this[this.tabledtDetalle.FacultadCodigoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3491,6 +3577,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPermiso.FacultadCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadCodigo\' de la tabla \'dtPermiso\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPermiso.FacultadCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUsuarioCodigoNull() {
                 return this.IsNull(this.tabledtPermiso.UsuarioCodigoColumn);
             }
@@ -3583,6 +3685,18 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCedulaNull() {
                 this[this.tabledtPermiso.CedulaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadCodigoNull() {
+                return this.IsNull(this.tabledtPermiso.FacultadCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadCodigoNull() {
+                this[this.tabledtPermiso.FacultadCodigoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3748,6 +3862,22 @@ namespace WebApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FacultadCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtVacaciones.FacultadCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FacultadCodigo\' de la tabla \'dtVacaciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtVacaciones.FacultadCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUsuarioCodigoNull() {
                 return this.IsNull(this.tabledtVacaciones.UsuarioCodigoColumn);
             }
@@ -3852,6 +3982,18 @@ namespace WebApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCedulaNull() {
                 this[this.tabledtVacaciones.CedulaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFacultadCodigoNull() {
+                return this.IsNull(this.tabledtVacaciones.FacultadCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFacultadCodigoNull() {
+                this[this.tabledtVacaciones.FacultadCodigoColumn] = global::System.Convert.DBNull;
             }
         }
         
