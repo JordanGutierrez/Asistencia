@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
 
 namespace WebApp.Controllers
 {
@@ -20,7 +21,13 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             string mensaje = string.Empty;
-            ViewBag.Faltas = asistenciaDAO.getAllAsistencia(ref mensaje);
+            DataTable dt = asistenciaDAO.getAllAsistencia(ref mensaje);
+
+            string facultadid = Utils.Utils.GetClaim("FacultadID");
+
+            DataView view = dt.DefaultView;
+            view.RowFilter = "FacultadID = " + facultadid;
+            ViewBag.Faltas = view.ToTable();
             return View();
         }
 
@@ -29,7 +36,13 @@ namespace WebApp.Controllers
         public ActionResult IndexEstados()
         {
             string mensaje = string.Empty;
-            ViewBag.Faltas = asistenciaDAO.getAllAsistenciaEstados(ref mensaje);
+            DataTable dt = asistenciaDAO.getAllAsistenciaEstados(ref mensaje);
+
+            string facultadid = Utils.Utils.GetClaim("FacultadID");
+
+            DataView view = dt.DefaultView;
+            view.RowFilter = "FacultadID = " + facultadid;
+            ViewBag.Faltas = view.ToTable();
             return View();
         }
 

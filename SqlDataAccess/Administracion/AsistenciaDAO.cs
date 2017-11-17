@@ -19,13 +19,15 @@ namespace SqlDataAccess.Administracion
             sql.Comando.CommandText = "SELECT ASI.AsistenciaID"
                                     + " ,ASI.Fecha"
                                     + " ,ASI.Estado"
+                                    + " ,FAC.FacultadID"
                                     + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
-                                    //+ " ,JUS.Comentario     AS Comentario"
                                     + " FROM tbasistencia        AS ASI"
                                     + " INNER JOIN tbusuario AS USU"                                   
-                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"                                   
-                                    /*+ " INNER JOIN tbjustificacion AS JUS"
-                                    + " ON ASI.AsistenciaID = JUS.AsistenciaID"*/;
+                                    + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"
+                                    + " INNER JOIN tbcarrera AS CAR"
+                                    + " ON      CAR.CarreraID = USU.CarreraID"
+                                    + " INNER JOIN tbfacultad AS  FAC"
+                                    + " ON      FAC.FacultadID = CAR.FacultadID";
 
 
             try
@@ -52,12 +54,16 @@ namespace SqlDataAccess.Administracion
                                     + " ,ASI.Estado"
                                     + " ,CONCAT(USU.Nombres, ' ', USU.Apellidos)    AS Usuario"
                                     + " ,JUS.Comentario     AS Comentario"
+                                    + " ,FAC.FacultadID"
                                     + " FROM tbasistencia        AS ASI"
                                     + " INNER JOIN tbusuario AS USU"
                                     + " ON      ASI.CodigoUsuario = USU.CodigoBiometrico"
                                     + " INNER JOIN tbjustificacion AS JUS"
-                                    + " ON ASI.AsistenciaID = JUS.AsistenciaID";
-
+                                    + " ON ASI.AsistenciaID = JUS.AsistenciaID"
+                                    + " INNER JOIN tbcarrera AS CAR"
+                                    + " ON      CAR.CarreraID = USU.CarreraID"
+                                    + " INNER JOIN tbfacultad AS  FAC"
+                                    + " ON      FAC.FacultadID = CAR.FacultadID";
 
             try
             {
