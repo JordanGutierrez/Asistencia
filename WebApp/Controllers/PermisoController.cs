@@ -158,16 +158,20 @@ namespace WebApp.Controllers
         public ActionResult Descargar(int id)
         {
             string mensaje = string.Empty;
-            Permiso permiso = permisoDAO.getPermiso(id, ref mensaje);
-            if (mensaje == "OK")
+            try
             {
-                return File(permiso.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Permiso_" + permiso.PermisoID+ ".pdf");
+                Permiso permiso = permisoDAO.getPermiso(id, ref mensaje);
+                if (mensaje == "OK")
+                {
+                    return File(permiso.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Permiso_" + permiso.PermisoID + ".pdf");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Warning(mensaje, "Justificación", true);
-                return View("Index");
+                mensaje = ex.Message;
             }
+            Warning(mensaje, "Permiso", true);
+            return RedirectToAction("Index");
         }
     }
 }

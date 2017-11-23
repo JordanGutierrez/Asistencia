@@ -169,16 +169,20 @@ namespace WebApp.Controllers
         public ActionResult Descargar(int id)
         {
             string mensaje = string.Empty;
-            Vacaciones vacaciones = vacacionesDAO.getVacaciones(id, ref mensaje);
-            if (mensaje == "OK")
+            try
             {
-                return File(vacaciones.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Vacaciones_" + vacaciones.VacacionesID + ".pdf");
+                Vacaciones vacaciones = vacacionesDAO.getVacaciones(id, ref mensaje);
+                if (mensaje == "OK")
+                {
+                    return File(vacaciones.Archivo, System.Net.Mime.MediaTypeNames.Application.Octet, "Vacaciones_" + vacaciones.VacacionesID + ".pdf");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Warning(mensaje, "Justificación", true);
-                return View("Index");
+                mensaje = ex.Message;
             }
+            Warning(mensaje, "Vacaciones", true);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -77,11 +77,15 @@ namespace SqlDataAccess.Administracion
         {
             Permiso permiso = new Permiso();
             sql = new ConsultasSQL();
-            sql.Comando.CommandText = "SELECT	PER.*"
+            sql.Comando.CommandText = "SELECT	PER.*,FAC.FacultadID"
                                     + " ,concat(USU.Apellidos, ' ', USU.Nombres) AS NombreUsuario"
                                     + " FROM tbpermiso           AS PER"
                                     + " INNER JOIN tbusuario AS USU"
                                     + " ON      PER.UsuarioID = USU.UsuarioID"
+                                    + " INNER   JOIN tbcarrera  AS    CAR"
+                                    + " ON      CAR.CarreraID = USU.CarreraID"
+                                    + " INNER JOIN tbfacultad  AS  FAC"
+                                    + " ON      FAC.FacultadID = CAR.FacultadID"
                                     + " WHERE USU.Estado = 'A'"
                                     + " AND PER.PermisoID = " + id;
             try
