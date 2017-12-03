@@ -690,7 +690,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1089,7 +1088,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total de Estado</Value>
+                              <Value>Total de Registros</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
