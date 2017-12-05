@@ -25,6 +25,9 @@
                     <thead>
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.BiometricoID)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Descripcion)
                             </th>
                             <th>
@@ -37,6 +40,9 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BiometricoID)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Descripcion)
                                 </td>
